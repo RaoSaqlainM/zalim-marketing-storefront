@@ -116,4 +116,4 @@
 - [x] Verify the diversified product image set is publicly available and repair any missing product-media references so the enhanced shop does not rely on fallback art.
 - [x] Add regression coverage for valid and invalid saved-vehicle browser-profile data.
 - [x] Perform and document a per-route motion audit that confirms reduced-motion behavior, mobile touch compatibility, and the observable performance safeguards used by the restored scroll and particle effects.
-- [ ] Save the completed motion-and-discovery upgrade checkpoint.
+- [x] Save the completed motion-and-discovery upgrade checkpoint.
