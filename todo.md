@@ -102,4 +102,4 @@
 - [x] Refine the shared palette, contrast, elevated surface treatments, and selected atmospheric particle backgrounds without heavy rendering cost.
 - [x] Verify the refinement on mobile.
 - [x] Record active product counts by department after uniqueness confirmation to prove the live EUR range remains broad and balanced.
-- [ ] Save the final refinement checkpoint with unique product records, diversified imagery, and atmospheric styling.
+- [x] Save the final refinement checkpoint with unique product records, diversified imagery, and atmospheric styling.
