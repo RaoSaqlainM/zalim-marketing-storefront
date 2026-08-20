@@ -2,7 +2,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { startLogin } from "@/const";
-import { mapParticleFocus, type ParticleFocus } from "@/lib/particleMotion";
+import { interpolateParticleFocus, mapParticleFocus, type ParticleFocus } from "@/lib/particleMotion";
 import { formatCurrency } from "@/lib/store";
 import { trpc } from "@/lib/trpc";
 import { ArrowUpRight, ChevronRight, Mail, Menu, MessageCircle, Search, ShoppingBag, UserRound, X } from "lucide-react";
@@ -154,12 +154,16 @@ export default function StorefrontLayout({ children }: { children: React.ReactNo
     const cleanups = fields.map(field => {
       let frame = 0;
       let focus: ParticleFocus = { x: 0.5, y: 0.5, offsetX: 0, offsetY: 0 };
+      let renderedFocus: ParticleFocus = { ...focus };
       const render = () => {
         frame = 0;
-        field.style.setProperty("--particle-focus-x", `${Math.round(focus.x * 100)}%`);
-        field.style.setProperty("--particle-focus-y", `${Math.round(focus.y * 100)}%`);
-        field.style.setProperty("--particle-shift-x", `${focus.offsetX}px`);
-        field.style.setProperty("--particle-shift-y", `${focus.offsetY}px`);
+        const blend = 0.14;
+        renderedFocus = interpolateParticleFocus(renderedFocus, focus, blend);
+        field.style.setProperty("--particle-focus-x", `${Math.round(renderedFocus.x * 100)}%`);
+        field.style.setProperty("--particle-focus-y", `${Math.round(renderedFocus.y * 100)}%`);
+        field.style.setProperty("--particle-shift-x", `${renderedFocus.offsetX.toFixed(2)}px`);
+        field.style.setProperty("--particle-shift-y", `${renderedFocus.offsetY.toFixed(2)}px`);
+        if (Math.abs(focus.x - renderedFocus.x) > 0.002 || Math.abs(focus.y - renderedFocus.y) > 0.002 || Math.abs(focus.offsetX - renderedFocus.offsetX) > 0.12 || Math.abs(focus.offsetY - renderedFocus.offsetY) > 0.12) requestRender();
       };
       const requestRender = () => {
         if (!frame) frame = window.requestAnimationFrame(render);

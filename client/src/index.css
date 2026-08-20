@@ -3,6 +3,9 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@property --particle-focus-x { syntax: "<percentage>"; inherits: false; initial-value: 50%; }
+@property --particle-focus-y { syntax: "<percentage>"; inherits: false; initial-value: 50%; }
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -114,7 +117,7 @@ button:not(:disabled):active { transform: scale(.98); }
 .particle-field > *:not(.particle-backdrop):not(.particle-overlay):not(.particle-interaction) { position: relative; z-index: 3; }
 .particle-field .particle-backdrop { position: absolute; z-index: 1; }
 .particle-field .particle-overlay { position: absolute; z-index: 2; }
-.particle-interaction { position: absolute; inset: -14%; z-index: 2; pointer-events: none; background: radial-gradient(circle at var(--particle-focus-x, 50%) var(--particle-focus-y, 50%), rgb(238 204 125 / .48) 0, rgb(98 171 223 / .22) 18%, transparent 48%); mix-blend-mode: screen; opacity: .76; transform: translate3d(var(--particle-shift-x, 0), var(--particle-shift-y, 0), 0) scale(1.06); transition: transform .32s cubic-bezier(.23, 1, .32, 1), opacity .32s cubic-bezier(.23, 1, .32, 1); will-change: transform; }
+.particle-interaction { position: absolute; inset: -14%; z-index: 2; pointer-events: none; background: radial-gradient(circle at var(--particle-focus-x, 50%) var(--particle-focus-y, 50%), rgb(238 204 125 / .4) 0, rgb(98 171 223 / .18) 18%, transparent 48%); mix-blend-mode: screen; opacity: .64; transform: translate3d(var(--particle-shift-x, 0), var(--particle-shift-y, 0), 0) scale(1.04); transition: transform .62s cubic-bezier(.23, 1, .32, 1), opacity .62s cubic-bezier(.23, 1, .32, 1); will-change: transform; }
 .particle-ridge { background: radial-gradient(circle at 85% 18%, rgb(214 175 89 / .18), transparent 25rem), linear-gradient(135deg, #07101f, #102440 58%, #091323); }
 .particle-field--hero::before { background: radial-gradient(circle at 83% 28%, rgb(109 173 228 / .3), transparent 27rem), radial-gradient(circle at 19% 68%, rgb(229 181 79 / .18), transparent 31rem); opacity: .95; }
 .particle-field--touring::before { background: linear-gradient(118deg, transparent 12%, rgb(80 151 199 / .24) 46%, transparent 64%), radial-gradient(circle at 8% 88%, rgb(225 184 89 / .28), transparent 28rem); opacity: .9; }

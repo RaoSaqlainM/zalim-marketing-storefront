@@ -121,3 +121,8 @@
 - [x] Add selected cursor- and finger-responsive atmospheric motion that remains aligned with the Zalim-Marketing visual system and respects reduced-motion preferences.
 - [x] Verify desktop pointer behavior, mobile touch behavior, readability, and runtime safeguards before saving the interaction-refinement checkpoint.
 - [x] Save the completed interactive particle refinement checkpoint.
+- [x] Audit the current interaction timing and practical consumable categories to define a smoother, useful next expansion.
+- [x] Refine selected particle response for calmer, more fluid movement while preserving reduced-motion and touch safeguards.
+- [x] Expand the active EUR catalogue with original practical consumables and vehicle essentials, including oils, lubricants, batteries, bulbs, and related maintenance products.
+- [x] Verify the expanded catalogue has unique records, valid media assignments, and responsive presentation alongside the refined interaction behavior.
+- [ ] Save the completed motion-and-essential-catalogue expansion checkpoint.
