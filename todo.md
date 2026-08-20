@@ -125,4 +125,4 @@
 - [x] Refine selected particle response for calmer, more fluid movement while preserving reduced-motion and touch safeguards.
 - [x] Expand the active EUR catalogue with original practical consumables and vehicle essentials, including oils, lubricants, batteries, bulbs, and related maintenance products.
 - [x] Verify the expanded catalogue has unique records, valid media assignments, and responsive presentation alongside the refined interaction behavior.
-- [ ] Save the completed motion-and-essential-catalogue expansion checkpoint.
+- [x] Save the completed motion-and-essential-catalogue expansion checkpoint.
