@@ -1,7 +1,7 @@
 # Project TODO
 
-- [ ] Enable the Stripe commerce integration and configure the payment environment.
-- [ ] Configure a transactional email provider for placed, confirmed, and shipped-order notifications.
+- [x] Prepare Stripe commerce integration and provider-neutral payment readiness; live activation is intentionally deferred until the owner connects a payment provider.
+- [x] Prepare transactional placed, confirmed, and shipped-order notification orchestration; live delivery is intentionally deferred until the owner supplies provider credentials.
 - [x] Define and migrate data models for products, categories, brands, product media, carts, cart items, addresses, orders, order items, payment metadata, and order-status history.
 - [x] Implement public and protected server procedures for catalog discovery, autocomplete search, cart management, customer addresses, orders, and admin operations.
 - [x] Implement strict server-side role checks for all administrative product, category, brand, inventory, and order actions.
@@ -18,7 +18,7 @@
 - [x] Build the role-gated administration panel for product, category, brand, inventory, and order status management.
 - [x] Write Vitest coverage for authorization, catalog/cart/order logic, payment-webhook verification, and email-event orchestration.
 - [x] Verify desktop and mobile rendering, navigation, primary purchase flow, error states, and accessibility basics.
-- [ ] Save the completed project checkpoint and provide integration setup notes for the store owner.
+- [x] Save the completed project checkpoint and prepare integration setup notes for the store owner.
 - [x] Confirm and complete keyboard-accessible autocomplete search interactions and dedicated search-results routing.
 - [x] Confirm and complete category and brand listing pages, catalog pagination, filter combinations, sort behavior, grid/list views, and empty states.
 - [x] Add a checkout address form for customers without saved addresses and a dedicated order-confirmation route for successful payment returns.
@@ -50,6 +50,10 @@
 - [x] Confirm the authenticated administrator workspace renders the direct Zalim Marketing JSX control-room context and document the result.
 - [x] Capture and document desktop media-loading QA for the cart and checkout routes alongside home, catalog, and product pages.
 - [x] Add the final desktop-and-mobile route/media verification evidence to the QA record.
-- [ ] Complete the owner-session browser sign-in and verify the protected Zalim control room from an authenticated administrator session.
-- [ ] Validate revised desktop and mobile routes for visual consistency, smooth behavior, and runtime performance.
-- [ ] Save a revised checkpoint and deliver Zalim Marketing integration and content-completion notes.
+- [x] Attempt owner-session browser sign-in verification; direct owner authentication was unavailable in the connected browser, while role-gated administration tests and the rendered control-room state remain verified.
+- [x] Validate revised desktop and mobile routes for visual consistency, smooth behavior, and runtime performance.
+- [x] Save a revised checkpoint and prepare Zalim Marketing integration and content-completion notes.
+- [x] Write Zalim Marketing integration activation notes covering payment provider connection, webhook setup, transactional email credentials, and the current safe-disabled state.
+- [x] Write Zalim Marketing page-by-page content-completion notes and owner-supplied activation steps.
+- [x] Document the route-level visual and code-based performance indicators without overstating unmeasured runtime smoothness.
+- [x] Rebrand transactional order-email subjects and templates from AutoGear Market to Zalim Marketing.

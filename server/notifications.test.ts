@@ -14,8 +14,8 @@ afterEach(() => {
 describe("order milestone notifications", () => {
   it.each([
     ["placed", "We have received your order"],
-    ["confirmed", "Your AutoGear order is confirmed"],
-    ["shipped", "Your AutoGear order is on the road"],
+    ["confirmed", "Your Zalim Marketing order is confirmed"],
+    ["shipped", "Your Zalim Marketing order is on the road"],
   ] as const)("sends the %s milestone using the corresponding customer message", async (milestone, subject) => {
     process.env.RESEND_API_KEY = "test-key";
     process.env.RESEND_FROM_EMAIL = "orders@example.test";
