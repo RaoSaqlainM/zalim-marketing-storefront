@@ -65,6 +65,25 @@ describe("commerce service safe fallbacks", () => {
     await expect(listCatalog({ query: "unavailable", page: 1, pageSize: 12 })).resolves.toEqual({ products: [], total: 0, page: 1, pageSize: 12 });
   });
 
+  it("returns a matching live product row for a lowercase catalogue search term", async () => {
+    const productRows = [{ id: 10, name: "Nova Emergency Beacon Light", slug: "nova-emergency-beacon-light" }];
+    const productQuery: Record<string, ReturnType<typeof vi.fn>> = {};
+    productQuery.from = vi.fn(() => productQuery);
+    productQuery.leftJoin = vi.fn(() => productQuery);
+    productQuery.where = vi.fn(() => productQuery);
+    productQuery.orderBy = vi.fn(() => productQuery);
+    productQuery.limit = vi.fn(() => productQuery);
+    productQuery.offset = vi.fn(() => Promise.resolve(productRows));
+    const countQuery: Record<string, ReturnType<typeof vi.fn>> = {};
+    countQuery.from = vi.fn(() => countQuery);
+    countQuery.leftJoin = vi.fn(() => countQuery);
+    countQuery.where = vi.fn(() => Promise.resolve([{ count: 1 }]));
+    let selectCount = 0;
+    mockedGetDb.mockResolvedValue({ select: vi.fn(() => (selectCount++ === 0 ? productQuery : countQuery)) } as never);
+
+    await expect(listCatalog({ query: "beacon" })).resolves.toMatchObject({ products: productRows, total: 1 });
+  });
+
   it.each(["featured", "newest", "price-asc", "price-desc", "name"] as const)("accepts the %s catalog sort mode and runs a single ordered product query", async sort => {
     const productQuery: Record<string, ReturnType<typeof vi.fn>> = {};
     productQuery.from = vi.fn(() => productQuery);

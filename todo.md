@@ -57,3 +57,17 @@
 - [x] Write Zalim Marketing page-by-page content-completion notes and owner-supplied activation steps.
 - [x] Document the route-level visual and code-based performance indicators without overstating unmeasured runtime smoothness.
 - [x] Rebrand transactional order-email subjects and templates from AutoGear Market to Zalim Marketing.
+- [x] Audit the reference marketplace page hierarchy and current Zalim-Marketing routes to identify missing or broken user-facing pages and controls.
+- [x] Replace the current visual direction with a professional original automotive marketplace layout that provides clear page hierarchy, full-width desktop use, and robust mobile responsiveness.
+- [x] Update public identity to Zalim-Marketing, identify Saqlain Mushtaq as owner/developer, and display WhatsApp +923255531155 and raosaqlaingee@gmail.com only in deliberate support locations.
+- [x] Seed and present a EUR-priced catalog oriented around commonly used United Kingdom, United States, and Australian vehicles and fitment contexts.
+- [x] Remove public payment collection, provider-pending panels, checkout-payment controls, and payment-service wording while retaining a clear request/order enquiry path.
+- [x] Rebuild and link original homepage, shop, vehicle finder, category, brand, product, search, basket, account, support, policy, and administration routes page by page.
+- [x] Confirm that rebuilt Zalim-Marketing pages and shared storefront components contain no newly introduced code comments; existing untouched framework/template comments are excluded from this rebuild scope.
+- [x] Verify every public navigation button and route, plus desktop and mobile presentation, against the corrected page inventory.
+- [ ] Save a corrected Zalim-Marketing checkpoint with a concise owner handover note.
+- [x] Hide legacy non-Zalim catalogue rows so public product listings show only the revised EUR-priced international assortment.
+- [x] Fix the public search-results route so a matching seeded product such as the Nova Emergency Beacon Light is returned for relevant search terms.
+- [x] Rebuild the fallback 404 page within the Zalim-Marketing shared storefront shell and visual system.
+- [x] Capture the rebuilt storefront comment-audit output and resolve any newly introduced comments found within the edited client scope.
+- [x] Replace the outdated QA record with the final Zalim-Marketing enquiry-first route inventory and explicit desktop/mobile verification coverage.

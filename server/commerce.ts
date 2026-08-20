@@ -90,7 +90,7 @@ export async function listCatalog(filters: CatalogFilters = {}) {
   const term = filters.query?.trim();
   const conditions = [
     filters.includeInactive ? undefined : eq(products.isActive, true),
-    term ? sql`(${products.name} LIKE ${`%${term}%`} OR ${products.sku} LIKE ${`%${term}%`})` : undefined,
+    term ? sql`(LOWER(${products.name}) LIKE LOWER(${`%${term}%`}) OR LOWER(${products.sku}) LIKE LOWER(${`%${term}%`}))` : undefined,
     filters.categorySlug ? eq(categories.slug, filters.categorySlug) : undefined,
     filters.brandSlug ? eq(brands.slug, filters.brandSlug) : undefined,
     filters.minPrice !== undefined ? gte(products.price, filters.minPrice.toFixed(2)) : undefined,
@@ -176,7 +176,7 @@ export async function searchSuggestions(query: string) {
   return db
     .select({ id: products.id, name: products.name, slug: products.slug, imageUrl: products.imageUrl, price: products.price })
     .from(products)
-    .where(and(eq(products.isActive, true), like(products.name, `%${term}%`)))
+    .where(and(eq(products.isActive, true), sql`LOWER(${products.name}) LIKE LOWER(${`%${term}%`})`))
     .orderBy(desc(products.isFeatured), desc(products.createdAt))
     .limit(6);
 }
