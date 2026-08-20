@@ -29,3 +29,27 @@
 - [x] Create a concise QA checklist documenting desktop/mobile route coverage and keyboard-accessibility checks for the storefront and account flows.
 - [x] Validate every catalog sort mode and document the exercised sort scenarios.
 - [x] Validate and document the catalog-page no-results state independently from search results.
+- [x] Rebrand all customer-facing identity and metadata from AutoGear Market to Zalim Marketing, with Saqlain Mushtaq as the store owner.
+- [x] Remove all third-party/reference-site links, placeholder phone numbers, placeholder email addresses, and generic copyright messaging from public pages.
+- [x] Rework the global navigation, header, footer, page transition/loading treatment, and road-ready visual motif for Zalim Marketing.
+- [x] Rebuild the homepage as an original automotive marketplace landing page with optimized hero media, vehicle-led discovery, categories, promotions, and product sections.
+- [x] Implement and verify a lightweight public-route transition treatment that preserves fast navigation and respects reduced-motion preferences.
+- [x] Re-run navigation visual checks to confirm route-change motion stays smooth and non-laggy on desktop and mobile.
+- [x] Rework the catalog, category, brand, search, and product-detail pages one by one for the new marketplace presentation.
+- [x] Rework cart, checkout, account, order, static-content, and protected administration pages for Zalim Marketing.
+- [x] Audit all public routes, metadata, and storefront links for source-site URLs, external links, and generic copyright or contact placeholders.
+- [x] Apply and verify the Zalim Marketing owner-facing rebrand in the protected administration workspace.
+- [x] Update visible protected administration headings, descriptions, owner details, and store context for Zalim Marketing and Saqlain Mushtaq.
+- [x] Record a protected administration visual verification after the visible Zalim Marketing rebrand.
+- [x] Implement progressive image loading, lazy loading, responsive media sizing, reduced-motion support, and lightweight scroll effects without scroll-jacking.
+- [x] Verify component-level lazy loading, async decoding, and responsive sizing for hero, catalog, product, cart, and checkout media.
+- [x] Document and visually validate the complete public media-loading strategy, including loading placeholders and mobile/desktop image behavior.
+- [x] Render all Zalim Marketing administration headings, ownership context, and store descriptions directly in React JSX without DOM text mutation.
+- [x] Capture and document an authenticated administrator workspace visual QA pass after the JSX rebrand.
+- [x] Capture and document desktop and mobile media-loading placeholder and responsive-image QA for hero, catalog, product, cart, and checkout routes.
+- [x] Confirm the authenticated administrator workspace renders the direct Zalim Marketing JSX control-room context and document the result.
+- [x] Capture and document desktop media-loading QA for the cart and checkout routes alongside home, catalog, and product pages.
+- [x] Add the final desktop-and-mobile route/media verification evidence to the QA record.
+- [ ] Complete the owner-session browser sign-in and verify the protected Zalim control room from an authenticated administrator session.
+- [ ] Validate revised desktop and mobile routes for visual consistency, smooth behavior, and runtime performance.
+- [ ] Save a revised checkpoint and deliver Zalim Marketing integration and content-completion notes.

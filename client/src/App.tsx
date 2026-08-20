@@ -10,6 +10,7 @@ import OrderDetail from "@/pages/OrderDetail";
 import OrderConfirmation from "@/pages/OrderConfirmation";
 import ProductDetail from "@/pages/ProductDetail";
 import StaticPage from "@/pages/StaticPage";
+import VehicleFinder from "@/pages/VehicleFinder";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -21,6 +22,7 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/shop"} component={() => <Catalog mode="shop" />} />
+      <Route path={"/vehicle-finder"} component={VehicleFinder} />
       <Route path={"/search"} component={() => <Catalog mode="search" />} />
       <Route path={"/collections"} component={() => <Catalog mode="categories" />} />
       <Route path={"/collections/:slug"} component={() => <Catalog mode="collection" />} />

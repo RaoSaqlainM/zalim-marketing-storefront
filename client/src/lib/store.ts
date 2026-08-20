@@ -60,21 +60,21 @@ export const policyContent: Record<string, { eyebrow: string; title: string; int
   about: {
     eyebrow: "Our point of view",
     title: "Better journeys are built in the details.",
-    intro: "AutoGear Market selects useful automotive objects with a simple standard: each item should feel considered before, during and after the journey.",
+    intro: "Zalim Marketing curates practical automotive essentials with a simple standard: each item should earn its place before, during and after the journey.",
     sections: [
       { heading: "Considered utility", body: "We focus on accessories that quietly improve the daily drive, from dependable roadside tools to cabin pieces that make every mile feel more ordered." },
-      { heading: "A more measured catalog", body: "Our assortment is designed to be easy to explore, clear to compare and grounded in practical specifications rather than unnecessary noise." },
+      { heading: "A more useful marketplace", body: "The collection is designed to be easy to explore, clear to compare and grounded in practical specifications rather than unnecessary noise." },
       { heading: "Made for the road ahead", body: "Whether the trip is familiar or far from home, we believe smart preparation is a simple kind of luxury." },
     ],
   },
   contact: {
-    eyebrow: "Talk to us",
-    title: "Helpful answers, without the runaround.",
-    intro: "Our care team is available for product questions, order assistance and delivery support.",
+    eyebrow: "Support updates",
+    title: "Clear guidance, built around your order.",
+    intro: "Zalim Marketing is preparing its customer support channels. In the meantime, account-based order details remain the source of truth for purchase and delivery progress.",
     sections: [
-      { heading: "Customer care", body: "Email care@autogear.market with your order number and a short description of what you need. We aim to reply within one business day." },
-      { heading: "Product guidance", body: "Need help choosing between two items? Tell us your vehicle, use case and priorities, and we will help you find the better fit." },
-      { heading: "Business hours", body: "Monday through Saturday, 10:00–18:00 PKT. Messages received outside these hours are answered on the next business day." },
+      { heading: "Order guidance", body: "Sign in to review an order’s status, delivery address and tracking reference. These details update with each recorded fulfilment milestone." },
+      { heading: "Product guidance", body: "Use Vehicle finder as a starting point, then compare product specifications carefully before placing an order. Vehicle-specific fit should always be confirmed from the listed details." },
+      { heading: "Support channel", body: "A direct customer-support route will be published here once the store owner connects its preferred service. No phone or email contact details are currently displayed." },
     ],
   },
   faq: {
@@ -83,8 +83,8 @@ export const policyContent: Record<string, { eyebrow: string; title: string; int
     intro: "A few concise answers to help you shop with confidence.",
     sections: [
       { heading: "How do I know an item is in stock?", body: "Each product page shows the current stock status. Items can only be added to cart in available quantities." },
-      { heading: "Can I change my delivery address?", body: "You can save and manage addresses from your account. If an order has not moved to fulfillment, contact us and we will do our best to assist." },
-      { heading: "Where can I find my order updates?", body: "Your account shows order history and status milestones. We also email you at placement, confirmation and shipment once email delivery is configured." },
+      { heading: "Can I change my delivery address?", body: "You can save and manage addresses from your account. Changes to an order that has not progressed to fulfilment will become available when the store’s support service is connected." },
+      { heading: "Where can I find my order updates?", body: "Your account shows order history and status milestones. Order notifications will be activated when the store owner connects the delivery service." },
     ],
   },
   shipping: {
@@ -100,9 +100,9 @@ export const policyContent: Record<string, { eyebrow: string; title: string; int
   returns: {
     eyebrow: "Returns policy",
     title: "A simple path when something is not right.",
-    intro: "If your order is damaged, incorrect or not as expected, contact our care team so we can review the best next step.",
+    intro: "If an order is damaged, incorrect or not as expected, Zalim Marketing will provide a clear return-request route when customer support is activated.",
     sections: [
-      { heading: "Requesting a return", body: "Contact care@autogear.market with your order number, a description of the issue and clear photographs where relevant." },
+      { heading: "Requesting a return", body: "The return-request form and support route will be published with the store’s customer-service connection. Keep your order number and any relevant product-condition photographs ready." },
       { heading: "Product condition", body: "To be eligible for return assessment, items should be unused, complete and in their original packaging unless the product arrived damaged or incorrect." },
       { heading: "Resolution", body: "After review, we will confirm the available resolution, which may include replacement, store credit or refund according to the applicable circumstances." },
     ],

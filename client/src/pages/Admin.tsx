@@ -9,7 +9,7 @@ import { EmptyState } from "@/components/CommerceUI";
 import { formatCurrency, type StoreProduct } from "@/lib/store";
 import { trpc } from "@/lib/trpc";
 import { Boxes, ClipboardList, FolderTree, PackagePlus, Pencil, Tags } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Link } from "wouter";
 
@@ -18,6 +18,11 @@ const blankProduct = { name: "", slug: "", sku: "", shortDescription: "", descri
 
 export default function Admin() {
   const { user, loading } = useAuth();
+  useEffect(() => {
+    const previousTitle = document.title;
+    document.title = "Zalim Marketing — Saqlain Mushtaq · Store operations";
+    return () => { document.title = previousTitle; };
+  }, []);
   const [tab, setTab] = useState<Tab>("orders");
   const [showProductForm, setShowProductForm] = useState(false);
   const [editingProductId, setEditingProductId] = useState<number | null>(null);
@@ -35,7 +40,7 @@ export default function Admin() {
   const createBrand = trpc.admin.createBrand.useMutation({ onSuccess: () => { toast.success("Brand created."); setBrand({ name: "", slug: "", description: "" }); utils.catalog.brands.invalidate(); }, onError: error => toast.error(error.message) });
   const updateOrder = trpc.admin.updateOrderStatus.useMutation({ onSuccess: () => { toast.success("Order updated."); utils.admin.orders.invalidate(); }, onError: error => toast.error(error.message) });
   if (loading) return <StorefrontLayout><div className="container py-14"><div className="h-80 animate-pulse rounded-[1.5rem] bg-secondary" /></div></StorefrontLayout>;
-  if (user?.role !== "admin") return <StorefrontLayout><div className="container py-16"><EmptyState title="Administrator access required." text="This area is only available to authorized store administrators." action={{ label: "Return to shop", href: "/shop" }} /></div></StorefrontLayout>;
+  if (user?.role !== "admin") return <StorefrontLayout><div className="container py-16"><EmptyState title="Zalim Marketing administrator access required." text="This protected workspace is reserved for Saqlain Mushtaq and explicitly authorized store administrators." action={{ label: "Return to shop", href: "/shop" }} /></div></StorefrontLayout>;
   const tabs: Array<{ key: Tab; label: string; icon: typeof ClipboardList }> = [{ key: "orders", label: "Orders", icon: ClipboardList }, { key: "products", label: "Products", icon: Boxes }, { key: "collections", label: "Collections", icon: FolderTree }];
   const productChange = (field: keyof typeof blankProduct, value: string | boolean) => setProduct(current => ({ ...current, [field]: value }));
   const openNewProduct = () => { setEditingProductId(null); setProduct(blankProduct); setShowProductForm(true); };

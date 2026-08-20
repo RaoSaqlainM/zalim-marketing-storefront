@@ -14,6 +14,15 @@
 | Search empty state | `/search?q=mount` | Reviewed | N/A | Query heading and no-results state remain clear with an escape route back to the catalog. |
 | Checkout cancellation recovery | `/checkout?payment=cancelled` | Reviewed | Reviewed | Delivery address CTA, Stripe readiness state, order review, and non-blocking cancellation notice render without runtime error. |
 | Payment-success destination | `/order-confirmation?order=<order-number>` | Reviewed | N/A | Missing-order fallback is safe; a real order displays polling confirmation and a route to order details. |
+| Protected administration workspace | `/admin` as authenticated administrator | Reviewed | N/A | The rendered **Zalim control room** displays Zalim Marketing and Saqlain Mushtaq context directly from React JSX, with Orders, Products, and Collections controls available. |
+
+## Public media and loading review
+
+| Route or surface | Desktop | Mobile | Result |
+|---|---:|---:|---|
+| Homepage hero and category/product cards | Reviewed | Reviewed | Original hero media carries an intrinsic responsive frame; below-the-fold category and product imagery use lazy loading, asynchronous decoding, and reserved media space to avoid layout shift. |
+| Catalog and product detail | Reviewed | Reviewed | Product cards and the product gallery retain fixed media proportions, lazy-load noncritical media, and use lightweight WebP-backed storefront assets. |
+| Cart and checkout | Reviewed | Reviewed | The empty-cart state and pending-payment checkout state render cleanly without unnecessary media work; populated line-item image markup uses native lazy loading and asynchronous decoding. |
 
 ## Catalog state coverage
 
@@ -34,7 +43,7 @@
 
 ## Automated coverage
 
-The `pnpm test` suite contains **19 passing tests** across authentication, role-gated administration, catalog inputs and pagination, cart safety, Stripe signature verification, payment configuration safeguards, and the placed/confirmed/shipped email messages. TypeScript validation is executed with `pnpm check`.
+The `pnpm test` suite contains **24 passing tests** across authentication, role-gated administration, catalog inputs and pagination, cart safety, Stripe signature verification, payment configuration safeguards, and the placed/confirmed/shipped email messages. TypeScript validation is executed with `pnpm check`.
 
 ## Known activation prerequisites
 
