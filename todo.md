@@ -109,4 +109,4 @@
 - [x] Add a product-page rating summary, honest no-review state, star selector, review form, and submission-pending feedback.
 - [x] Add an administration moderation area and unit coverage for review validation, authorisation, and publication behavior.
 - [x] Verify desktop/mobile review flows.
-- [ ] Save the completed moderated-review feature checkpoint.
+- [x] Save the completed moderated-review feature checkpoint.
