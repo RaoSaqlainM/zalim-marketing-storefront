@@ -9,6 +9,7 @@ import {
   orders,
   orderStatusHistory,
   productImages,
+  productReviews,
   products,
   users,
 } from "../drizzle/schema";
@@ -135,13 +136,113 @@ export async function getProductBySlug(slug: string) {
   const product = rows[0];
   if (!product) return null;
 
-  const images = await db
-    .select({ id: productImages.id, url: productImages.url, altText: productImages.altText, position: productImages.position })
-    .from(productImages)
-    .where(eq(productImages.productId, product.id))
-    .orderBy(asc(productImages.position));
+  const [images, reviewSummary, reviews] = await Promise.all([
+    db
+      .select({ id: productImages.id, url: productImages.url, altText: productImages.altText, position: productImages.position })
+      .from(productImages)
+      .where(eq(productImages.productId, product.id))
+      .orderBy(asc(productImages.position)),
+    getProductReviewSummary(product.id),
+    listApprovedProductReviews(product.id),
+  ]);
 
-  return { ...product, images };
+  return { ...product, images, reviewSummary, reviews };
+}
+
+export async function getProductReviewSummary(productId: number) {
+  const db = await getDb();
+  if (!db) return { reviewCount: 0, averageRating: 0 };
+  const rows = await db
+    .select({
+      reviewCount: sql<number>`count(*)`,
+      averageRating: sql<number>`coalesce(avg(${productReviews.rating}), 0)`,
+    })
+    .from(productReviews)
+    .where(and(eq(productReviews.productId, productId), eq(productReviews.status, "approved")));
+  return {
+    reviewCount: Number(rows[0]?.reviewCount ?? 0),
+    averageRating: Number(rows[0]?.averageRating ?? 0),
+  };
+}
+
+export async function listApprovedProductReviews(productId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select({
+      id: productReviews.id,
+      rating: productReviews.rating,
+      title: productReviews.title,
+      body: productReviews.body,
+      reviewerName: users.name,
+      createdAt: productReviews.createdAt,
+    })
+    .from(productReviews)
+    .innerJoin(users, eq(productReviews.userId, users.id))
+    .where(and(eq(productReviews.productId, productId), eq(productReviews.status, "approved")))
+    .orderBy(desc(productReviews.createdAt));
+}
+
+export async function submitProductReview(
+  userId: number,
+  input: { productId: number; rating: number; title?: string | null; body: string },
+) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  const product = await db.select({ id: products.id }).from(products).where(and(eq(products.id, input.productId), eq(products.isActive, true))).limit(1);
+  if (!product[0]) throw new Error("This product is not available for review");
+  const existing = await db
+    .select({ id: productReviews.id, status: productReviews.status })
+    .from(productReviews)
+    .where(and(eq(productReviews.productId, input.productId), eq(productReviews.userId, userId)))
+    .limit(1);
+  if (existing[0]) throw new Error("You have already submitted a review for this product");
+  await db.insert(productReviews).values({
+    productId: input.productId,
+    userId,
+    rating: input.rating,
+    title: input.title || null,
+    body: input.body,
+    status: "pending",
+  });
+  return { submitted: true, status: "pending" as const };
+}
+
+export async function listAdminProductReviews(status?: "pending" | "approved" | "rejected") {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select({
+      id: productReviews.id,
+      productId: products.id,
+      productName: products.name,
+      productSlug: products.slug,
+      reviewerName: users.name,
+      reviewerEmail: users.email,
+      rating: productReviews.rating,
+      title: productReviews.title,
+      body: productReviews.body,
+      status: productReviews.status,
+      createdAt: productReviews.createdAt,
+      moderatedAt: productReviews.moderatedAt,
+    })
+    .from(productReviews)
+    .innerJoin(products, eq(productReviews.productId, products.id))
+    .innerJoin(users, eq(productReviews.userId, users.id))
+    .where(status ? eq(productReviews.status, status) : undefined)
+    .orderBy(desc(productReviews.createdAt));
+}
+
+export async function moderateProductReview(adminUserId: number, reviewId: number, status: "approved" | "rejected") {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  const review = await db.select({ id: productReviews.id }).from(productReviews).where(eq(productReviews.id, reviewId)).limit(1);
+  if (!review[0]) throw new Error("Review not found");
+  await db
+    .update(productReviews)
+    .set({ status, moderatedByUserId: adminUserId, moderatedAt: new Date() })
+    .where(eq(productReviews.id, reviewId));
+  return { reviewId, status };
 }
 
 export async function getFeaturedCatalog(kind: "featured" | "new") {

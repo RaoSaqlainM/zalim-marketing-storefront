@@ -43,6 +43,12 @@ const productInput = z.object({
     isNew: z.boolean().default(false),
     isActive: z.boolean().default(true),
 });
+const reviewInput = z.object({
+    productId: z.number().int().positive(),
+    rating: z.number().int().min(1).max(5),
+    title: z.string().trim().min(3).max(160).nullable().optional(),
+    body: z.string().trim().min(40).max(3000),
+});
 export const appRouter = router({
     system: systemRouter,
     auth: router({
@@ -75,6 +81,10 @@ export const appRouter = router({
         categories: publicProcedure.query(() => commerce.listCategories()),
         brands: publicProcedure.query(() => commerce.listBrands()),
     }),
+    reviews: router({
+        forProduct: publicProcedure.input(z.object({ productId: z.number().int().positive() })).query(({ input }) => Promise.all([commerce.getProductReviewSummary(input.productId), commerce.listApprovedProductReviews(input.productId)]).then(([summary, reviews]) => ({ summary, reviews }))),
+        submit: protectedProcedure.input(reviewInput).mutation(({ ctx, input }) => commerce.submitProductReview(ctx.user.id, input)),
+    }),
     cart: router({
         get: protectedProcedure.query(({ ctx }) => commerce.getCartForUser(ctx.user.id)),
         add: protectedProcedure.input(z.object({ productId: z.number().int().positive(), quantity: z.number().int().min(1).max(99) })).mutation(({ ctx, input }) => commerce.addCartItem(ctx.user.id, input.productId, input.quantity)),
@@ -104,6 +114,8 @@ export const appRouter = router({
     admin: router({
         catalog: adminProcedure.input(z.object({ page: z.number().int().min(1).optional(), pageSize: z.number().int().min(1).max(48).optional() })).query(({ input }) => commerce.listCatalog({ ...input, includeInactive: true, sort: "newest" })),
         orders: adminProcedure.query(() => commerce.listAdminOrders()),
+        reviews: adminProcedure.input(z.object({ status: z.enum(["pending", "approved", "rejected"]).optional() }).optional()).query(({ input }) => commerce.listAdminProductReviews(input?.status)),
+        moderateReview: adminProcedure.input(z.object({ reviewId: z.number().int().positive(), status: z.enum(["approved", "rejected"]) })).mutation(({ ctx, input }) => commerce.moderateProductReview(ctx.user.id, input.reviewId, input.status)),
         createCategory: adminProcedure.input(z.object({ name: z.string().trim().min(2).max(120), slug, description: z.string().trim().max(4000).nullable().optional(), imageUrl: z.string().url().nullable().optional(), isFeatured: z.boolean().optional(), sortOrder: z.number().int().min(0).optional() })).mutation(({ input }) => commerce.createCategory(input)),
         createBrand: adminProcedure.input(z.object({ name: z.string().trim().min(2).max(120), slug, description: z.string().trim().max(4000).nullable().optional(), logoUrl: z.string().url().nullable().optional() })).mutation(({ input }) => commerce.createBrand(input)),
         createProduct: adminProcedure.input(productInput).mutation(({ input }) => commerce.createProduct(input)),

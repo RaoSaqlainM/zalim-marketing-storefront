@@ -92,6 +92,29 @@ export const productImages = mysqlTable(
   table => [index("product_images_product_idx").on(table.productId, table.position)],
 );
 
+export const reviewStatuses = ["pending", "approved", "rejected"] as const;
+
+export const productReviews = mysqlTable(
+  "productReviews",
+  {
+    id: int("id").autoincrement().primaryKey(),
+    productId: int("productId").notNull().references(() => products.id, { onDelete: "cascade" }),
+    userId: int("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
+    rating: int("rating").notNull(),
+    title: varchar("title", { length: 160 }),
+    body: text("body").notNull(),
+    status: mysqlEnum("status", reviewStatuses).notNull().default("pending"),
+    moderatedByUserId: int("moderatedByUserId").references(() => users.id, { onDelete: "set null" }),
+    moderatedAt: timestamp("moderatedAt"),
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  },
+  table => [
+    index("product_reviews_public_idx").on(table.productId, table.status, table.createdAt),
+    uniqueIndex("product_reviews_user_product_unique").on(table.userId, table.productId),
+  ],
+);
+
 export const carts = mysqlTable("carts", {
   id: int("id").autoincrement().primaryKey(),
   userId: int("userId").notNull().unique().references(() => users.id, { onDelete: "cascade" }),
@@ -193,3 +216,4 @@ export type Product = typeof products.$inferSelect;
 export type Cart = typeof carts.$inferSelect;
 export type Address = typeof addresses.$inferSelect;
 export type Order = typeof orders.$inferSelect;
+export type ProductReview = typeof productReviews.$inferSelect;

@@ -2,6 +2,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Account from "@/pages/Account";
 import Admin from "@/pages/Admin";
+import AdminReviews from "@/pages/AdminReviews";
 import Cart from "@/pages/Cart";
 import Catalog from "@/pages/Catalog";
 import Checkout from "@/pages/Checkout";
@@ -34,6 +35,7 @@ function Router() {
       <Route path={"/account/orders/:orderNumber"} component={OrderDetail} />
       <Route path={"/account"} component={Account} />
       <Route path={"/admin"} component={Admin} />
+      <Route path={"/admin/reviews"} component={AdminReviews} />
       <Route path={"/about"} component={StaticPage} />
       <Route path={"/contact"} component={StaticPage} />
       <Route path={"/faq"} component={StaticPage} />

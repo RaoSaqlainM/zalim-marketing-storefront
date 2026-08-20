@@ -103,3 +103,10 @@
 - [x] Verify the refinement on mobile.
 - [x] Record active product counts by department after uniqueness confirmation to prove the live EUR range remains broad and balanced.
 - [x] Save the final refinement checkpoint with unique product records, diversified imagery, and atmospheric styling.
+- [x] Audit current product, user, order, server-router, and product-detail structures for a genuine review workflow.
+- [x] Add a moderated review data model with a 1–5 rating, optional title and body, reviewer identity, publication status, and timestamps.
+- [x] Implement protected review submission, public approved-review reads, and administrator moderation procedures without seeding any reviews.
+- [x] Add a product-page rating summary, honest no-review state, star selector, review form, and submission-pending feedback.
+- [x] Add an administration moderation area and unit coverage for review validation, authorisation, and publication behavior.
+- [x] Verify desktop/mobile review flows.
+- [ ] Save the completed moderated-review feature checkpoint.

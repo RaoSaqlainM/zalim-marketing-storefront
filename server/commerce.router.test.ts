@@ -61,4 +61,25 @@ describe("commerce router protections", () => {
 
     await expect(caller.catalog.list({ page: 0 })).rejects.toMatchObject({ code: "BAD_REQUEST" });
   });
+
+  it("rejects review submission before any database write when the visitor is not authenticated", async () => {
+    const caller = appRouter.createCaller(createContext("user", false));
+
+    await expect(caller.reviews.submit({ productId: 4, rating: 5, body: "This is a genuine customer review with enough detail to validate." })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
+  });
+
+  it("validates review ratings before attempting a customer submission", async () => {
+    const caller = appRouter.createCaller(createContext());
+
+    await expect(caller.reviews.submit({ productId: 4, rating: 6, body: "This is a genuine customer review with enough detail to validate." })).rejects.toMatchObject({ code: "BAD_REQUEST" });
+  });
+
+  it("strictly denies regular users from review moderation", async () => {
+    const caller = appRouter.createCaller(createContext());
+
+    await expect(caller.admin.moderateReview({ reviewId: 1, status: "approved" })).rejects.toMatchObject({
+      code: "FORBIDDEN",
+      message: "Administrator access is required.",
+    });
+  });
 });
