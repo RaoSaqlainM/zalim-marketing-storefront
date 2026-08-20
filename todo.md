@@ -71,3 +71,11 @@
 - [x] Rebuild the fallback 404 page within the Zalim-Marketing shared storefront shell and visual system.
 - [x] Capture the rebuilt storefront comment-audit output and resolve any newly introduced comments found within the edited client scope.
 - [x] Replace the outdated QA record with the final Zalim-Marketing enquiry-first route inventory and explicit desktop/mobile verification coverage.
+- [x] Audit the current Zalim-Marketing pages for sparse layout, undersized hierarchy, repetitive catalogue treatments, and incomplete marketplace storytelling.
+- [x] Create a richer premium design system with expanded spacing, layered photography, editorial type scale, and stronger automotive merchandising patterns.
+- [x] Rebuild the homepage, navigation, and footer with larger-scale marketplace modules, editorial promotion areas, and fuller destination structure.
+- [x] Expand vehicle discovery, catalogue, product, and support pages with non-repetitive sections, higher information density, and consistent premium composition.
+- [ ] Save the dedicated upgraded-marketplace checkpoint after the completed desktop and mobile visual validation.
+- [x] Rebuild the catalogue with premium editorial context and richer directory-to-product merchandising beyond the shared shell.
+- [x] Expand product detail with premium storytelling modules that clarify use, fitment, and enquiry readiness.
+- [x] Expand support and policy-page layouts with fuller premium guidance sections that remain specific to each destination.
