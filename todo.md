@@ -65,7 +65,7 @@
 - [x] Rebuild and link original homepage, shop, vehicle finder, category, brand, product, search, basket, account, support, policy, and administration routes page by page.
 - [x] Confirm that rebuilt Zalim-Marketing pages and shared storefront components contain no newly introduced code comments; existing untouched framework/template comments are excluded from this rebuild scope.
 - [x] Verify every public navigation button and route, plus desktop and mobile presentation, against the corrected page inventory.
-- [ ] Save a corrected Zalim-Marketing checkpoint with a concise owner handover note.
+- [x] Save a corrected Zalim-Marketing checkpoint with a concise owner handover note.
 - [x] Hide legacy non-Zalim catalogue rows so public product listings show only the revised EUR-priced international assortment.
 - [x] Fix the public search-results route so a matching seeded product such as the Nova Emergency Beacon Light is returned for relevant search terms.
 - [x] Rebuild the fallback 404 page within the Zalim-Marketing shared storefront shell and visual system.
