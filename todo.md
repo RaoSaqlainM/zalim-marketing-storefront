@@ -95,4 +95,4 @@
 - [x] Write complete original Zalim-Marketing customer guidance for About, FAQs, Delivery Information, Returns Policy, Privacy, and Terms of Use.
 - [x] Rebuild the six guidance-page layouts with practical sections, page-specific calls to action, and working linked routes.
 - [x] Verify the new guidance pages at desktop and mobile sizes.
-- [ ] Save the completed professional guidance-page checkpoint.
+- [x] Save the completed professional guidance-page checkpoint.
