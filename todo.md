@@ -120,4 +120,4 @@
 - [x] Audit the current particle scenes and identify a lightweight interaction model that responds to pointer and touch movement without affecting normal controls.
 - [x] Add selected cursor- and finger-responsive atmospheric motion that remains aligned with the Zalim-Marketing visual system and respects reduced-motion preferences.
 - [x] Verify desktop pointer behavior, mobile touch behavior, readability, and runtime safeguards before saving the interaction-refinement checkpoint.
-- [ ] Save the completed interactive particle refinement checkpoint.
+- [x] Save the completed interactive particle refinement checkpoint.
