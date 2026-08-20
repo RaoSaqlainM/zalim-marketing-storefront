@@ -91,3 +91,8 @@
 - [x] Fix unavailable category and product media so department tiles and product cards never retain a blank visual panel.
 - [x] Add resilient visual fallbacks to product and directory cards for unavailable media while retaining useful lazy loading.
 - [x] Re-verify shop, category directory, brand directory, and product pages at desktop and mobile sizes after media fixes.
+- [x] Audit the current About, FAQ, Delivery, Returns, Privacy, and Terms pages for sparse or missing customer guidance.
+- [x] Write complete original Zalim-Marketing customer guidance for About, FAQs, Delivery Information, Returns Policy, Privacy, and Terms of Use.
+- [x] Rebuild the six guidance-page layouts with practical sections, page-specific calls to action, and working linked routes.
+- [x] Verify the new guidance pages at desktop and mobile sizes.
+- [ ] Save the completed professional guidance-page checkpoint.
