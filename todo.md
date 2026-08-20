@@ -1,0 +1,31 @@
+# Project TODO
+
+- [ ] Enable the Stripe commerce integration and configure the payment environment.
+- [ ] Configure a transactional email provider for placed, confirmed, and shipped-order notifications.
+- [x] Define and migrate data models for products, categories, brands, product media, carts, cart items, addresses, orders, order items, payment metadata, and order-status history.
+- [x] Implement public and protected server procedures for catalog discovery, autocomplete search, cart management, customer addresses, orders, and admin operations.
+- [x] Implement strict server-side role checks for all administrative product, category, brand, inventory, and order actions.
+- [x] Build a premium global design system, responsive navigation, footer, breadcrumb pattern, and accessible interaction states.
+- [x] Build the homepage with original hero content, featured categories, promotional banners, best sellers, and new arrivals.
+- [x] Build catalog, category, brand, and search-results pages with filters, sorting, pagination, grid/list switching, and empty states.
+- [x] Build the product-detail page with gallery, specifications, stock indication, quantity control, and cart action.
+- [x] Build autocomplete search with keyboard-accessible suggestions and a dedicated results route.
+- [x] Build the cart, shipping-address capture, order review, payment handoff, confirmation, and failure/recovery experiences.
+- [x] Build customer account, sign-in entry points, saved addresses, order history, and individual order-details views.
+- [x] Build the About, Contact, FAQ, Shipping Policy, and Return Policy pages with original content.
+- [x] Integrate server-side Stripe Checkout Session creation and verified Stripe webhooks for payment-confirmed orders; activation awaits store credentials.
+- [x] Trigger customer email notifications automatically when an order is placed, confirmed, and marked shipped; delivery awaits provider credentials.
+- [x] Build the role-gated administration panel for product, category, brand, inventory, and order status management.
+- [x] Write Vitest coverage for authorization, catalog/cart/order logic, payment-webhook verification, and email-event orchestration.
+- [x] Verify desktop and mobile rendering, navigation, primary purchase flow, error states, and accessibility basics.
+- [ ] Save the completed project checkpoint and provide integration setup notes for the store owner.
+- [x] Confirm and complete keyboard-accessible autocomplete search interactions and dedicated search-results routing.
+- [x] Confirm and complete category and brand listing pages, catalog pagination, filter combinations, sort behavior, grid/list views, and empty states.
+- [x] Add a checkout address form for customers without saved addresses and a dedicated order-confirmation route for successful payment returns.
+- [x] Expand Vitest coverage for catalog/cart/order service behavior and email milestone orchestration.
+- [x] Perform and document desktop/mobile route coverage plus keyboard-accessibility checks for the primary storefront and account flows.
+- [x] Verify and document header autocomplete keyboard behavior, including arrow navigation, enter selection, escape dismissal, focus handling, and assistive semantics.
+- [x] Exercise and document catalog filter combinations, sort permutations, pagination, and empty-state behavior with targeted test coverage where practical.
+- [x] Create a concise QA checklist documenting desktop/mobile route coverage and keyboard-accessibility checks for the storefront and account flows.
+- [x] Validate every catalog sort mode and document the exercised sort scenarios.
+- [x] Validate and document the catalog-page no-results state independently from search results.

@@ -1,33 +1,33 @@
-import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
+import ProductCard from "@/components/ProductCard";
+import StorefrontLayout from "@/components/StorefrontLayout";
+import { SectionHeading } from "@/components/CommerceUI";
+import { heroImage, promoImage, type StoreCategory, type StoreProduct } from "@/lib/store";
+import { trpc } from "@/lib/trpc";
+import { ArrowRight, CheckCircle2, Headphones, ShieldCheck, Truck } from "lucide-react";
+import { Link } from "wouter";
 
-/**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Workflow, Frontend Best Practices, Design Guide and Common Pitfalls
- */
+const featurePoints = [{ icon: ShieldCheck, title: "Purposefully selected", text: "A focused catalog of road-ready essentials." }, { icon: Truck, title: "Clear delivery", text: "Straightforward shipping from cart to doorstep." }, { icon: Headphones, title: "Thoughtful support", text: "Practical help when you need it." }];
+const fallbackCategories: StoreCategory[] = [
+  { id: 1, name: "Car Care", slug: "car-care", description: "Maintenance with a calmer approach.", imageUrl: "/manus-storage/category-detailing_2f0366b5.jpg", isFeatured: true, sortOrder: 1 },
+  { id: 2, name: "Cabin & Comfort", slug: "cabin-comfort", description: "Details that improve the daily drive.", imageUrl: "/manus-storage/category-interior_d5e055da.jpg", isFeatured: true, sortOrder: 2 },
+  { id: 3, name: "Roadside Utility", slug: "roadside-utility", description: "Prepared for the road ahead.", imageUrl: "/manus-storage/category-utility_fa340543.jpg", isFeatured: true, sortOrder: 3 },
+];
+
+function ProductRow({ items }: { items: StoreProduct[] }) { return <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{items.map(product => <ProductCard key={product.id} product={product} />)}</div>; }
+
 export default function Home() {
-  // The useAuth hook provides authentication state.
-  // To implement login/logout, call logout(), or start login from an event
-  // handler: onClick={() => startLogin()} (imported from "@/const"). Never call
-  // startLogin() during render (no href={startLogin()}) — it mints a one-time
-  // nonce cookie and must run only at the moment of navigation.
-  let { user, loading, error, isAuthenticated, logout } = useAuth();
-
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
-
-  return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
-      </main>
-    </div>
-  );
+  const categories = trpc.catalog.categories.useQuery();
+  const featured = trpc.catalog.featured.useQuery();
+  const newArrivals = trpc.catalog.newArrivals.useQuery();
+  const categoryItems = (categories.data?.filter(item => item.isFeatured).slice(0, 3) || fallbackCategories) as StoreCategory[];
+  return <StorefrontLayout>
+    <section className="hero-shell"><img src={heroImage} alt="A graphite vehicle in a dramatic mountain setting" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,18,29,.91)_3%,rgba(12,18,29,.58)_44%,rgba(12,18,29,.1)_80%)]" /><div className="container relative z-10 flex min-h-[35rem] items-center py-16 sm:min-h-[39rem]"><div className="max-w-xl text-[#f8f5ee]"><p className="mb-5 text-xs font-bold uppercase tracking-[.25em] text-[#d6b777]">Made for the everyday drive</p><h1 className="max-w-lg font-display text-5xl font-bold leading-[.97] tracking-[-.055em] sm:text-7xl">Details that make the journey.</h1><p className="mt-6 max-w-md text-base leading-7 text-slate-200">A considered collection of tools, car care and cabin essentials built for the way you move.</p><div className="mt-8 flex flex-wrap gap-3"><Button asChild size="lg" className="rounded-full bg-[#d2ae68] px-6 text-[#131a26] hover:bg-[#e4c583]"><Link href="/shop">Shop the collection <ArrowRight className="ml-2 h-4 w-4" /></Link></Button><Button asChild size="lg" variant="outline" className="rounded-full border-white/30 bg-white/5 px-6 text-white hover:bg-white/15 hover:text-white"><Link href="/collections/roadside-utility">Explore utility</Link></Button></div></div></div></section>
+    <section className="container py-14"><div className="grid gap-px overflow-hidden rounded-[1.5rem] border border-border bg-border md:grid-cols-3">{featurePoints.map(({ icon: Icon, title, text }) => <div key={title} className="flex gap-4 bg-background px-6 py-6"><div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary/10 text-primary"><Icon className="h-5 w-5" /></div><div><p className="font-bold tracking-tight">{title}</p><p className="mt-1 text-sm leading-5 text-muted-foreground">{text}</p></div></div>)}</div></section>
+    <section className="container py-10"><SectionHeading eyebrow="Find your focus" title="Shop by intention" text="A cleaner way to discover the right addition for your vehicle." /><div className="grid gap-4 md:grid-cols-3">{categoryItems.map((category, index) => <Link href={`/collections/${category.slug}`} key={category.id} className="category-card group"><img src={category.imageUrl || fallbackCategories[index % fallbackCategories.length].imageUrl!} alt="" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-[#111722]/90 via-[#111722]/15 to-transparent" /><div className="relative mt-auto p-6 text-white"><p className="text-[10px] font-bold uppercase tracking-[.18em] text-[#e4c783]">Collection</p><p className="mt-2 text-2xl font-bold tracking-tight">{category.name}</p><p className="mt-1 text-sm text-slate-200">{category.description}</p><span className="mt-5 inline-flex items-center gap-1 text-sm font-bold">Discover <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></span></div></Link>)}</div></section>
+    <section className="container py-14"><SectionHeading eyebrow="Most considered" title="Our current favourites" text="Useful pieces chosen for form, function and a better drive." action={{ label: "View all products", href: "/shop?sort=featured" }} />{featured.isLoading ? <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-[22rem] animate-pulse rounded-[1.35rem] bg-secondary" />)}</div> : <ProductRow items={(featured.data || []) as StoreProduct[]} />}</section>
+    <section className="container py-8"><div className="relative overflow-hidden rounded-[2rem] bg-[#151d2b] px-7 py-12 sm:px-12 sm:py-16"><img src={promoImage} alt="A dark blue vehicle inside a warm contemporary workshop" className="absolute inset-0 h-full w-full object-cover opacity-55" /><div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(17,24,39,.98)_5%,rgba(17,24,39,.78)_43%,rgba(17,24,39,.16)_100%)]" /><div className="relative max-w-lg text-white"><p className="eyebrow text-[#e1be77]">Built for the longer way around</p><h2 className="mt-3 font-display text-4xl font-bold leading-[1.02] tracking-[-.05em] sm:text-5xl">Roadside readiness, refined.</h2><p className="mt-5 max-w-md text-sm leading-7 text-slate-200">Tools that earn their place in your vehicle: compact, dependable and there when they matter.</p><Button asChild className="mt-7 rounded-full bg-[#d2ae68] text-[#131a26] hover:bg-[#e4c583]"><Link href="/collections/roadside-utility">Explore the utility edit <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div></div></section>
+    <section className="container py-14"><SectionHeading eyebrow="Just in" title="New arrivals" text="The newest practical additions to the collection." action={{ label: "See new arrivals", href: "/shop?sort=newest" }} />{newArrivals.isLoading ? <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-[22rem] animate-pulse rounded-[1.35rem] bg-secondary" />)}</div> : <ProductRow items={(newArrivals.data || []) as StoreProduct[]} />}</section>
+    <section className="container pb-2"><div className="grid gap-9 rounded-[1.8rem] bg-[#f0ebe1] p-8 md:grid-cols-[1fr_1.3fr] md:p-12"><div><p className="eyebrow">The AutoGear standard</p><h2 className="mt-3 font-display text-4xl font-bold tracking-[-.05em] text-[#111722]">Made to stay useful.</h2></div><div className="grid gap-4 sm:grid-cols-2">{["Clear specifications, so the detail is never hidden.", "Original product selection designed around real use.", "A calmer shopping experience from discovery to delivery.", "Support that treats the question as carefully as the order."].map(point => <p className="flex gap-2 text-sm leading-6 text-[#46505f]" key={point}><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />{point}</p>)}</div></div></section>
+  </StorefrontLayout>;
 }
