@@ -86,7 +86,7 @@
 - [x] Add lightweight, accessible scroll-led reveal effects that respect reduced-motion preferences and do not delay interaction.
 - [x] Audit and remove any comments introduced in rebuilt application source files, without modifying untouched framework scaffolding.
 - [x] Perform desktop and mobile verification of the expanded catalogue, information pages, and effects.
-- [ ] Save the enlarged Zalim-Marketing marketplace checkpoint with the 50-product EUR range, policy pages, and lightweight scroll effects.
+- [x] Save the enlarged Zalim-Marketing marketplace checkpoint with the 50-product EUR range, policy pages, and lightweight scroll effects.
 - [x] Remove the remaining non-functional line comments in the shared authentication hook so the application source is entirely comment-free.
 - [x] Fix unavailable category and product media so department tiles and product cards never retain a blank visual panel.
 - [x] Add resilient visual fallbacks to product and directory cards for unavailable media while retaining useful lazy loading.
