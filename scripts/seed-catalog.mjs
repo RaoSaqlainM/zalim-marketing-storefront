@@ -108,6 +108,22 @@ const expandedProductRows = [
   { name: "Kintra Anti-Fog Cloth Set", slug: "kintra-anti-fog-cloth-set", sku: "ZM-KIN-1490", shortDescription: "A reusable cloth pair for routine interior-glass care.", description: "A compact cloth set designed for keeping interior glass clearer during damp or cold conditions.", specifications: { VehicleExamples: "Universal interior glass", Contents: "Two cloths", Care: "Machine washable", Use: "Interior visibility" }, price: "9.00", compareAtPrice: null, stockQuantity: 118, imageUrl: media.detailKit, categoryId: categoryLookup.get("seasonal-essentials"), brandId: brandLookup.get("kintra"), isFeatured: false, isNew: true, isActive: true },
 ];
 
-for (const product of [...productRows, ...expandedProductRows]) await db.insert(products).values(product).onDuplicateKeyUpdate({ set: product });
+const diversifiedMedia = product => {
+  if (product.name.startsWith("Sierra")) return "/manus-storage/zalim-detailing-care-accessories_31d62bca.jpg";
+  if (product.name.startsWith("Roadwell")) return "/manus-storage/zalim-workshop-tools-accessories_7dabbe63.jpg";
+  if (product.name.startsWith("Kintra")) return "/manus-storage/zalim-all-weather-accessories_989b72ce.jpg";
+  if (product.name.startsWith("Fieldline")) return "/manus-storage/zalim-premium-road-trip-accessories_430345cb.jpg";
+  if (product.name.startsWith("Atlas")) return "/manus-storage/zalim-cargo-organisation-accessories_6b675833.jpg";
+  if (product.name.startsWith("Vela")) return "/manus-storage/zalim-digital-driving-accessories_954686b4.jpg";
+  if (product.name.startsWith("Nova")) return "/manus-storage/zalim-lighting-visibility-accessories_42540c68.jpg";
+  if (product.name.startsWith("Orbit") || product.name.includes("Jump") || product.name.includes("Recovery") || product.name.includes("Tyre")) return "/manus-storage/zalim-roadside-recovery-accessories_ac87605e.jpg";
+  if (product.name.startsWith("Northline")) return "/manus-storage/zalim-comfort-utility-accessories_3d3d5d61.jpg";
+  return product.imageUrl;
+};
+
+for (const product of [...productRows, ...expandedProductRows]) {
+  const seededProduct = { ...product, imageUrl: diversifiedMedia(product) };
+  await db.insert(products).values(seededProduct).onDuplicateKeyUpdate({ set: seededProduct });
+}
 
 console.log(`Seeded ${categoryRows.length} categories, ${brandRows.length} brands, and ${productRows.length + expandedProductRows.length} products.`);

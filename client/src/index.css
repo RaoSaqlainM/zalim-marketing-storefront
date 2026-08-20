@@ -31,8 +31,8 @@
 }
 
 :root {
-  --background: oklch(0.985 0.002 90);
-  --foreground: oklch(0.18 0.018 255);
+  --background: oklch(0.982 0.007 86);
+  --foreground: oklch(0.17 0.024 255);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.18 0.018 255);
   --popover: oklch(1 0 0);
@@ -84,7 +84,7 @@ button:not(:disabled):active { transform: scale(.98); }
 .roadmark i:nth-child(3) { width: 40%; }
 .roadmark-light i { background: #d8b76c; }
 .roadline { display: inline-block; height: 2px; width: 1.7rem; background: repeating-linear-gradient(90deg, #b88d3c 0 6px, transparent 6px 10px); }
-.hero-shell { position: relative; overflow: hidden; background: #0d1728; }
+.hero-shell { position: relative; overflow: hidden; background: #091323; }
 .badge { display: inline-flex; align-items: center; border-radius: 2px; background: white; padding: .3rem .48rem; color: #0d1728; font-size: .59rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
 .badge-gold { background: #d5b260; color: #0d1728; }
 .spec-chip { color: #64748b; font-size: .6rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
@@ -105,10 +105,18 @@ button:not(:disabled):active { transform: scale(.98); }
 .premium-divider { height: 1px; background: linear-gradient(90deg, transparent, rgb(184 141 60 / .65), transparent); }
 .scroll-reveal { opacity: 0; transform: translateY(1.75rem); transition: opacity .62s cubic-bezier(.23, 1, .32, 1) var(--reveal-delay, 0ms), transform .62s cubic-bezier(.23, 1, .32, 1) var(--reveal-delay, 0ms); }
 .scroll-reveal--visible { opacity: 1; transform: translateY(0); }
+.colour-atmosphere { background: radial-gradient(circle at 9% 12%, rgb(214 175 89 / .18), transparent 27rem), radial-gradient(circle at 86% 72%, rgb(47 94 144 / .2), transparent 30rem), #091323; }
+.particle-field { isolation: isolate; position: relative; overflow: hidden; }
+.particle-field::after { position: absolute; inset: 0; z-index: 2; pointer-events: none; background-image: radial-gradient(circle at 18% 26%, rgb(238 213 149 / .95) 0 1px, transparent 1.65px), radial-gradient(circle at 76% 17%, rgb(244 229 178 / .75) 0 .8px, transparent 1.5px), radial-gradient(circle at 39% 79%, rgb(203 158 71 / .8) 0 1px, transparent 1.6px), radial-gradient(circle at 89% 72%, rgb(255 255 255 / .45) 0 .75px, transparent 1.4px), radial-gradient(circle at 57% 44%, rgb(208 177 101 / .75) 0 .65px, transparent 1.25px); background-size: 73px 83px, 107px 127px, 131px 103px, 97px 151px, 173px 139px; opacity: .7; mix-blend-mode: screen; }
+.particle-field > *:not(.particle-backdrop):not(.particle-overlay) { position: relative; z-index: 3; }
+.particle-field .particle-backdrop { position: absolute; z-index: 1; }
+.particle-field .particle-overlay { position: absolute; z-index: 2; }
+.particle-ridge { background: radial-gradient(circle at 85% 18%, rgb(214 175 89 / .18), transparent 25rem), linear-gradient(135deg, #07101f, #102440 58%, #091323); }
 
 @keyframes page-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes particle-drift { from { background-position: 0 0, 0 0, 0 0, 0 0, 0 0; } to { background-position: 73px 83px, -107px 127px, 131px -103px, -97px -151px, 173px 139px; } }
 
 @media (min-width: 640px) { .container { padding-inline: 2rem; } }
 @media (min-width: 1280px) { .container { padding-inline: 3rem; } }
-@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } .particle-field::after { animation: particle-drift 32s linear infinite alternate; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } .scroll-reveal { opacity: 1; transform: none; } }

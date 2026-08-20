@@ -96,3 +96,10 @@
 - [x] Rebuild the six guidance-page layouts with practical sections, page-specific calls to action, and working linked routes.
 - [x] Verify the new guidance pages at desktop and mobile sizes.
 - [x] Save the completed professional guidance-page checkpoint.
+- [x] Audit active product records for duplicated slugs, titles, or repeated variants and identify the intended unique catalogue range.
+- [x] Confirm active product uniqueness by title, slug, and SKU; remove only any verified duplicate rows while retaining all distinct items.
+- [x] Research selected original premium automotive and editorial-web design references and document usable colour, atmosphere, and motion principles.
+- [x] Refine the shared palette, contrast, elevated surface treatments, and selected atmospheric particle backgrounds without heavy rendering cost.
+- [x] Verify the refinement on mobile.
+- [x] Record active product counts by department after uniqueness confirmation to prove the live EUR range remains broad and balanced.
+- [ ] Save the final refinement checkpoint with unique product records, diversified imagery, and atmospheric styling.
