@@ -97,6 +97,30 @@ export default function StorefrontLayout({ children }: { children: React.ReactNo
   const { user, isAuthenticated } = useAuth();
   const cart = trpc.cart.get.useQuery(undefined, { enabled: isAuthenticated });
   const count = cart.data?.itemCount ?? 0;
+  useEffect(() => {
+    const targets = Array.from(document.querySelectorAll<HTMLElement>(".route-stage > section, .route-stage > main > section"));
+    if (!targets.length) return;
+    const reveal = (target: HTMLElement) => target.classList.add("scroll-reveal--visible");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      targets.forEach(reveal);
+      return;
+    }
+    targets.forEach((target, index) => {
+      target.classList.add("scroll-reveal");
+      target.style.setProperty("--reveal-delay", `${Math.min(index % 3, 2) * 55}ms`);
+    });
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          reveal(entry.target as HTMLElement);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
+    targets.forEach(target => observer.observe(target));
+    return () => observer.disconnect();
+  }, [location]);
   const navigate = (path: string) => {
     setLocation(path);
     setMobileOpen(false);

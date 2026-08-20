@@ -54,13 +54,14 @@ export function productImage(product: Pick<StoreProduct, "imageUrl">) {
 
 export const policyContent: Record<string, { eyebrow: string; title: string; intro: string; sections: Array<{ heading: string; body: string }> }> = {
   about: {
-    eyebrow: "The Zalim-Marketing point of view",
-    title: "Better journeys are built in the details.",
-    intro: "Zalim-Marketing curates practical automotive essentials with one simple standard: each item should earn its place before, during and after the journey.",
+    eyebrow: "About Zalim-Marketing",
+    title: "A more considered way to equip the drive.",
+    intro: "Zalim-Marketing is an independent automotive marketplace built by Saqlain Mushtaq for people who want useful equipment, clear information and a direct route to real support.",
     sections: [
-      { heading: "Considered utility", body: "We focus on accessories that quietly improve the daily drive, from dependable roadside tools to cabin pieces that make every mile feel more ordered." },
-      { heading: "A more useful marketplace", body: "The catalogue is designed to be easy to explore, clear to compare and grounded in practical specifications rather than unnecessary noise." },
-      { heading: "Made for the road ahead", body: "Whether the trip is familiar or far from home, thoughtful preparation is a simple kind of luxury." },
+      { heading: "The idea behind the marketplace", body: "A better automotive store should do more than place products in a grid. Zalim-Marketing is organised around the decisions people actually make before a commute, a family trip, a weekend drive or a longer touring route." },
+      { heading: "Built around practical ownership", body: "The range brings together car care, cabin organisation, lighting, roadside preparedness, power, exterior protection, touring and workshop essentials. Each department starts with a simple question: will this make the vehicle easier, safer or more enjoyable to live with?" },
+      { heading: "International vehicle context", body: "Vehicle examples reflect familiar United Kingdom, United States and Australian makes including Ford, Toyota, Volkswagen, BMW, Honda, Chevrolet, Jeep, Mazda, Hyundai and Subaru. Examples are a starting point, not a substitute for checking product dimensions and fit notes." },
+      { heading: "Who to speak to", body: "Saqlain Mushtaq owns and develops Zalim-Marketing. For a product, fitment or order enquiry, message WhatsApp +92 325 5531155 or email raosaqlaingee@gmail.com with the item, vehicle context and destination." },
     ],
   },
   contact: {
@@ -94,23 +95,28 @@ export const policyContent: Record<string, { eyebrow: string; title: string; int
     ],
   },
   returns: {
-    eyebrow: "Returns policy",
+    eyebrow: "Returns and issue resolution",
     title: "A clear route when something is not right.",
-    intro: "If an agreed order is damaged, incorrect or not as expected, contact Zalim-Marketing promptly with the order reference and clear photographs where relevant.",
+    intro: "This is a working returns policy for the Zalim-Marketing enquiry process. If an agreed order arrives damaged, incorrect or materially different from the confirmed item, contact us promptly so the issue can be assessed properly.",
     sections: [
-      { heading: "Requesting a return", body: "Contact Saqlain on WhatsApp or email with the item name, the order reference, a short explanation and photographs if the product is damaged or incorrect." },
-      { heading: "Product condition", body: "For return assessment, items should normally be unused, complete and in their original packaging unless the product arrived damaged or incorrect." },
-      { heading: "Resolution", body: "After reviewing the circumstances, Zalim-Marketing will explain the available next step, which may include an exchange, replacement, store credit or refund where appropriate." },
+      { heading: "Raise the issue quickly", body: "Contact Saqlain through WhatsApp or email as soon as possible after delivery. Include the item name, order reference, a concise explanation, clear photographs where relevant and the delivery location. This allows the request to be matched with the agreed order details." },
+      { heading: "Eligibility assessment", body: "Each request is reviewed against the item, the condition reported and the order confirmation. Items should normally be unused, complete and returned with their original packaging unless the issue concerns damage, a fault or an incorrect item." },
+      { heading: "Items that need special review", body: "Vehicle-specific parts, electrical products, opened consumables and items showing installation or use may need additional assessment before a return route can be agreed. This helps protect fitment, safety and resale conditions for every customer." },
+      { heading: "Available resolutions", body: "After review, Zalim-Marketing will explain the available next step. Depending on the confirmed circumstances, this may include return instructions, a replacement, an exchange, store credit or a refund. Delivery and return arrangements are confirmed directly because destinations and item sizes vary." },
+      { heading: "Before sending anything back", body: "Do not send an item to an address unless return instructions have been agreed in writing. Retain relevant packaging and proof of delivery until the request is resolved." },
     ],
   },
   privacy: {
-    eyebrow: "Privacy information",
-    title: "Your enquiry details stay focused on the request.",
-    intro: "Zalim-Marketing only uses the contact, vehicle and delivery information you provide to understand and respond to your product enquiry.",
+    eyebrow: "Privacy policy",
+    title: "Your details are used to handle your request.",
+    intro: "This working privacy policy explains how Zalim-Marketing uses the information you provide through the website, WhatsApp and email while the marketplace operates on an enquiry-first basis.",
     sections: [
-      { heading: "Information you share", body: "You may provide your name, email address, WhatsApp number, delivery location, vehicle details and product request. Please avoid sharing information that is not needed to answer the enquiry." },
-      { heading: "How it is used", body: "The details are used to discuss fit guidance, item availability, delivery options and an agreed order. They are not presented publicly through the website." },
-      { heading: "Questions about privacy", body: "For a question about the information connected to an enquiry, contact raosaqlaingee@gmail.com and include enough detail for the request to be identified." },
+      { heading: "Who manages the information", body: "Zalim-Marketing is managed by Saqlain Mushtaq. For privacy questions or a request relating to information connected with an enquiry, email raosaqlaingee@gmail.com with enough detail to identify the conversation or order request." },
+      { heading: "Information you may provide", body: "This can include your name, email address, WhatsApp number, product request, vehicle make, model and year, delivery location and messages you send to support. Please do not send information that is not needed to answer the request." },
+      { heading: "Why it is used", body: "Information is used to answer product questions, discuss vehicle context, confirm availability, prepare delivery options, manage an agreed order and provide post-order support. It is not displayed publicly through the website." },
+      { heading: "Contact channels and service providers", body: "If you contact Zalim-Marketing through WhatsApp or email, those services handle the message according to their own terms and privacy practices. The website itself does not collect payment-card details and no card payment form is presented on this storefront." },
+      { heading: "Retention and requests", body: "Enquiry and order information is kept only for as long as reasonably needed to respond, manage an agreed request and meet applicable record-keeping obligations. You can ask about, correct or request deletion of information by contacting raosaqlaingee@gmail.com, subject to any records that must be retained." },
+      { heading: "Policy updates", body: "This policy may be updated as Zalim-Marketing develops its services and ordering process. The latest version will be available on this page." },
     ],
   },
   terms: {

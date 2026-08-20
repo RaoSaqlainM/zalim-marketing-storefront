@@ -79,3 +79,15 @@
 - [x] Rebuild the catalogue with premium editorial context and richer directory-to-product merchandising beyond the shared shell.
 - [x] Expand product detail with premium storytelling modules that clarify use, fitment, and enquiry readiness.
 - [x] Expand support and policy-page layouts with fuller premium guidance sections that remain specific to each destination.
+- [x] Audit the supplied public examples and the existing Zalim-Marketing pages for expandable marketplace structure, content density, and safe original motion patterns.
+- [x] Expand the active EUR catalogue with a substantially broader range of original automotive products, practical categories, brands, specifications, and vehicle-fit examples.
+- [x] Add original public-facing marketplace modules that explain fitment, ordering, delivery, and support without fabricating reviews, ratings, or testimonials.
+- [x] Rewrite the About, Privacy, and Returns pages with complete original Zalim-Marketing information and ensure their footer and route links work.
+- [x] Add lightweight, accessible scroll-led reveal effects that respect reduced-motion preferences and do not delay interaction.
+- [x] Audit and remove any comments introduced in rebuilt application source files, without modifying untouched framework scaffolding.
+- [x] Perform desktop and mobile verification of the expanded catalogue, information pages, and effects.
+- [ ] Save the enlarged Zalim-Marketing marketplace checkpoint with the 50-product EUR range, policy pages, and lightweight scroll effects.
+- [x] Remove the remaining non-functional line comments in the shared authentication hook so the application source is entirely comment-free.
+- [x] Fix unavailable category and product media so department tiles and product cards never retain a blank visual panel.
+- [x] Add resilient visual fallbacks to product and directory cards for unavailable media while retaining useful lazy loading.
+- [x] Re-verify shop, category directory, brand directory, and product pages at desktop and mobile sizes after media fixes.
