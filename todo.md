@@ -117,3 +117,7 @@
 - [x] Add regression coverage for valid and invalid saved-vehicle browser-profile data.
 - [x] Perform and document a per-route motion audit that confirms reduced-motion behavior, mobile touch compatibility, and the observable performance safeguards used by the restored scroll and particle effects.
 - [x] Save the completed motion-and-discovery upgrade checkpoint.
+- [x] Audit the current particle scenes and identify a lightweight interaction model that responds to pointer and touch movement without affecting normal controls.
+- [x] Add selected cursor- and finger-responsive atmospheric motion that remains aligned with the Zalim-Marketing visual system and respects reduced-motion preferences.
+- [x] Verify desktop pointer behavior, mobile touch behavior, readability, and runtime safeguards before saving the interaction-refinement checkpoint.
+- [ ] Save the completed interactive particle refinement checkpoint.

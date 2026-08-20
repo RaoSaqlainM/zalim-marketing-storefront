@@ -2,6 +2,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { startLogin } from "@/const";
+import { mapParticleFocus, type ParticleFocus } from "@/lib/particleMotion";
 import { formatCurrency } from "@/lib/store";
 import { trpc } from "@/lib/trpc";
 import { ArrowUpRight, ChevronRight, Mail, Menu, MessageCircle, Search, ShoppingBag, UserRound, X } from "lucide-react";
@@ -146,6 +147,46 @@ export default function StorefrontLayout({ children }: { children: React.ReactNo
     }, { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
     targets.forEach(target => observer.observe(target));
     return () => observer.disconnect();
+  }, [location]);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const fields = Array.from(document.querySelectorAll<HTMLElement>("[data-particle-interactive]"));
+    const cleanups = fields.map(field => {
+      let frame = 0;
+      let focus: ParticleFocus = { x: 0.5, y: 0.5, offsetX: 0, offsetY: 0 };
+      const render = () => {
+        frame = 0;
+        field.style.setProperty("--particle-focus-x", `${Math.round(focus.x * 100)}%`);
+        field.style.setProperty("--particle-focus-y", `${Math.round(focus.y * 100)}%`);
+        field.style.setProperty("--particle-shift-x", `${focus.offsetX}px`);
+        field.style.setProperty("--particle-shift-y", `${focus.offsetY}px`);
+      };
+      const requestRender = () => {
+        if (!frame) frame = window.requestAnimationFrame(render);
+      };
+      const update = (event: PointerEvent) => {
+        const nextFocus = mapParticleFocus(event.clientX, event.clientY, field.getBoundingClientRect());
+        if (!nextFocus) return;
+        focus = nextFocus;
+        requestRender();
+      };
+      const reset = () => {
+        focus = { x: 0.5, y: 0.5, offsetX: 0, offsetY: 0 };
+        requestRender();
+      };
+      field.addEventListener("pointermove", update, { passive: true });
+      field.addEventListener("pointerleave", reset, { passive: true });
+      field.addEventListener("pointerup", reset, { passive: true });
+      field.addEventListener("pointercancel", reset, { passive: true });
+      return () => {
+        window.cancelAnimationFrame(frame);
+        field.removeEventListener("pointermove", update);
+        field.removeEventListener("pointerleave", reset);
+        field.removeEventListener("pointerup", reset);
+        field.removeEventListener("pointercancel", reset);
+      };
+    });
+    return () => cleanups.forEach(cleanup => cleanup());
   }, [location]);
   const navigate = (path: string) => {
     setLocation(path);
