@@ -91,6 +91,32 @@ function RouteFeedback() {
   return <div className={`route-feedback ${visible ? "route-feedback--visible" : ""}`} aria-hidden="true" />;
 }
 
+function ScrollProgress() {
+  const fillRef = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const limit = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+      const amount = Math.min(Math.max(window.scrollY / limit, 0), 1);
+      if (fillRef.current) fillRef.current.style.transform = `scaleX(${amount})`;
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+  return <div className="scroll-progress" aria-hidden="true"><span ref={fillRef} /></div>;
+}
+
 export default function StorefrontLayout({ children }: { children: React.ReactNode }) {
   const [location, setLocation] = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -127,6 +153,7 @@ export default function StorefrontLayout({ children }: { children: React.ReactNo
   };
   return <div className="min-h-screen overflow-x-clip bg-[#fafafa] text-slate-950">
     <RouteFeedback />
+    <ScrollProgress />
     <a href="#main-content" className="skip-link">Skip to main content</a>
     <div className="bg-[#0d1728] text-white"><div className="container flex min-h-8 items-center justify-center gap-x-8 gap-y-1 py-2 text-center text-[9px] font-bold uppercase tracking-[.16em] sm:justify-between sm:text-[10px]"><span>Independent automotive marketplace · EUR catalogue</span><span className="hidden sm:block">UK · US · Australia vehicle guidance · Direct support from Saqlain</span></div></div>
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white shadow-[0_5px_24px_rgba(15,23,42,.05)]">

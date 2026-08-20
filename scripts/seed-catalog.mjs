@@ -109,15 +109,15 @@ const expandedProductRows = [
 ];
 
 const diversifiedMedia = product => {
-  if (product.name.startsWith("Sierra")) return "/manus-storage/zalim-detailing-care-accessories_31d62bca.jpg";
-  if (product.name.startsWith("Roadwell")) return "/manus-storage/zalim-workshop-tools-accessories_7dabbe63.jpg";
-  if (product.name.startsWith("Kintra")) return "/manus-storage/zalim-all-weather-accessories_989b72ce.jpg";
-  if (product.name.startsWith("Fieldline")) return "/manus-storage/zalim-premium-road-trip-accessories_430345cb.jpg";
-  if (product.name.startsWith("Atlas")) return "/manus-storage/zalim-cargo-organisation-accessories_6b675833.jpg";
-  if (product.name.startsWith("Vela")) return "/manus-storage/zalim-digital-driving-accessories_954686b4.jpg";
-  if (product.name.startsWith("Nova")) return "/manus-storage/zalim-lighting-visibility-accessories_42540c68.jpg";
-  if (product.name.startsWith("Orbit") || product.name.includes("Jump") || product.name.includes("Recovery") || product.name.includes("Tyre")) return "/manus-storage/zalim-roadside-recovery-accessories_ac87605e.jpg";
-  if (product.name.startsWith("Northline")) return "/manus-storage/zalim-comfort-utility-accessories_3d3d5d61.jpg";
+  if (product.name.startsWith("Sierra")) return "/manus-storage/zalim-detailing-care-accessories_d8371c0f.jpg";
+  if (product.name.startsWith("Roadwell")) return "/manus-storage/zalim-workshop-tools-accessories_82a7c8af.jpg";
+  if (product.name.startsWith("Kintra")) return "/manus-storage/zalim-all-weather-accessories_22fe2de0.jpg";
+  if (product.name.startsWith("Fieldline")) return "/manus-storage/zalim-premium-road-trip-accessories_f7116c14.jpg";
+  if (product.name.startsWith("Atlas")) return "/manus-storage/zalim-cargo-organisation-accessories_08c75b43.jpg";
+  if (product.name.startsWith("Vela")) return "/manus-storage/zalim-digital-driving-accessories_4b185c06.jpg";
+  if (product.name.startsWith("Nova")) return "/manus-storage/zalim-lighting-visibility-accessories_28545c6b.jpg";
+  if (product.name.startsWith("Orbit") || product.name.includes("Jump") || product.name.includes("Recovery") || product.name.includes("Tyre")) return "/manus-storage/zalim-roadside-recovery-accessories_15200369.jpg";
+  if (product.name.startsWith("Northline")) return "/manus-storage/zalim-comfort-utility-accessories_3ed5fad3.jpg";
   return product.imageUrl;
 };
 

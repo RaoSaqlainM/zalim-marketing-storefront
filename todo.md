@@ -110,3 +110,10 @@
 - [x] Add an administration moderation area and unit coverage for review validation, authorisation, and publication behavior.
 - [x] Verify desktop/mobile review flows.
 - [x] Save the completed moderated-review feature checkpoint.
+- [x] Audit current scroll-reveal behavior, particle treatments, and vehicle discovery to identify why effects are not visibly apparent.
+- [x] Redesign selected hero, touring, and product-discovery sections with visibly intentional but lightweight particle atmospheres and smooth section motion.
+- [x] Add practical marketplace improvements including a saved vehicle profile, stronger fitment prompts, and enhanced product-discovery shortcuts.
+- [x] Verify the diversified product image set is publicly available and repair any missing product-media references so the enhanced shop does not rely on fallback art.
+- [x] Add regression coverage for valid and invalid saved-vehicle browser-profile data.
+- [x] Perform and document a per-route motion audit that confirms reduced-motion behavior, mobile touch compatibility, and the observable performance safeguards used by the restored scroll and particle effects.
+- [ ] Save the completed motion-and-discovery upgrade checkpoint.
