@@ -129,4 +129,4 @@
 - [x] Profile the homepage and shared storefront motion to identify the rendering and input work most likely to cause perceived lag.
 - [x] Reduce or remove costly particle, blur, blend, paint, and pointer-update work while retaining a lightweight premium atmosphere.
 - [x] Verify smooth mobile and desktop interaction, normal navigation behavior, reduced-motion fallback, and automated regressions after the performance changes.
-- [ ] Save the completed storefront performance-optimization checkpoint.
+- [x] Save the completed storefront performance-optimization checkpoint.
