@@ -126,3 +126,7 @@
 - [x] Expand the active EUR catalogue with original practical consumables and vehicle essentials, including oils, lubricants, batteries, bulbs, and related maintenance products.
 - [x] Verify the expanded catalogue has unique records, valid media assignments, and responsive presentation alongside the refined interaction behavior.
 - [x] Save the completed motion-and-essential-catalogue expansion checkpoint.
+- [x] Profile the homepage and shared storefront motion to identify the rendering and input work most likely to cause perceived lag.
+- [x] Reduce or remove costly particle, blur, blend, paint, and pointer-update work while retaining a lightweight premium atmosphere.
+- [x] Verify smooth mobile and desktop interaction, normal navigation behavior, reduced-motion fallback, and automated regressions after the performance changes.
+- [ ] Save the completed storefront performance-optimization checkpoint.

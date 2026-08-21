@@ -149,32 +149,33 @@ export default function StorefrontLayout({ children }: { children: React.ReactNo
     return () => observer.disconnect();
   }, [location]);
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !window.matchMedia("(pointer: fine)").matches) return;
     const fields = Array.from(document.querySelectorAll<HTMLElement>("[data-particle-interactive]"));
     const cleanups = fields.map(field => {
       let frame = 0;
+      let bounds: DOMRect | null = null;
       let focus: ParticleFocus = { x: 0.5, y: 0.5, offsetX: 0, offsetY: 0 };
       let renderedFocus: ParticleFocus = { ...focus };
       const render = () => {
         frame = 0;
-        const blend = 0.14;
+        const blend = 0.24;
         renderedFocus = interpolateParticleFocus(renderedFocus, focus, blend);
-        field.style.setProperty("--particle-focus-x", `${Math.round(renderedFocus.x * 100)}%`);
-        field.style.setProperty("--particle-focus-y", `${Math.round(renderedFocus.y * 100)}%`);
         field.style.setProperty("--particle-shift-x", `${renderedFocus.offsetX.toFixed(2)}px`);
         field.style.setProperty("--particle-shift-y", `${renderedFocus.offsetY.toFixed(2)}px`);
-        if (Math.abs(focus.x - renderedFocus.x) > 0.002 || Math.abs(focus.y - renderedFocus.y) > 0.002 || Math.abs(focus.offsetX - renderedFocus.offsetX) > 0.12 || Math.abs(focus.offsetY - renderedFocus.offsetY) > 0.12) requestRender();
+        if (Math.abs(focus.offsetX - renderedFocus.offsetX) > 0.35 || Math.abs(focus.offsetY - renderedFocus.offsetY) > 0.35) requestRender();
       };
       const requestRender = () => {
         if (!frame) frame = window.requestAnimationFrame(render);
       };
       const update = (event: PointerEvent) => {
-        const nextFocus = mapParticleFocus(event.clientX, event.clientY, field.getBoundingClientRect());
+        bounds ??= field.getBoundingClientRect();
+        const nextFocus = mapParticleFocus(event.clientX, event.clientY, bounds);
         if (!nextFocus) return;
         focus = nextFocus;
         requestRender();
       };
       const reset = () => {
+        bounds = null;
         focus = { x: 0.5, y: 0.5, offsetX: 0, offsetY: 0 };
         requestRender();
       };
