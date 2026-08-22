@@ -142,3 +142,7 @@
 - [x] Refine desktop hero sizing, grid balance, and foreground-vehicle placement to create a denser premium composition.
 - [x] Verify the improved desktop layout, preserved mobile presentation, hero interactions, and automated regressions.
 - [x] Save the completed desktop-hero composition checkpoint.
+- [x] Inspect the actual desktop viewport at multiple widths and identify the structural cause of the remaining unused hero space.
+- [x] Rebuild the desktop hero into deliberate filled zones so content, vehicle imagery, and fitment tools occupy the available canvas without overlap.
+- [x] Verify the rebuilt desktop layout at common wide screen sizes, preserve mobile behavior, and validate interactions and regressions.
+- [ ] Save the completed full-width desktop hero rebuild checkpoint.
