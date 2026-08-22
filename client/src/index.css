@@ -60,7 +60,7 @@ a, button { transition: color .16s ease, background-color .16s ease, border-colo
 button:not(:disabled):active { transform: scale(.98); }
 ::selection { background: rgb(184 141 60 / .24); color: #0d1728; }
 
-.container { width: 100%; max-width: 96rem; margin-inline: auto; padding-inline: 1.25rem; }
+.container { width: 100%; max-width: 110rem; margin-inline: auto; padding-inline: 1.25rem; }
 .font-display { font-family: "Newsreader", Georgia, serif; }
 .eyebrow { color: #9c742c; font-size: .69rem; font-weight: 800; letter-spacing: .16em; line-height: 1.2; text-transform: uppercase; }
 .section-title { margin-top: .7rem; font-family: "Newsreader", Georgia, serif; font-size: clamp(2.5rem, 4.6vw, 5.15rem); font-weight: 700; letter-spacing: -.065em; line-height: .89; }
@@ -116,7 +116,7 @@ button:not(:disabled):active { transform: scale(.98); }
 .particle-field .particle-overlay { position: absolute; z-index: 2; }
 .particle-interaction { position: absolute; inset: -3%; z-index: 2; contain: paint; pointer-events: none; background: radial-gradient(circle at 50% 42%, rgb(238 204 125 / .16) 0, rgb(98 171 223 / .1) 20%, transparent 48%); opacity: .5; transform: translate3d(var(--particle-shift-x, 0), var(--particle-shift-y, 0), 0); will-change: transform; }
 .particle-field--hero { perspective: 1100px; }
-.hero-cutout-car { position: absolute; right: -12%; bottom: -13%; z-index: 2; width: min(56vw, 58rem); max-width: none; pointer-events: none; transform: translate3d(calc(var(--hero-depth-x, 0px) * 1.42), calc(var(--hero-depth-y, 0px) * 1.22), 0) scale(1.14) rotateX(var(--hero-tilt-x, 0deg)) rotateY(var(--hero-tilt-y, 0deg)); transform-origin: 72% 72%; will-change: transform; }
+.hero-cutout-car { position: absolute; right: -8%; bottom: -15%; z-index: 2; width: min(64vw, 64rem); max-width: none; pointer-events: none; transform: translate3d(calc(var(--hero-depth-x, 0px) * 1.42), calc(var(--hero-depth-y, 0px) * 1.22), 0) scale(1.14) rotateX(var(--hero-tilt-x, 0deg)) rotateY(var(--hero-tilt-y, 0deg)); transform-origin: 72% 72%; will-change: transform; }
 .particle-ridge { background: radial-gradient(circle at 85% 18%, rgb(214 175 89 / .18), transparent 25rem), linear-gradient(135deg, #07101f, #102440 58%, #091323); }
 .particle-field--hero::before { background: radial-gradient(circle at 83% 28%, rgb(109 173 228 / .3), transparent 27rem), radial-gradient(circle at 19% 68%, rgb(229 181 79 / .18), transparent 31rem); opacity: .95; }
 .particle-field--touring::before { background: linear-gradient(118deg, transparent 12%, rgb(80 151 199 / .24) 46%, transparent 64%), radial-gradient(circle at 8% 88%, rgb(225 184 89 / .28), transparent 28rem); opacity: .9; }

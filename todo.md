@@ -138,3 +138,7 @@
 - [x] Generate, upload, and integrate the cut-out vehicle as a separate transform-only hero depth layer.
 - [x] Verify the layered hero’s image loading, desktop depth response, mobile composition, reduced-motion behavior, and automated regressions.
 - [x] Save the completed layered-vehicle hero checkpoint.
+- [x] Audit the desktop hero proportions and identify empty areas that can be rebalanced without reducing text clarity or performance.
+- [x] Refine desktop hero sizing, grid balance, and foreground-vehicle placement to create a denser premium composition.
+- [x] Verify the improved desktop layout, preserved mobile presentation, hero interactions, and automated regressions.
+- [ ] Save the completed desktop-hero composition checkpoint.
