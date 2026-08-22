@@ -19,3 +19,9 @@ The desktop vehicle terminal now contains a compact three-step vehicle route, an
 ## Care routine to Zalim Route follow-up
 
 The requested homepage sequence was reinspected directly at 1,440 px desktop and 390 px mobile widths. The product shelves now use a shorter media proportion, and every image area carries a high-contrast category and product identifier. This prevents the dark real media and fallback art from reading as empty panels while retaining the existing catalogue hierarchy. The desktop and mobile renders completed without overlap or unrelated layout changes; TypeScript passed and all 38 configured tests passed.
+
+## Measured Care routine to Zalim Route correction
+
+The named transition was measured directly in the live desktop page rather than inferred from source spacing. Before the final correction, the distance from the Care routine section bottom to the Zalim Route section top was 2,530 px. It comprised a 828 px featured-products block, an 873 px touring block, and an 830 px duplicate Fresh arrivals shelf.
+
+The duplicate homepage Fresh arrivals shelf was removed because the complete newest range remains available through the existing shop route. The remaining featured shelf now uses a compact homepage-specific card treatment and tighter local spacing, while the touring block was reduced without changing its content or actions. The re-measurement reports a 1,232 px transition: a 599 px featured shelf plus a 634 px touring block. This is a 51.3% reduction in the named desktop interval. Full-page visual checks at 1,440 px desktop and 390 px mobile show a continuous sequence of deliberate content with no added empty section; TypeScript and all 38 automated tests pass.

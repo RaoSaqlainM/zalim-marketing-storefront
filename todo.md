@@ -158,3 +158,7 @@
 - [x] Correct only the responsible homepage section height, media, or spacing rule so the named transition is visually continuous.
 - [x] Verify the corrected desktop transition, preserve the mobile layout, and run regression validation without introducing unrelated changes.
 - [x] Save the completed targeted homepage spacing correction checkpoint.
+- [x] Measure the exact desktop distance and computed CSS between the Care routine content and The Zalim Route heading in the live page.
+- [x] Correct only the confirmed source of the oversized gap and avoid unrelated hero, catalogue, or particle changes.
+- [x] Re-measure the corrected live desktop transition, verify mobile preservation, and run regressions before saving.
+- [ ] Save the completed measured homepage gap correction checkpoint.
