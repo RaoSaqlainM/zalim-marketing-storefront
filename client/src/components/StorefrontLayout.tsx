@@ -170,7 +170,7 @@ export default function StorefrontLayout({ children }: { children: React.ReactNo
       };
       const render = () => {
         frame = 0;
-        const blend = 0.2;
+        const blend = 0.16;
         renderedFocus = interpolateParticleFocus(renderedFocus, focus, blend);
         field.style.setProperty("--particle-shift-x", `${renderedFocus.offsetX.toFixed(2)}px`);
         field.style.setProperty("--particle-shift-y", `${renderedFocus.offsetY.toFixed(2)}px`);

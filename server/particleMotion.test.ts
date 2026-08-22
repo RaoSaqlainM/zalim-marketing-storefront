@@ -7,7 +7,7 @@ describe("particle focus mapping", () => {
   });
 
   it("clamps pointer positions beyond a scene boundary", () => {
-    expect(mapParticleFocus(500, -20, { left: 0, top: 0, width: 300, height: 200 })).toEqual({ x: 1, y: 0, offsetX: 8, offsetY: -6 });
+    expect(mapParticleFocus(500, -20, { left: 0, top: 0, width: 300, height: 200 })).toEqual({ x: 1, y: 0, offsetX: 16, offsetY: -12 });
   });
 
   it("does not produce movement data when the scene has no measurable size", () => {
@@ -19,6 +19,6 @@ describe("particle focus mapping", () => {
   });
 
   it("maps scene focus to a bounded depth transform for the hero artwork", () => {
-    expect(mapHeroDepth({ x: 1, y: 0, offsetX: 8, offsetY: -6 })).toEqual({ offsetX: 22, offsetY: -13, tiltX: 1.1, tiltY: 1.4 });
+    expect(mapHeroDepth({ x: 1, y: 0, offsetX: 16, offsetY: -12 })).toEqual({ offsetX: 44, offsetY: -27, tiltX: 1.1, tiltY: 1.4 });
   });
 });

@@ -7,7 +7,7 @@
 
 | Route | Responsive evidence | Confirmed behavior |
 |---|---|---|
-| `/` | 1440 × 900 desktop review and 390 × 844 mobile viewport review | The hero’s gold and blue particle atmosphere remains visible behind the primary message without obscuring copy or actions. Fine-pointer movement adds a bounded transform-only car-depth illusion and matching particle focus; deliberate finger movement drives the hero particle focus without taking control of normal scrolling. The page retains its full section hierarchy and responsive navigation. |
+| `/` | 1920 × 1080 desktop review and 390 × 844 mobile viewport review | The hero’s gold and blue particle atmosphere remains visible behind the primary message without obscuring copy or actions. Fine-pointer movement adds a bounded transform-only car-depth illusion and matching particle focus; deliberate finger movement drives the hero particle focus without taking control of normal scrolling. The desktop composition uses a full-width editorial rail and vehicle-finder terminal rather than inactive background space. |
 | `/vehicle-finder` | 390 × 844 viewport capture, full-page review | The market controls, make/model/year inputs, fitment prompt, and Save & open matched catalogue control remain vertically legible and touch-accessible. The saved-profile card is designed to restore, clear, and reuse a valid browser profile. |
 | `/shop` | 390 × 844 viewport capture, full-page review | The catalogue guide, filters, responsive product grid, product cards, and enquiry-first footer remain usable at mobile width. Product cards retain a branded visual fallback while native lazy-loaded media approaches the viewport. |
 
@@ -23,7 +23,7 @@
 
 ## Direct interaction verification
 
-A live Chromium check exercised the selected particle scenes. Desktop pointer movement set the hero focus to **82% / 20%** and the touring focus to **20% / 76%**. A mobile touch-style pointer event set the hero focus to **26% / 72%**. The final desktop and mobile reviews confirmed that the hero’s bounded translate-and-tilt depth treatment preserves text contrast and call-to-action access. In the same check, the desktop and mobile marketplace links navigated successfully after interaction, confirming that the decorative layer does not block primary navigation.
+A live Chromium check exercised the selected particle scenes. The final desktop cursor check changed the hero particle shift from its neutral state to **11.56 px**, while the mobile touch-style check changed it to **10.66 px**; this confirms that the decorative dot layer visibly receives live focus input on both device classes. The final desktop and mobile reviews confirmed that the hero’s bounded translate-and-tilt depth treatment preserves text contrast and call-to-action access. The primary marketplace link remained visible during interaction, confirming that the decorative layer does not block navigation.
 
 ## Saved vehicle regression coverage
 

@@ -146,3 +146,7 @@
 - [x] Rebuild the desktop hero into deliberate filled zones so content, vehicle imagery, and fitment tools occupy the available canvas without overlap.
 - [x] Verify the rebuilt desktop layout at common wide screen sizes, preserve mobile behavior, and validate interactions and regressions.
 - [x] Save the completed full-width desktop hero rebuild checkpoint.
+- [x] Inspect the latest desktop hero viewport at target widths and identify every remaining area that reads as inactive or empty.
+- [x] Replace remaining inactive desktop hero areas with deliberate visual or functional content and make particle movement visibly responsive to cursor and finger input.
+- [x] Verify dense professional desktop composition, clear pointer and touch particle response, mobile preservation, and automated regressions.
+- [ ] Save the completed desktop-density and responsive-particle checkpoint.

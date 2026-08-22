@@ -12,7 +12,7 @@ export function mapParticleFocus(clientX: number, clientY: number, bounds: Parti
   if (!Number.isFinite(bounds.width) || !Number.isFinite(bounds.height) || bounds.width <= 0 || bounds.height <= 0) return null;
   const x = clamp((clientX - bounds.left) / bounds.width);
   const y = clamp((clientY - bounds.top) / bounds.height);
-  return { x, y, offsetX: Math.round((x - 0.5) * 16), offsetY: Math.round((y - 0.5) * 12) };
+  return { x, y, offsetX: Math.round((x - 0.5) * 32), offsetY: Math.round((y - 0.5) * 24) };
 }
 
 export function interpolateParticleFocus(current: ParticleFocus, target: ParticleFocus, blend: number): ParticleFocus {
