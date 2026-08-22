@@ -1,8 +1,8 @@
 CREATE TYPE "public"."order_status" AS ENUM('payment_pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled');--> statement-breakpoint
-CREATE TYPE "public"."payment_status" AS ENUM('unpaid', 'paid', 'failed', 'refunded');--> statement-breakpoint
-CREATE TYPE "public"."order_status" AS ENUM('payment_pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled');--> statement-breakpoint
-CREATE TYPE "public"."review_status" AS ENUM('pending', 'approved', 'rejected');--> statement-breakpoint
-CREATE TYPE "public"."user_role" AS ENUM('user', 'admin');--> statement-breakpoint
+DO $$ BEGIN CREATE TYPE "public"."payment_status" AS ENUM('unpaid', 'paid', 'failed', 'refunded'); EXCEPTION WHEN duplicate_object THEN NULL; END $$;--> statement-breakpoint
+DO $$ BEGIN CREATE TYPE "public"."order_status" AS ENUM('payment_pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled'); EXCEPTION WHEN duplicate_object THEN NULL; END $$;--> statement-breakpoint
+DO $$ BEGIN CREATE TYPE "public"."review_status" AS ENUM('pending', 'approved', 'rejected'); EXCEPTION WHEN duplicate_object THEN NULL; END $$;--> statement-breakpoint
+DO $$ BEGIN CREATE TYPE "public"."user_role" AS ENUM('user', 'admin'); EXCEPTION WHEN duplicate_object THEN NULL; END $$;--> statement-breakpoint
 CREATE TABLE "addresses" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"userId" integer NOT NULL,
