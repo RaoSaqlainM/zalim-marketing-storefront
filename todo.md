@@ -150,3 +150,7 @@
 - [x] Replace remaining inactive desktop hero areas with deliberate visual or functional content and make particle movement visibly responsive to cursor and finger input.
 - [x] Verify dense professional desktop composition, clear pointer and touch particle response, mobile preservation, and automated regressions.
 - [x] Save the completed desktop-density and responsive-particle checkpoint.
+- [x] Inspect the live desktop storefront across key public routes and record every visually excessive blank-space issue observed in the browser.
+- [x] Correct the observed section gaps, min-height rules, and desktop proportions without crowding mobile layouts.
+- [x] Reinspect the corrected live desktop and mobile routes, verify interactions and regressions, and document the result.
+- [ ] Save the completed live-browser layout correction checkpoint.
