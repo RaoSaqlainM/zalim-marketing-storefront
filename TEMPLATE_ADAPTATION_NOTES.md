@@ -32,7 +32,12 @@ The Render API also supports `PATCH /v1/services/{serviceId}` for updating an ex
 
 The GitHub-connected Render service is live at [zalim-marketing-demo.onrender.com](https://zalim-marketing-demo.onrender.com). Its `/health` endpoint returns `{"status":"ok"}`, and the public catalogue procedure reports 82 products. A live catalogue record was returned with its linked original brand and category, confirming that the Render Postgres migration and seed are active. The public homepage also rendered the original Zalim-Marketing automotive demo, 82-product catalogue message, UK/US/Australia vehicle context, department links, touring route, and direct enquiry guidance.
 
+## Preview Database Networking
+
+Render’s external Postgres URL is required for the managed development preview, which runs outside Render’s private network. The database currently restricts external traffic, so its Networking allowlist must include the preview environment’s IPv4 address in CIDR form: `172.212.203.64/32`. The live Render service remains unaffected because it connects through the same-region internal URL. [3]
+
 ## References
 
 [1]: https://render.com/docs/blueprint-spec "Render Blueprint YAML Reference"
 [2]: https://render.com/docs/postgresql-creating-connecting "Create and Connect to Render Postgres"
+[3]: https://render.com/docs/inbound-ip-rules "Inbound IP Rules"

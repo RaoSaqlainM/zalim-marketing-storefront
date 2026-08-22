@@ -5,10 +5,17 @@ import { InsertUser, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 let _db: ReturnType<typeof drizzle> | null = null;
 let _pool: Pool | null = null;
+
+export function getPostgresConnectionString(env: NodeJS.ProcessEnv = process.env) {
+    const urls = [env.RENDER_DATABASE_URL, env.DATABASE_URL];
+    return urls.find((url): url is string => Boolean(url && /^postgres(?:ql)?:\/\//i.test(url)));
+}
+
 export async function getDb() {
-    if (!_db && process.env.DATABASE_URL) {
+    const connectionString = getPostgresConnectionString();
+    if (!_db && connectionString) {
         try {
-            _pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+            _pool = new Pool({ connectionString, ssl: { rejectUnauthorized: false } });
             _db = drizzle(_pool);
         }
         catch (error) {

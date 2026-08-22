@@ -10,6 +10,8 @@ import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { confirmStripeOrder } from "../commerce";
 import { parseStripeWebhookEvent, stripeWebhookConfigured, verifyStripeWebhookSignature } from "../payments";
+import { getPostgresConnectionString } from "../db";
+import { getPreviewCatalogUrl, shouldProxyPreviewCatalog } from "./previewCatalogProxy";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -65,6 +67,20 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   registerStorageProxy(app);
   registerOAuthRoutes(app);
+  app.use("/api/trpc", async (req, res, next) => {
+    if (!shouldProxyPreviewCatalog({ method: req.method, path: req.path, nodeEnv: process.env.NODE_ENV, hasPostgresConnection: Boolean(getPostgresConnectionString()) })) {
+      next();
+      return;
+    }
+    try {
+      const response = await fetch(getPreviewCatalogUrl(req.originalUrl));
+      const body = await response.text();
+      res.status(response.status).type(response.headers.get("content-type") || "application/json").send(body);
+    } catch (error) {
+      console.error("[Preview catalogue proxy]", error);
+      res.status(502).json({ error: "The preview catalogue is temporarily unavailable." });
+    }
+  });
   // tRPC API
   app.use(
     "/api/trpc",

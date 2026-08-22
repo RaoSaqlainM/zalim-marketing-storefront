@@ -177,3 +177,9 @@
 - [x] Create the GitHub-connected Render web service with the required production configuration and database connection.
 - [x] Validate the live Render deployment, core catalogue flow, health endpoint, and client-demo presentation.
 - [x] Run the idempotent client-demo catalogue seed during Render builds so the live store contains its original automotive products.
+- [x] Diagnose the local development-preview database-query failure affecting categories and featured products after the Postgres migration.
+- [x] Repair the local preview configuration or compatibility layer without changing the healthy live Render service.
+- [x] Verify the homepage, database-backed routes, tests, and live deployment isolation after the preview repair.
+- [ ] Save the completed local preview database-repair checkpoint.
+- [x] Add the preview environment’s public IP to the Render Postgres networking allowlist before using its external connection URL.
+- [x] Provide a development-only, read-only proxy to the healthy Render catalogue while the managed preview cannot receive the external database secret.
