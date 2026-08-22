@@ -141,4 +141,4 @@
 - [x] Audit the desktop hero proportions and identify empty areas that can be rebalanced without reducing text clarity or performance.
 - [x] Refine desktop hero sizing, grid balance, and foreground-vehicle placement to create a denser premium composition.
 - [x] Verify the improved desktop layout, preserved mobile presentation, hero interactions, and automated regressions.
-- [ ] Save the completed desktop-hero composition checkpoint.
+- [x] Save the completed desktop-hero composition checkpoint.
