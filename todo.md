@@ -134,3 +134,7 @@
 - [x] Add a visibly responsive car-depth treatment for fine pointers and a restrained finger-driven particle focus response for touch screens.
 - [x] Verify the interactive hero preserves text contrast, link access, reduced-motion behavior, and lightweight desktop/mobile performance.
 - [x] Save the completed 3D-style hero interaction checkpoint.
+- [x] Define an original transparent vehicle cut-out asset and layer placement that strengthens the hero depth illusion without hiding copy or controls.
+- [x] Generate, upload, and integrate the cut-out vehicle as a separate transform-only hero depth layer.
+- [x] Verify the layered hero’s image loading, desktop depth response, mobile composition, reduced-motion behavior, and automated regressions.
+- [ ] Save the completed layered-vehicle hero checkpoint.
