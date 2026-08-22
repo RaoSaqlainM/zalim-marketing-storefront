@@ -1,10 +1,12 @@
-import { drizzle } from "drizzle-orm/mysql2";
+import { drizzle } from "drizzle-orm/node-postgres";
+import pg from "pg";
 import { eq } from "drizzle-orm";
 import { brands, categories, products } from "../drizzle/schema.ts";
 
 if (!process.env.DATABASE_URL) throw new Error("DATABASE_URL is required to seed the catalog.");
 
-const db = drizzle(process.env.DATABASE_URL);
+const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+const db = drizzle(pool);
 const media = {
   detailing: "/manus-storage/category-detailing_2f0366b5.jpg",
   interior: "/manus-storage/category-interior_d5e055da.jpg",
@@ -33,7 +35,7 @@ const categoryRows = [
   { name: "Wiper & Visibility", slug: "wiper-visibility", description: "Seasonal visibility essentials and universal-fit replacements for clearer, more prepared journeys.", imageUrl: media.light, isFeatured: false, sortOrder: 14 },
 ];
 
-for (const category of categoryRows) await db.insert(categories).values(category).onDuplicateKeyUpdate({ set: category });
+for (const category of categoryRows) await db.insert(categories).values(category).onConflictDoUpdate({ target: categories.slug, set: category });
 
 const brandRows = [
   { name: "Northline", slug: "northline", description: "Practical vehicle essentials for everyday miles.", logoUrl: null },
@@ -51,7 +53,7 @@ const brandRows = [
   { name: "Clearline", slug: "clearline", description: "Visibility-first wiper and weather-care essentials for changing road conditions.", logoUrl: null },
 ];
 
-for (const brand of brandRows) await db.insert(brands).values(brand).onDuplicateKeyUpdate({ set: brand });
+for (const brand of brandRows) await db.insert(brands).values(brand).onConflictDoUpdate({ target: brands.slug, set: brand });
 
 const categoryLookup = new Map();
 for (const item of categoryRows) {
@@ -179,7 +181,8 @@ const diversifiedMedia = product => {
 
 for (const product of [...productRows, ...expandedProductRows, ...essentialProductRows, ...clientDemoProductRows]) {
   const seededProduct = { ...product, imageUrl: diversifiedMedia(product) };
-  await db.insert(products).values(seededProduct).onDuplicateKeyUpdate({ set: seededProduct });
+  await db.insert(products).values(seededProduct).onConflictDoUpdate({ target: products.slug, set: seededProduct });
 }
 
 console.log(`Seeded ${categoryRows.length} categories, ${brandRows.length} brands, and ${productRows.length + expandedProductRows.length + essentialProductRows.length + clientDemoProductRows.length} products.`);
+await pool.end();

@@ -171,3 +171,8 @@
 - [x] Store the supplied Render credential securely and verify API access without writing it to source control.
 - [ ] Create or connect a private GitHub repository for the client demo and configure Render to deploy from it.
 - [x] Prepare a Render-ready service configuration with secrets kept outside committed files.
+- [x] Create the approved Render Postgres database in the selected workspace and record only non-sensitive connection metadata.
+- [x] Migrate the application’s Drizzle schema, database access, and seed workflow from MySQL to Postgres while preserving client-demo behavior.
+- [ ] Seed and verify the original 82-product automotive client-demo catalogue in the Render Postgres database.
+- [ ] Create the GitHub-connected Render web service with the required production configuration and database connection.
+- [ ] Validate the live Render deployment, core catalogue flow, health endpoint, and client-demo presentation.

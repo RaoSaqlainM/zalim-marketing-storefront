@@ -18,6 +18,13 @@ Sources consulted on 22 August 2026:
 
 The repository now includes a portable `render.yaml` Blueprint and `/health` endpoint. The Blueprint declares the Node web-service build and start commands, requests external values through `sync: false`, and lets Render generate the session secret. The production deployment requires externally managed values for the existing database, authentication, storage, and analytics integrations; no secret has been committed to the repository. The configuration follows the official Render Blueprint specification, which supports `healthCheckPath`, generated secrets, and dashboard-supplied values.[1]
 
+## Render Postgres Migration Constraint
+
+The authenticated Render integration created the `zalim-marketing-demo-db` Postgres 18 instance in Singapore and verified it as available. Its supported API can provision and inspect Postgres resources and run read-only database queries, but it does not return a connection string or provide schema-write operations. The connected browser did not return the Render dashboard session. The Postgres code migration can proceed locally, but applying generated schema SQL and attaching `DATABASE_URL` to the live service requires dashboard access or a supported secure connection-string handoff.
+
+Render’s official Postgres guidance specifies a dedicated connection-information API endpoint at `GET /v1/postgres/{postgresId}/connection-info` with bearer authentication. It also states that a web service and Postgres instance in the same region should use the internal database URL to reduce latency. The current database and planned service are both configured for Singapore. [2]
+
 ## References
 
 [1]: https://render.com/docs/blueprint-spec "Render Blueprint YAML Reference"
+[2]: https://render.com/docs/postgresql-creating-connecting "Create and Connect to Render Postgres"

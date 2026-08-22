@@ -1,145 +1,135 @@
-import { boolean, decimal, index, int, json, mysqlEnum, mysqlTable, text, timestamp, uniqueIndex, varchar } from "drizzle-orm/mysql-core";
+import { boolean, index, integer, jsonb, numeric, pgEnum, pgTable, serial, text, timestamp, uniqueIndex, varchar } from "drizzle-orm/pg-core";
 
-/**
- * Core user table backing auth flow.
- * Extend this file with additional tables as your product grows.
- * Columns use camelCase to match both database fields and generated types.
- */
-export const users = mysqlTable("users", {
-  /**
-   * Surrogate primary key. Auto-incremented numeric value managed by the database.
-   * Use this for relations between tables.
-   */
-  id: int("id").autoincrement().primaryKey(),
-  /** Manus OAuth identifier (openId) returned from the OAuth callback. Unique per user. */
+export const userRoles = pgEnum("user_role", ["user", "admin"]);
+export const reviewStatuses = ["pending", "approved", "rejected"] as const;
+export const reviewStatusValues = pgEnum("review_status", reviewStatuses);
+export const orderStatuses = ["payment_pending", "confirmed", "processing", "shipped", "delivered", "cancelled"] as const;
+export const orderStatusValues = pgEnum("order_status", ["payment_pending", "confirmed", "processing", "shipped", "delivered", "cancelled"]);
+export const paymentStatuses = ["unpaid", "paid", "failed", "refunded"] as const;
+export const paymentStatusValues = pgEnum("payment_status", paymentStatuses);
+
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
   openId: varchar("openId", { length: 64 }).notNull().unique(),
   name: text("name"),
   email: varchar("email", { length: 320 }),
   loginMethod: varchar("loginMethod", { length: 64 }),
   stripeCustomerId: varchar("stripeCustomerId", { length: 255 }).unique(),
-  role: mysqlEnum("role", ["user", "admin"]).default("user").notNull(),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
-  lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull(),
+  role: userRoles("role").default("user").notNull(),
+  createdAt: timestamp("createdAt", { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt", { withTimezone: true }).defaultNow().notNull(),
+  lastSignedIn: timestamp("lastSignedIn", { withTimezone: true }).defaultNow().notNull(),
 });
 
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
-export const categories = mysqlTable(
+export const categories = pgTable(
   "categories",
   {
-    id: int("id").autoincrement().primaryKey(),
+    id: serial("id").primaryKey(),
     name: varchar("name", { length: 120 }).notNull(),
     slug: varchar("slug", { length: 140 }).notNull().unique(),
     description: text("description"),
     imageUrl: varchar("imageUrl", { length: 1024 }),
     isFeatured: boolean("isFeatured").notNull().default(false),
-    sortOrder: int("sortOrder").notNull().default(0),
-    createdAt: timestamp("createdAt").defaultNow().notNull(),
-    updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+    sortOrder: integer("sortOrder").notNull().default(0),
+    createdAt: timestamp("createdAt", { withTimezone: true }).defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt", { withTimezone: true }).defaultNow().notNull(),
   },
   table => [index("categories_featured_idx").on(table.isFeatured, table.sortOrder)],
 );
 
-export const brands = mysqlTable("brands", {
-  id: int("id").autoincrement().primaryKey(),
+export const brands = pgTable("brands", {
+  id: serial("id").primaryKey(),
   name: varchar("name", { length: 120 }).notNull(),
   slug: varchar("slug", { length: 140 }).notNull().unique(),
   description: text("description"),
   logoUrl: varchar("logoUrl", { length: 1024 }),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  createdAt: timestamp("createdAt", { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt", { withTimezone: true }).defaultNow().notNull(),
 });
 
-export const products = mysqlTable(
+export const products = pgTable(
   "products",
   {
-    id: int("id").autoincrement().primaryKey(),
+    id: serial("id").primaryKey(),
     name: varchar("name", { length: 220 }).notNull(),
     slug: varchar("slug", { length: 240 }).notNull().unique(),
     sku: varchar("sku", { length: 80 }).notNull().unique(),
     shortDescription: varchar("shortDescription", { length: 500 }),
     description: text("description"),
-    specifications: json("specifications").$type<Record<string, string>>(),
-    price: decimal("price", { precision: 10, scale: 2 }).notNull(),
-    compareAtPrice: decimal("compareAtPrice", { precision: 10, scale: 2 }),
-    stockQuantity: int("stockQuantity").notNull().default(0),
+    specifications: jsonb("specifications").$type<Record<string, string>>(),
+    price: numeric("price", { precision: 10, scale: 2 }).notNull(),
+    compareAtPrice: numeric("compareAtPrice", { precision: 10, scale: 2 }),
+    stockQuantity: integer("stockQuantity").notNull().default(0),
     imageUrl: varchar("imageUrl", { length: 1024 }),
-    categoryId: int("categoryId").references(() => categories.id, { onDelete: "set null" }),
-    brandId: int("brandId").references(() => brands.id, { onDelete: "set null" }),
+    categoryId: integer("categoryId").references(() => categories.id, { onDelete: "set null" }),
+    brandId: integer("brandId").references(() => brands.id, { onDelete: "set null" }),
     isFeatured: boolean("isFeatured").notNull().default(false),
     isNew: boolean("isNew").notNull().default(false),
     isActive: boolean("isActive").notNull().default(true),
-    createdAt: timestamp("createdAt").defaultNow().notNull(),
-    updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+    createdAt: timestamp("createdAt", { withTimezone: true }).defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt", { withTimezone: true }).defaultNow().notNull(),
   },
-  table => [
-    index("products_catalog_idx").on(table.isActive, table.categoryId, table.brandId),
-    index("products_featured_idx").on(table.isFeatured, table.isNew),
-  ],
+  table => [index("products_catalog_idx").on(table.isActive, table.categoryId, table.brandId), index("products_featured_idx").on(table.isFeatured, table.isNew)],
 );
 
-export const productImages = mysqlTable(
+export const productImages = pgTable(
   "productImages",
   {
-    id: int("id").autoincrement().primaryKey(),
-    productId: int("productId").notNull().references(() => products.id, { onDelete: "cascade" }),
+    id: serial("id").primaryKey(),
+    productId: integer("productId").notNull().references(() => products.id, { onDelete: "cascade" }),
     url: varchar("url", { length: 1024 }).notNull(),
     altText: varchar("altText", { length: 255 }),
-    position: int("position").notNull().default(0),
+    position: integer("position").notNull().default(0),
   },
   table => [index("product_images_product_idx").on(table.productId, table.position)],
 );
 
-export const reviewStatuses = ["pending", "approved", "rejected"] as const;
-
-export const productReviews = mysqlTable(
+export const productReviews = pgTable(
   "productReviews",
   {
-    id: int("id").autoincrement().primaryKey(),
-    productId: int("productId").notNull().references(() => products.id, { onDelete: "cascade" }),
-    userId: int("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
-    rating: int("rating").notNull(),
+    id: serial("id").primaryKey(),
+    productId: integer("productId").notNull().references(() => products.id, { onDelete: "cascade" }),
+    userId: integer("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
+    rating: integer("rating").notNull(),
     title: varchar("title", { length: 160 }),
     body: text("body").notNull(),
-    status: mysqlEnum("status", reviewStatuses).notNull().default("pending"),
-    moderatedByUserId: int("moderatedByUserId").references(() => users.id, { onDelete: "set null" }),
-    moderatedAt: timestamp("moderatedAt"),
-    createdAt: timestamp("createdAt").defaultNow().notNull(),
-    updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+    status: reviewStatusValues("status").notNull().default("pending"),
+    moderatedByUserId: integer("moderatedByUserId").references(() => users.id, { onDelete: "set null" }),
+    moderatedAt: timestamp("moderatedAt", { withTimezone: true }),
+    createdAt: timestamp("createdAt", { withTimezone: true }).defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt", { withTimezone: true }).defaultNow().notNull(),
   },
-  table => [
-    index("product_reviews_public_idx").on(table.productId, table.status, table.createdAt),
-    uniqueIndex("product_reviews_user_product_unique").on(table.userId, table.productId),
-  ],
+  table => [index("product_reviews_public_idx").on(table.productId, table.status, table.createdAt), uniqueIndex("product_reviews_user_product_unique").on(table.userId, table.productId)],
 );
 
-export const carts = mysqlTable("carts", {
-  id: int("id").autoincrement().primaryKey(),
-  userId: int("userId").notNull().unique().references(() => users.id, { onDelete: "cascade" }),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+export const carts = pgTable("carts", {
+  id: serial("id").primaryKey(),
+  userId: integer("userId").notNull().unique().references(() => users.id, { onDelete: "cascade" }),
+  createdAt: timestamp("createdAt", { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt", { withTimezone: true }).defaultNow().notNull(),
 });
 
-export const cartItems = mysqlTable(
+export const cartItems = pgTable(
   "cartItems",
   {
-    id: int("id").autoincrement().primaryKey(),
-    cartId: int("cartId").notNull().references(() => carts.id, { onDelete: "cascade" }),
-    productId: int("productId").notNull().references(() => products.id, { onDelete: "cascade" }),
-    quantity: int("quantity").notNull().default(1),
-    createdAt: timestamp("createdAt").defaultNow().notNull(),
-    updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+    id: serial("id").primaryKey(),
+    cartId: integer("cartId").notNull().references(() => carts.id, { onDelete: "cascade" }),
+    productId: integer("productId").notNull().references(() => products.id, { onDelete: "cascade" }),
+    quantity: integer("quantity").notNull().default(1),
+    createdAt: timestamp("createdAt", { withTimezone: true }).defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt", { withTimezone: true }).defaultNow().notNull(),
   },
   table => [uniqueIndex("cart_product_unique").on(table.cartId, table.productId)],
 );
 
-export const addresses = mysqlTable(
+export const addresses = pgTable(
   "addresses",
   {
-    id: int("id").autoincrement().primaryKey(),
-    userId: int("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
+    id: serial("id").primaryKey(),
+    userId: integer("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
     label: varchar("label", { length: 80 }).notNull(),
     recipientName: varchar("recipientName", { length: 160 }).notNull(),
     phone: varchar("phone", { length: 50 }).notNull(),
@@ -150,62 +140,59 @@ export const addresses = mysqlTable(
     postalCode: varchar("postalCode", { length: 40 }),
     country: varchar("country", { length: 2 }).notNull().default("PK"),
     isDefault: boolean("isDefault").notNull().default(false),
-    createdAt: timestamp("createdAt").defaultNow().notNull(),
-    updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+    createdAt: timestamp("createdAt", { withTimezone: true }).defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt", { withTimezone: true }).defaultNow().notNull(),
   },
   table => [index("addresses_user_idx").on(table.userId, table.isDefault)],
 );
 
-export const orderStatuses = ["payment_pending", "confirmed", "processing", "shipped", "delivered", "cancelled"] as const;
-export const paymentStatuses = ["unpaid", "paid", "failed", "refunded"] as const;
-
-export const orders = mysqlTable(
+export const orders = pgTable(
   "orders",
   {
-    id: int("id").autoincrement().primaryKey(),
-    userId: int("userId").notNull().references(() => users.id, { onDelete: "restrict" }),
+    id: serial("id").primaryKey(),
+    userId: integer("userId").notNull().references(() => users.id, { onDelete: "restrict" }),
     orderNumber: varchar("orderNumber", { length: 40 }).notNull().unique(),
-    status: mysqlEnum("status", orderStatuses).notNull().default("payment_pending"),
-    paymentStatus: mysqlEnum("paymentStatus", paymentStatuses).notNull().default("unpaid"),
-    currency: varchar("currency", { length: 3 }).notNull().default("PKR"),
-    subtotal: decimal("subtotal", { precision: 10, scale: 2 }).notNull(),
-    shippingAmount: decimal("shippingAmount", { precision: 10, scale: 2 }).notNull().default("0.00"),
-    total: decimal("total", { precision: 10, scale: 2 }).notNull(),
-    shippingAddress: json("shippingAddress").$type<Record<string, unknown>>().notNull(),
+    status: orderStatusValues("status").notNull().default("payment_pending"),
+    paymentStatus: paymentStatusValues("paymentStatus").notNull().default("unpaid"),
+    currency: varchar("currency", { length: 3 }).notNull().default("EUR"),
+    subtotal: numeric("subtotal", { precision: 10, scale: 2 }).notNull(),
+    shippingAmount: numeric("shippingAmount", { precision: 10, scale: 2 }).notNull().default("0.00"),
+    total: numeric("total", { precision: 10, scale: 2 }).notNull(),
+    shippingAddress: jsonb("shippingAddress").$type<Record<string, unknown>>().notNull(),
     stripePaymentIntentId: varchar("stripePaymentIntentId", { length: 255 }).unique(),
     stripeCheckoutSessionId: varchar("stripeCheckoutSessionId", { length: 255 }).unique(),
     trackingNumber: varchar("trackingNumber", { length: 255 }),
-    placedAt: timestamp("placedAt").defaultNow().notNull(),
-    confirmedAt: timestamp("confirmedAt"),
-    shippedAt: timestamp("shippedAt"),
-    createdAt: timestamp("createdAt").defaultNow().notNull(),
-    updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+    placedAt: timestamp("placedAt", { withTimezone: true }).defaultNow().notNull(),
+    confirmedAt: timestamp("confirmedAt", { withTimezone: true }),
+    shippedAt: timestamp("shippedAt", { withTimezone: true }),
+    createdAt: timestamp("createdAt", { withTimezone: true }).defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt", { withTimezone: true }).defaultNow().notNull(),
   },
   table => [index("orders_user_idx").on(table.userId, table.createdAt), index("orders_status_idx").on(table.status, table.paymentStatus)],
 );
 
-export const orderItems = mysqlTable(
+export const orderItems = pgTable(
   "orderItems",
   {
-    id: int("id").autoincrement().primaryKey(),
-    orderId: int("orderId").notNull().references(() => orders.id, { onDelete: "cascade" }),
-    productId: int("productId").references(() => products.id, { onDelete: "set null" }),
+    id: serial("id").primaryKey(),
+    orderId: integer("orderId").notNull().references(() => orders.id, { onDelete: "cascade" }),
+    productId: integer("productId").references(() => products.id, { onDelete: "set null" }),
     productName: varchar("productName", { length: 220 }).notNull(),
     sku: varchar("sku", { length: 80 }).notNull(),
-    quantity: int("quantity").notNull(),
-    unitPrice: decimal("unitPrice", { precision: 10, scale: 2 }).notNull(),
+    quantity: integer("quantity").notNull(),
+    unitPrice: numeric("unitPrice", { precision: 10, scale: 2 }).notNull(),
   },
   table => [index("order_items_order_idx").on(table.orderId)],
 );
 
-export const orderStatusHistory = mysqlTable(
+export const orderStatusHistory = pgTable(
   "orderStatusHistory",
   {
-    id: int("id").autoincrement().primaryKey(),
-    orderId: int("orderId").notNull().references(() => orders.id, { onDelete: "cascade" }),
-    status: mysqlEnum("status", orderStatuses).notNull(),
+    id: serial("id").primaryKey(),
+    orderId: integer("orderId").notNull().references(() => orders.id, { onDelete: "cascade" }),
+    status: orderStatusValues("status").notNull(),
     note: varchar("note", { length: 500 }),
-    createdAt: timestamp("createdAt").defaultNow().notNull(),
+    createdAt: timestamp("createdAt", { withTimezone: true }).defaultNow().notNull(),
   },
   table => [index("order_history_order_idx").on(table.orderId, table.createdAt)],
 );
