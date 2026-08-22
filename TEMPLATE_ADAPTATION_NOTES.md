@@ -24,6 +24,14 @@ The authenticated Render integration created the `zalim-marketing-demo-db` Postg
 
 Render’s official Postgres guidance specifies a dedicated connection-information API endpoint at `GET /v1/postgres/{postgresId}/connection-info` with bearer authentication. It also states that a web service and Postgres instance in the same region should use the internal database URL to reduce latency. The current database and planned service are both configured for Singapore. [2]
 
+## Live Service Configuration Note
+
+The Render API also supports `PATCH /v1/services/{serviceId}` for updating an existing web service. Build logs from the first live deployment confirmed that a service retains the build command supplied at creation time; changing the repository `render.yaml` alone does not modify that already-created service. The service needs its build sequence updated to run `pnpm db:migrate && pnpm db:seed`, then redeployed. This seed is idempotent and is required to populate the live Postgres database with the original automotive catalogue.
+
+## Live Validation
+
+The GitHub-connected Render service is live at [zalim-marketing-demo.onrender.com](https://zalim-marketing-demo.onrender.com). Its `/health` endpoint returns `{"status":"ok"}`, and the public catalogue procedure reports 82 products. A live catalogue record was returned with its linked original brand and category, confirming that the Render Postgres migration and seed are active. The public homepage also rendered the original Zalim-Marketing automotive demo, 82-product catalogue message, UK/US/Australia vehicle context, department links, touring route, and direct enquiry guidance.
+
 ## References
 
 [1]: https://render.com/docs/blueprint-spec "Render Blueprint YAML Reference"
