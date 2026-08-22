@@ -161,4 +161,4 @@
 - [x] Measure the exact desktop distance and computed CSS between the Care routine content and The Zalim Route heading in the live page.
 - [x] Correct only the confirmed source of the oversized gap and avoid unrelated hero, catalogue, or particle changes.
 - [x] Re-measure the corrected live desktop transition, verify mobile preservation, and run regressions before saving.
-- [ ] Save the completed measured homepage gap correction checkpoint.
+- [x] Save the completed measured homepage gap correction checkpoint.
