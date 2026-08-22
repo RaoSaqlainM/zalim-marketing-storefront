@@ -176,3 +176,4 @@
 - [ ] Seed and verify the original 82-product automotive client-demo catalogue in the Render Postgres database.
 - [ ] Create the GitHub-connected Render web service with the required production configuration and database connection.
 - [ ] Validate the live Render deployment, core catalogue flow, health endpoint, and client-demo presentation.
+- [ ] Run the idempotent client-demo catalogue seed during Render builds so the live store contains its original automotive products.

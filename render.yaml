@@ -2,7 +2,7 @@ services:
   - type: web
     runtime: node
     name: zalim-marketing-demo
-    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm build && pnpm db:migrate
+    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm build && pnpm db:migrate && pnpm db:seed
     startCommand: pnpm start
     healthCheckPath: /health
     envVars:
