@@ -137,4 +137,4 @@
 - [x] Define an original transparent vehicle cut-out asset and layer placement that strengthens the hero depth illusion without hiding copy or controls.
 - [x] Generate, upload, and integrate the cut-out vehicle as a separate transform-only hero depth layer.
 - [x] Verify the layered hero’s image loading, desktop depth response, mobile composition, reduced-motion behavior, and automated regressions.
-- [ ] Save the completed layered-vehicle hero checkpoint.
+- [x] Save the completed layered-vehicle hero checkpoint.
