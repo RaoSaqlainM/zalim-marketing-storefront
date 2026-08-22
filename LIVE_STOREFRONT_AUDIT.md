@@ -15,3 +15,7 @@ The next correction must ensure every active product and homepage collection car
 ## Completed correction and verification
 
 The desktop vehicle terminal now contains a compact three-step vehicle route, an independent foreground vehicle layer, and a direct fitment action. The product fallback system now presents branded, information-rich category panels instead of empty dark blocks. Final desktop inspection confirmed that the terminal and catalogue areas contain intentional content; a mobile review confirmed that the compact hero and catalogue introduction remain readable without inheriting desktop-only density changes. TypeScript and the configured regression suite completed successfully after the correction.
+
+## Care routine to Zalim Route follow-up
+
+The requested homepage sequence was reinspected directly at 1,440 px desktop and 390 px mobile widths. The product shelves now use a shorter media proportion, and every image area carries a high-contrast category and product identifier. This prevents the dark real media and fallback art from reading as empty panels while retaining the existing catalogue hierarchy. The desktop and mobile renders completed without overlap or unrelated layout changes; TypeScript passed and all 38 configured tests passed.

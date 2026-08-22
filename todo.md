@@ -154,3 +154,7 @@
 - [x] Correct the observed section gaps, min-height rules, and desktop proportions without crowding mobile layouts.
 - [x] Reinspect the corrected live desktop and mobile routes, verify interactions and regressions, and document the result.
 - [x] Save the completed live-browser layout correction checkpoint.
+- [x] Inspect the live desktop transition from Care routine to The Zalim Route and identify the exact rule creating the oversized gap.
+- [x] Correct only the responsible homepage section height, media, or spacing rule so the named transition is visually continuous.
+- [x] Verify the corrected desktop transition, preserve the mobile layout, and run regression validation without introducing unrelated changes.
+- [ ] Save the completed targeted homepage spacing correction checkpoint.
