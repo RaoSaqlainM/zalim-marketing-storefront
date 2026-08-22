@@ -157,4 +157,4 @@
 - [x] Inspect the live desktop transition from Care routine to The Zalim Route and identify the exact rule creating the oversized gap.
 - [x] Correct only the responsible homepage section height, media, or spacing rule so the named transition is visually continuous.
 - [x] Verify the corrected desktop transition, preserve the mobile layout, and run regression validation without introducing unrelated changes.
-- [ ] Save the completed targeted homepage spacing correction checkpoint.
+- [x] Save the completed targeted homepage spacing correction checkpoint.
