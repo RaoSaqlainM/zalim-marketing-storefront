@@ -145,4 +145,4 @@
 - [x] Inspect the actual desktop viewport at multiple widths and identify the structural cause of the remaining unused hero space.
 - [x] Rebuild the desktop hero into deliberate filled zones so content, vehicle imagery, and fitment tools occupy the available canvas without overlap.
 - [x] Verify the rebuilt desktop layout at common wide screen sizes, preserve mobile behavior, and validate interactions and regressions.
-- [ ] Save the completed full-width desktop hero rebuild checkpoint.
+- [x] Save the completed full-width desktop hero rebuild checkpoint.
