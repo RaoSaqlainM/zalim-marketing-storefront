@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { interpolateParticleFocus, mapParticleFocus } from "../client/src/lib/particleMotion";
+import { interpolateParticleFocus, mapHeroDepth, mapParticleFocus } from "../client/src/lib/particleMotion";
 
 describe("particle focus mapping", () => {
   it("maps the centre of a scene to a neutral visual offset", () => {
@@ -16,5 +16,9 @@ describe("particle focus mapping", () => {
 
   it("eases particle focus toward its target rather than jumping directly to it", () => {
     expect(interpolateParticleFocus({ x: 0.5, y: 0.5, offsetX: 0, offsetY: 0 }, { x: 1, y: 0, offsetX: 8, offsetY: -6 }, 0.14)).toEqual({ x: 0.5700000000000001, y: 0.43, offsetX: 1.12, offsetY: -0.8400000000000001 });
+  });
+
+  it("maps scene focus to a bounded depth transform for the hero artwork", () => {
+    expect(mapHeroDepth({ x: 1, y: 0, offsetX: 8, offsetY: -6 })).toEqual({ offsetX: 22, offsetY: -13, tiltX: 1.1, tiltY: 1.4 });
   });
 });

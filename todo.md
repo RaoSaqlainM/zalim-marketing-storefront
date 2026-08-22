@@ -130,3 +130,7 @@
 - [x] Reduce or remove costly particle, blur, blend, paint, and pointer-update work while retaining a lightweight premium atmosphere.
 - [x] Verify smooth mobile and desktop interaction, normal navigation behavior, reduced-motion fallback, and automated regressions after the performance changes.
 - [x] Save the completed storefront performance-optimization checkpoint.
+- [x] Audit the existing hero artwork layers and interaction controller to define a smooth transform-only 3D depth illusion.
+- [x] Add a visibly responsive car-depth treatment for fine pointers and a restrained finger-driven particle focus response for touch screens.
+- [x] Verify the interactive hero preserves text contrast, link access, reduced-motion behavior, and lightweight desktop/mobile performance.
+- [ ] Save the completed 3D-style hero interaction checkpoint.

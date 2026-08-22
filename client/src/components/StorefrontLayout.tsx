@@ -2,7 +2,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { startLogin } from "@/const";
-import { interpolateParticleFocus, mapParticleFocus, type ParticleFocus } from "@/lib/particleMotion";
+import { interpolateParticleFocus, mapHeroDepth, mapParticleFocus, type ParticleFocus } from "@/lib/particleMotion";
 import { formatCurrency } from "@/lib/store";
 import { trpc } from "@/lib/trpc";
 import { ArrowUpRight, ChevronRight, Mail, Menu, MessageCircle, Search, ShoppingBag, UserRound, X } from "lucide-react";
@@ -149,28 +149,43 @@ export default function StorefrontLayout({ children }: { children: React.ReactNo
     return () => observer.disconnect();
   }, [location]);
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !window.matchMedia("(pointer: fine)").matches) return;
-    const fields = Array.from(document.querySelectorAll<HTMLElement>("[data-particle-interactive]"));
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
+    const touchPointer = window.matchMedia("(pointer: coarse)").matches;
+    if (!finePointer && !touchPointer) return;
+    const fields = Array.from(document.querySelectorAll<HTMLElement>("[data-particle-interactive]")).filter(field => finePointer || field.classList.contains("particle-field--hero"));
     const cleanups = fields.map(field => {
       let frame = 0;
       let bounds: DOMRect | null = null;
       let focus: ParticleFocus = { x: 0.5, y: 0.5, offsetX: 0, offsetY: 0 };
       let renderedFocus: ParticleFocus = { ...focus };
+      const isHero = field.classList.contains("particle-field--hero");
+      const applyHeroDepth = (value: ParticleFocus) => {
+        if (!isHero) return;
+        const depth = mapHeroDepth(value);
+        field.style.setProperty("--hero-depth-x", `${depth.offsetX}px`);
+        field.style.setProperty("--hero-depth-y", `${depth.offsetY}px`);
+        field.style.setProperty("--hero-tilt-x", `${depth.tiltX}deg`);
+        field.style.setProperty("--hero-tilt-y", `${depth.tiltY}deg`);
+      };
       const render = () => {
         frame = 0;
-        const blend = 0.24;
+        const blend = 0.2;
         renderedFocus = interpolateParticleFocus(renderedFocus, focus, blend);
         field.style.setProperty("--particle-shift-x", `${renderedFocus.offsetX.toFixed(2)}px`);
         field.style.setProperty("--particle-shift-y", `${renderedFocus.offsetY.toFixed(2)}px`);
+        applyHeroDepth(renderedFocus);
         if (Math.abs(focus.offsetX - renderedFocus.offsetX) > 0.35 || Math.abs(focus.offsetY - renderedFocus.offsetY) > 0.35) requestRender();
       };
       const requestRender = () => {
         if (!frame) frame = window.requestAnimationFrame(render);
       };
       const update = (event: PointerEvent) => {
+        if (!finePointer && event.pointerType !== "touch") return;
         bounds ??= field.getBoundingClientRect();
         const nextFocus = mapParticleFocus(event.clientX, event.clientY, bounds);
         if (!nextFocus) return;
+        if (Math.abs(nextFocus.x - focus.x) < 0.006 && Math.abs(nextFocus.y - focus.y) < 0.006) return;
         focus = nextFocus;
         requestRender();
       };
