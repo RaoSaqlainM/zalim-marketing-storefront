@@ -153,4 +153,4 @@
 - [x] Inspect the live desktop storefront across key public routes and record every visually excessive blank-space issue observed in the browser.
 - [x] Correct the observed section gaps, min-height rules, and desktop proportions without crowding mobile layouts.
 - [x] Reinspect the corrected live desktop and mobile routes, verify interactions and regressions, and document the result.
-- [ ] Save the completed live-browser layout correction checkpoint.
+- [x] Save the completed live-browser layout correction checkpoint.
