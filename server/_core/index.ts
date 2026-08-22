@@ -33,6 +33,9 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
 async function startServer() {
   const app = express();
   const server = createServer(app);
+  app.get("/health", (_req, res) => {
+    res.status(200).json({ status: "ok" });
+  });
   app.post("/api/stripe/webhook", express.raw({ type: "application/json" }), async (req, res) => {
     const rawBody = req.body as Buffer;
     const signature = req.headers["stripe-signature"];

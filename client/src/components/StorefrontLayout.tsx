@@ -14,8 +14,9 @@ const menuLinks = [
   ["Shop by vehicle", "/vehicle-finder"],
   ["Car care", "/collections/car-care"],
   ["Interior", "/collections/cabin-comfort"],
-  ["Lighting & tech", "/collections/tech-power"],
-  ["Utility & touring", "/collections/roadside-utility"],
+  ["Performance", "/collections/performance-handling"],
+  ["Garage tools", "/collections/diagnostics-garage"],
+  ["Dash tech", "/collections/audio-dash-tech"],
   ["Brands", "/brands"],
 ] as const;
 
@@ -216,7 +217,7 @@ export default function StorefrontLayout({ children }: { children: React.ReactNo
     <RouteFeedback />
     <ScrollProgress />
     <a href="#main-content" className="skip-link">Skip to main content</a>
-    <div className="bg-[#0d1728] text-white"><div className="container flex min-h-8 items-center justify-center gap-x-8 gap-y-1 py-2 text-center text-[9px] font-bold uppercase tracking-[.16em] sm:justify-between sm:text-[10px]"><span>Independent automotive marketplace · EUR catalogue</span><span className="hidden sm:block">UK · US · Australia vehicle guidance · Direct support from Saqlain</span></div></div>
+    <div className="bg-[#0d1728] text-white"><div className="container flex min-h-8 items-center justify-center gap-x-8 gap-y-1 py-2 text-center text-[9px] font-bold uppercase tracking-[.16em] sm:justify-between sm:text-[10px]"><span>Independent automotive retail demo · 82 products · EUR catalogue</span><span className="hidden sm:block">UK · US · Australia vehicle guidance · Direct support from Saqlain</span></div></div>
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white shadow-[0_5px_24px_rgba(15,23,42,.05)]">
       <div className="container flex h-[4.9rem] items-center gap-3 lg:h-[5.55rem]">
         <button className="grid h-10 w-10 shrink-0 place-items-center border border-slate-300 bg-white lg:hidden" onClick={() => setMobileOpen(true)} aria-label="Open navigation"><Menu className="h-5 w-5" /></button>

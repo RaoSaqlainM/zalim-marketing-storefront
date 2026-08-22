@@ -162,3 +162,12 @@
 - [x] Correct only the confirmed source of the oversized gap and avoid unrelated hero, catalogue, or particle changes.
 - [x] Re-measure the corrected live desktop transition, verify mobile preservation, and run regressions before saving.
 - [x] Save the completed measured homepage gap correction checkpoint.
+- [x] Inspect the supplied E-store template for reusable structure and any third-party branding or assets that must not be copied.
+- [x] Define an original client-ready automotive e-commerce demo catalogue with distinct categories, brands, and product types.
+- [x] Review the connected Render integration and establish an appropriate backend/deployment architecture without exposing credentials.
+- [x] Integrate the original automotive demo merchandising and template-inspired structure into the Zalim-Marketing storefront.
+- [x] Validate desktop/mobile presentation, backend readiness, originality, and automated regressions for the client demo.
+- [ ] Save the completed client-ready automotive demo checkpoint.
+- [x] Store the supplied Render credential securely and verify API access without writing it to source control.
+- [ ] Create or connect a private GitHub repository for the client demo and configure Render to deploy from it.
+- [x] Prepare a Render-ready service configuration with secrets kept outside committed files.
