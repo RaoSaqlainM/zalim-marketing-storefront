@@ -38,6 +38,7 @@ export type StoreProduct = {
 
 export const heroImage = "/manus-storage/autogear-hero_c8cf25af.jpg";
 export const promoImage = "/manus-storage/promo-workshop_27e6c57b.jpg";
+export const motorOilImage = "/manus-storage/zalim-meridian-motor-oil_d2ae9ba4.png";
 
 export function formatCurrency(value: string | number, currency = "EUR") {
   return new Intl.NumberFormat("en-IE", { style: "currency", currency, maximumFractionDigits: 0 }).format(Number(value));
@@ -48,7 +49,8 @@ export function discountedPercent(product: Pick<StoreProduct, "price" | "compare
   return Math.round((1 - Number(product.price) / Number(product.compareAtPrice)) * 100);
 }
 
-export function productImage(product: Pick<StoreProduct, "imageUrl">) {
+export function productImage(product: Pick<StoreProduct, "imageUrl" | "name">) {
+  if (product.name.toLowerCase().includes("engine oil")) return motorOilImage;
   return product.imageUrl || "/manus-storage/category-utility_fa340543.jpg";
 }
 

@@ -193,3 +193,10 @@
 - [x] Extend the development-only catalogue fallback so valid local product-detail routes remain populated during customer-demo previews.
 - [x] Keep public catalogue reads out of mixed authentication batches so preview product pages receive their live catalogue data independently.
 - [x] Strip preview query parameters from product-detail route slugs so valid customer product pages do not render as unavailable.
+- [x] Audit the existing catalogue, product detail, cart, and enquiry flow for the requested conversion improvements.
+- [x] Add original motor-oil products with clear viscosity, capacity, vehicle-use, and quality information.
+- [x] Add professional product quantity and option controls for capacity, size, or quality where the product supports them.
+- [x] Build a clearly marked non-processing payment-preview interface that never collects card data or represents a real payment method.
+- [x] Replace the sparse product-detail loading placeholder with a useful responsive product-page skeleton.
+- [x] Verify the expanded client-facing purchase journey on desktop and mobile, including TypeScript, tests, and production build.
+- [x] Save the completed conversion-oriented enhancement checkpoint.

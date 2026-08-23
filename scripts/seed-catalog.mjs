@@ -160,7 +160,14 @@ const clientDemoProductRows = [
   { name: "Clearline Screenwash Concentrate", slug: "clearline-screenwash-concentrate", sku: "ZM-CLR-1840", shortDescription: "A concentrated screenwash top-up for seasonal visibility care.", description: "A straightforward maintenance fluid for use in compatible washer systems. Dilute and use according to the label and weather conditions.", specifications: { VehicleExamples: "Compatible washer reservoirs", Format: "1L concentrate", Use: "Seasonal dilution", Note: "Follow label directions" }, price: "9.00", compareAtPrice: null, stockQuantity: 118, imageUrl: media.light, categoryId: categoryLookup.get("wiper-visibility"), brandId: brandLookup.get("clearline"), isFeatured: false, isNew: true, isActive: true },
 ];
 
+const motorOilProductRows = [
+  { name: "Meridian 5W-40 Fully Synthetic Engine Oil", slug: "meridian-5w-40-fully-synthetic-engine-oil", sku: "ZM-MER-1840", shortDescription: "A 5L fully synthetic motor oil for petrol and diesel vehicles that specify 5W-40.", description: "A workshop-ready 5L engine oil for compatible vehicles that require a 5W-40 grade. Confirm the required viscosity and manufacturer specification in the vehicle handbook before use.", specifications: { VehicleExamples: "Compatible petrol and diesel vehicles that specify 5W-40", Volume: "5 litres", Grade: "5W-40", Quality: "Fully synthetic", FitCheck: "Match your vehicle handbook" }, price: "40.00", compareAtPrice: "46.00", stockQuantity: 57, imageUrl: media.inflator, categoryId: categoryLookup.get("fluids-maintenance"), brandId: brandLookup.get("meridian-auto"), isFeatured: true, isNew: true, isActive: true },
+  { name: "Meridian 0W-30 Low-SAPS Engine Oil", slug: "meridian-0w-30-low-saps-engine-oil", sku: "ZM-MER-1850", shortDescription: "A 5L low-SAPS motor oil for compatible modern engines that specify 0W-30.", description: "A low-viscosity 0W-30 option for compatible modern engines. Always match the listed grade and manufacturer approval with your vehicle handbook or qualified technician before ordering.", specifications: { VehicleExamples: "Compatible engines that specify 0W-30", Volume: "5 litres", Grade: "0W-30", Quality: "Low-SAPS synthetic", FitCheck: "Match your vehicle handbook" }, price: "45.00", compareAtPrice: null, stockQuantity: 41, imageUrl: media.inflator, categoryId: categoryLookup.get("fluids-maintenance"), brandId: brandLookup.get("meridian-auto"), isFeatured: false, isNew: true, isActive: true },
+  { name: "Meridian 5W-30 Workshop Pack", slug: "meridian-5w-30-workshop-pack", sku: "ZM-MER-1860", shortDescription: "A 20L workshop pack for service work on compatible vehicles that specify 5W-30.", description: "A larger-format 5W-30 fully synthetic motor oil option for service planning and workshop use. Confirm the grade, approval and required volume for every vehicle before use.", specifications: { VehicleExamples: "Compatible vehicles that specify 5W-30", Volume: "20 litres", Grade: "5W-30", Quality: "Fully synthetic", FitCheck: "Confirm vehicle requirement" }, price: "142.00", compareAtPrice: "158.00", stockQuantity: 18, imageUrl: media.inflator, categoryId: categoryLookup.get("fluids-maintenance"), brandId: brandLookup.get("meridian-auto"), isFeatured: false, isNew: true, isActive: true },
+];
+
 const diversifiedMedia = product => {
+  if (product.name.startsWith("Meridian") && product.name.includes("Oil")) return "/manus-storage/zalim-meridian-motor-oil_d2ae9ba4.png";
   if (product.name.startsWith("Sierra")) return "/manus-storage/zalim-detailing-care-accessories_d8371c0f.jpg";
   if (product.name.startsWith("Roadwell")) return "/manus-storage/zalim-workshop-tools-accessories_82a7c8af.jpg";
   if (product.name.startsWith("Kintra")) return "/manus-storage/zalim-all-weather-accessories_22fe2de0.jpg";
@@ -179,10 +186,10 @@ const diversifiedMedia = product => {
   return product.imageUrl;
 };
 
-for (const product of [...productRows, ...expandedProductRows, ...essentialProductRows, ...clientDemoProductRows]) {
+for (const product of [...productRows, ...expandedProductRows, ...essentialProductRows, ...clientDemoProductRows, ...motorOilProductRows]) {
   const seededProduct = { ...product, imageUrl: diversifiedMedia(product) };
   await db.insert(products).values(seededProduct).onConflictDoUpdate({ target: products.slug, set: seededProduct });
 }
 
-console.log(`Seeded ${categoryRows.length} categories, ${brandRows.length} brands, and ${productRows.length + expandedProductRows.length + essentialProductRows.length + clientDemoProductRows.length} products.`);
+console.log(`Seeded ${categoryRows.length} categories, ${brandRows.length} brands, and ${productRows.length + expandedProductRows.length + essentialProductRows.length + clientDemoProductRows.length + motorOilProductRows.length} products.`);
 await pool.end();
