@@ -183,3 +183,13 @@
 - [x] Save the completed local preview database-repair checkpoint.
 - [x] Add the preview environment’s public IP to the Render Postgres networking allowlist before using its external connection URL.
 - [x] Provide a development-only, read-only proxy to the healthy Render catalogue while the managed preview cannot receive the external database secret.
+- [x] Inspect the supplied Hxni reference for safe interaction and layout patterns without copying its branding, code, or assets.
+- [x] Simplify customer-facing copy and adjust the demo positioning so prospects understand the shop immediately.
+- [x] Improve product purchase and enquiry actions into polished, clearly labelled customer controls.
+- [x] Correct route-change and page-scroll behavior so navigation begins at the expected top position.
+- [x] Strengthen lightweight particle motion for cursor and deliberate finger interaction while preserving smooth scrolling and reduced-motion safeguards.
+- [x] Validate the customer-facing demo at desktop and mobile widths, including product actions, scroll behavior, and regressions.
+- [x] Save the completed customer-demo refinement checkpoint.
+- [x] Extend the development-only catalogue fallback so valid local product-detail routes remain populated during customer-demo previews.
+- [x] Keep public catalogue reads out of mixed authentication batches so preview product pages receive their live catalogue data independently.
+- [x] Strip preview query parameters from product-detail route slugs so valid customer product pages do not render as unavailable.

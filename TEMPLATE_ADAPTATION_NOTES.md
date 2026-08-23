@@ -36,6 +36,10 @@ The GitHub-connected Render service is live at [zalim-marketing-demo.onrender.co
 
 Render’s external Postgres URL is required for the managed development preview, which runs outside Render’s private network. The database currently restricts external traffic, so its Networking allowlist must include the preview environment’s IPv4 address in CIDR form: `172.212.203.64/32`. The live Render service remains unaffected because it connects through the same-region internal URL. [3]
 
+## Hxni Reference Review
+
+The supplied Hxni archive is a separate mobile fashion sample. Its brand identity, fashion imagery, code, copy, content structure, and assets will not be reused. The review identified only general usability patterns that can be independently reinterpreted for Zalim-Marketing: concise product naming, a clearly visible price, a single primary product action, lightweight filter labels, and short practical information below the action. The automotive demo will retain its original navy-and-gold visual system, vehicle-led discovery, EUR parts catalogue, and enquiry-first ordering flow.
+
 ## References
 
 [1]: https://render.com/docs/blueprint-spec "Render Blueprint YAML Reference"
