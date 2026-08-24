@@ -200,3 +200,10 @@
 - [x] Replace the sparse product-detail loading placeholder with a useful responsive product-page skeleton.
 - [x] Verify the expanded client-facing purchase journey on desktop and mobile, including TypeScript, tests, and production build.
 - [x] Save the completed conversion-oriented enhancement checkpoint.
+- [x] Audit current checkout, vehicle finder, and motor-oil catalogue paths for the simulated payment, fitment, and filtering improvements.
+- [x] Add a clearly simulated payment processing animation and success confirmation modal without collecting or transmitting payment details.
+- [x] Add a privacy-conscious motor-oil fitment guide that accepts a registration or VIN only for a local compatibility guide and requires handbook confirmation.
+- [x] Add motor-oil filtering by quality grade, pack size, and price with clear, reusable filter controls.
+- [x] Add or update focused automated tests for simulated checkout, oil-fitment guide, and oil-filter logic.
+- [x] Verify the enhanced checkout and oil-discovery flows on desktop and mobile with type checking, full tests, and a production build.
+- [x] Save the completed simulated payment and motor-oil discovery checkpoint.
