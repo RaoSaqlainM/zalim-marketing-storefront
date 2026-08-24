@@ -28,6 +28,11 @@ export const demoOrderStatuses: Array<{ label: string; status: DemoOrderStatus; 
   { status: "dispatched", label: "Dispatched", text: "The demo shows a shipment status, not a real carrier hand-off." },
   { status: "delivered", label: "Delivered", text: "The demo completes the sample order journey in this browser." },
 ];
+export const demoOrderProgressStages: Array<{ label: string; statuses: DemoOrderStatus[]; text: string }> = [
+  { label: "Processing", statuses: ["placed", "packed"], text: "We are preparing the selected items in this browser-only test journey." },
+  { label: "Shipped", statuses: ["dispatched"], text: "The test journey has reached its simulated shipment stage." },
+  { label: "Delivered", statuses: ["delivered"], text: "The test journey has reached its final simulated delivery stage." },
+];
 const demoOrderStorageKey = "zalim-marketing-demo-order";
 
 export function validateTestPayment(details: TestPaymentDetails) {
@@ -51,9 +56,17 @@ export function createDemoOrder(items: DemoOrderLine[]): DemoOrder {
   };
 }
 
+export function createDemoSampleOrder() {
+  return createDemoOrder([{ name: "Meridian 5W-30 Fully Synthetic Engine Oil", quantity: 1, price: 49, sku: "ZM-ML-530-5L" }]);
+}
+
 export function nextDemoOrderStatus(status: DemoOrderStatus): DemoOrderStatus {
   const currentIndex = demoOrderStatuses.findIndex(step => step.status === status);
   return demoOrderStatuses[Math.min(currentIndex + 1, demoOrderStatuses.length - 1)].status;
+}
+
+export function demoOrderProgressIndex(status: DemoOrderStatus) {
+  return Math.max(0, demoOrderProgressStages.findIndex(stage => stage.statuses.includes(status)));
 }
 
 export function saveDemoOrder(order: DemoOrder) {

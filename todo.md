@@ -223,3 +223,9 @@
 - [x] Add focused automated tests for guest basket persistence and guest test-order creation.
 - [x] Verify guest shopping, simulated checkout, and staged test-order status on desktop and mobile with TypeScript, full tests, and a production build.
 - [x] Save the completed guest-checkout client-demo checkpoint.
+- [x] Audit the existing simulated order-status page for stage data and responsive progress-bar placement.
+- [x] Add a visual test-order progress bar for Processing, Shipped, and Delivered stages with accessible current-stage feedback.
+- [x] Verify the test-order status route so the footer entry point opens the registered simulated tracker.
+- [x] Add an explicit browser-local sample test-order preview for reviewing the simulated tracking UI without a payment or real order.
+- [x] Add focused progress-stage mapping tests and verify the tracker on desktop and mobile with type checking, full tests, and a production build.
+- [x] Save the completed test-order progress-bar checkpoint.

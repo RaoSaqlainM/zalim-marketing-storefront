@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { demoOrderTotal, nextDemoOrderStatus, validateTestPayment } from "../client/src/lib/demoOrder";
+import { demoOrderProgressIndex, demoOrderTotal, nextDemoOrderStatus, validateTestPayment } from "../client/src/lib/demoOrder";
 
 describe("demo order helpers", () => {
   it("only accepts a fictional test payment reference", () => {
@@ -14,5 +14,12 @@ describe("demo order helpers", () => {
   it("advances test-order status without exceeding delivered", () => {
     expect(nextDemoOrderStatus("placed")).toBe("packed");
     expect(nextDemoOrderStatus("delivered")).toBe("delivered");
+  });
+
+  it("maps detailed statuses to Processing, Shipped, and Delivered progress stages", () => {
+    expect(demoOrderProgressIndex("placed")).toBe(0);
+    expect(demoOrderProgressIndex("packed")).toBe(0);
+    expect(demoOrderProgressIndex("dispatched")).toBe(1);
+    expect(demoOrderProgressIndex("delivered")).toBe(2);
   });
 });
