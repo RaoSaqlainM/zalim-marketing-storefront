@@ -215,3 +215,11 @@
 - [x] Add focused tests for the simulated order summary, fictional payment validation, and order-status logic.
 - [x] Verify the complete simulated order flow on desktop and mobile with TypeScript, full tests, and a production build.
 - [x] Save the completed detailed test-order checkpoint.
+- [x] Audit project authentication dependencies across product actions, basket, checkout, and order-status views.
+- [x] Add a guest-accessible simulated basket and checkout path that does not require project sign-in.
+- [x] Replace legacy account and order-route sign-in prompts with guest shopping or simulated order-status guidance.
+- [x] Make the guest test-order experience look and behave like a polished checkout while retaining explicit no-payment and no-delivery safeguards.
+- [x] Review project-controlled branding for removable watermark text while retaining any platform-level branding outside project control.
+- [x] Add focused automated tests for guest basket persistence and guest test-order creation.
+- [x] Verify guest shopping, simulated checkout, and staged test-order status on desktop and mobile with TypeScript, full tests, and a production build.
+- [x] Save the completed guest-checkout client-demo checkpoint.

@@ -1,9 +1,8 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { startLogin } from "@/const";
+import { addGuestBasketItem } from "@/lib/guestBasket";
 import { discountedPercent, formatCurrency, productImage, type StoreProduct } from "@/lib/store";
-import { trpc } from "@/lib/trpc";
-import { ArrowUpRight, Check, Loader2, ShoppingBag } from "lucide-react";
+import { ArrowUpRight, Check, ShoppingBag } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Link } from "wouter";
@@ -13,14 +12,13 @@ function ProductVisualFallback({ sku, name, category }: { sku: string; name: str
 }
 
 export default function ProductCard({ product, compact = false, list = false }: { product: StoreProduct; compact?: boolean; list?: boolean }) {
-  const { isAuthenticated } = useAuth();
   const [added, setAdded] = useState(false);
-  const utils = trpc.useUtils();
-  const add = trpc.cart.add.useMutation({ onSuccess: () => { utils.cart.get.invalidate(); setAdded(true); window.setTimeout(() => setAdded(false), 1800); }, onError: error => toast.error(error.message) });
   const sale = discountedPercent(product);
   const addToCart = () => {
-    if (!isAuthenticated) return startLogin();
-    add.mutate({ productId: product.id, quantity: 1 });
+    addGuestBasketItem({ productId: product.id, slug: product.slug, name: product.name, sku: product.sku, price: Number(product.price), quantity: 1, imageUrl: product.imageUrl || productImage(product) });
+    setAdded(true);
+    toast.success("Added to your guest basket.");
+    window.setTimeout(() => setAdded(false), 1800);
   };
   return <article className={`group relative border border-slate-200 bg-white ${compact ? "p-1.5" : "p-2"} transition duration-200 hover:-translate-y-0.5 hover:border-[#c8ad70] hover:shadow-[0_20px_38px_-28px_rgba(15,23,42,.65)] ${list ? "flex items-stretch gap-4" : ""}`}>
     <Link href={`/products/${product.slug}`} className={`relative block overflow-hidden bg-[#f3f0e8] ${list ? "w-32 shrink-0 sm:w-44" : ""}`}>
@@ -29,6 +27,6 @@ export default function ProductCard({ product, compact = false, list = false }: 
       <span aria-hidden="true" className={`absolute inset-x-0 bottom-0 z-[1] bg-[linear-gradient(transparent,rgba(7,16,31,.92))] ${compact ? "px-2.5 pb-2 pt-7" : "px-3 pb-3 pt-10"} text-white`}><span className="block text-[9px] font-bold uppercase tracking-[.15em] text-[#f1d485]">{product.category?.name || "Automotive essential"}</span><span className="mt-1 line-clamp-1 block text-xs font-bold leading-4">{product.name}</span></span>
       <div className="absolute inset-x-0 top-0 flex items-start justify-between p-2"><div className="flex gap-1.5">{product.isNew && <span className="bg-slate-950 px-2 py-1 text-[9px] font-bold uppercase tracking-[.12em] text-white">New in</span>}{sale && <span className="bg-[#e5c266] px-2 py-1 text-[9px] font-bold uppercase tracking-[.12em] text-[#594315]">-{sale}%</span>}</div><span className="grid h-7 w-7 place-items-center bg-white/90 text-[#6d4e17] opacity-0 transition group-hover:opacity-100"><ArrowUpRight className="h-3.5 w-3.5" /></span></div>
     </Link>
-    <div className={`${compact ? "px-0.5 pb-0.5 pt-2" : "px-1 pb-1 pt-3"} ${list ? "flex min-w-0 flex-1 flex-col justify-center pr-2" : ""}`}><div className={`flex items-center justify-between gap-2 ${compact ? "mb-0.5" : "mb-1"}`}><p className="truncate text-[9px] font-bold uppercase tracking-[.14em] text-[#8a6726]">{product.brand?.name || "Zalim selection"}</p><span className="text-[9px] font-bold text-slate-400">{product.sku}</span></div><Link href={`/products/${product.slug}`} className={`line-clamp-2 text-sm font-bold leading-5 tracking-[-0.01em] text-slate-950 hover:text-[#8a601d] ${compact ? "min-h-0" : "min-h-10"}`}>{product.name}</Link>{!list && !compact && <p className="mt-2 truncate text-[10px] font-medium text-slate-500">{product.category?.name || "Automotive essential"}</p>}<div className={`flex items-center justify-between gap-2 border-t border-slate-100 ${compact ? "mt-2 pt-2" : "mt-3 pt-3"}`}><div><span className="text-sm font-extrabold text-slate-950">{formatCurrency(product.price)}</span>{product.compareAtPrice && <span className="ml-1.5 text-xs text-slate-400 line-through">{formatCurrency(product.compareAtPrice)}</span>}</div><Button className="h-8 rounded-none bg-[#b88d3c] px-2.5 text-[10px] font-bold uppercase tracking-[.08em] text-white hover:bg-slate-950" disabled={add.isPending || product.stockQuantity < 1} onClick={addToCart}>{add.isPending ? <Loader2 className="mr-1.5 h-3.5 w-3.5 animate-spin" /> : added ? <Check className="mr-1.5 h-3.5 w-3.5" /> : <ShoppingBag className="mr-1.5 h-3.5 w-3.5" />}{added ? "Added" : "Add"}</Button></div></div>
+    <div className={`${compact ? "px-0.5 pb-0.5 pt-2" : "px-1 pb-1 pt-3"} ${list ? "flex min-w-0 flex-1 flex-col justify-center pr-2" : ""}`}><div className={`flex items-center justify-between gap-2 ${compact ? "mb-0.5" : "mb-1"}`}><p className="truncate text-[9px] font-bold uppercase tracking-[.14em] text-[#8a6726]">{product.brand?.name || "Zalim selection"}</p><span className="text-[9px] font-bold text-slate-400">{product.sku}</span></div><Link href={`/products/${product.slug}`} className={`line-clamp-2 text-sm font-bold leading-5 tracking-[-0.01em] text-slate-950 hover:text-[#8a601d] ${compact ? "min-h-0" : "min-h-10"}`}>{product.name}</Link>{!list && !compact && <p className="mt-2 truncate text-[10px] font-medium text-slate-500">{product.category?.name || "Automotive essential"}</p>}<div className={`flex items-center justify-between gap-2 border-t border-slate-100 ${compact ? "mt-2 pt-2" : "mt-3 pt-3"}`}><div><span className="text-sm font-extrabold text-slate-950">{formatCurrency(product.price)}</span>{product.compareAtPrice && <span className="ml-1.5 text-xs text-slate-400 line-through">{formatCurrency(product.compareAtPrice)}</span>}</div><Button className="h-8 rounded-none bg-[#b88d3c] px-2.5 text-[10px] font-bold uppercase tracking-[.08em] text-white hover:bg-slate-950" disabled={product.stockQuantity < 1} onClick={addToCart}>{added ? <Check className="mr-1.5 h-3.5 w-3.5" /> : <ShoppingBag className="mr-1.5 h-3.5 w-3.5" />}{added ? "Added" : "Add"}</Button></div></div>
   </article>;
 }

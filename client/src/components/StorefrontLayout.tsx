@@ -1,11 +1,11 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { startLogin } from "@/const";
+import { guestBasketChangedEvent, readGuestBasket } from "@/lib/guestBasket";
 import { interpolateParticleFocus, mapHeroDepth, mapParticleFocus, type ParticleFocus } from "@/lib/particleMotion";
 import { formatCurrency } from "@/lib/store";
 import { trpc } from "@/lib/trpc";
-import { ArrowUpRight, ChevronRight, Mail, Menu, MessageCircle, PackageCheck, Search, ShoppingBag, UserRound, X } from "lucide-react";
+import { ArrowUpRight, ChevronRight, Mail, Menu, MessageCircle, PackageCheck, Search, ShoppingBag, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 import { Link, useLocation } from "wouter";
 
@@ -122,9 +122,12 @@ function ScrollProgress() {
 export default function StorefrontLayout({ children }: { children: React.ReactNode }) {
   const [location, setLocation] = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { user, isAuthenticated } = useAuth();
-  const cart = trpc.cart.get.useQuery(undefined, { enabled: isAuthenticated });
-  const count = cart.data?.itemCount ?? 0;
+  const [count, setCount] = useState(() => readGuestBasket().reduce((total, item) => total + item.quantity, 0));
+  useEffect(() => {
+    const sync = () => setCount(readGuestBasket().reduce((total, item) => total + item.quantity, 0));
+    window.addEventListener(guestBasketChangedEvent, sync);
+    return () => window.removeEventListener(guestBasketChangedEvent, sync);
+  }, []);
   useEffect(() => {
     const targets = Array.from(document.querySelectorAll<HTMLElement>(".route-stage > section, .route-stage > main > section"));
     if (!targets.length) return;
@@ -229,7 +232,6 @@ export default function StorefrontLayout({ children }: { children: React.ReactNo
         <div className="ml-auto hidden min-w-0 lg:block"><SearchBar /></div>
         <div className="ml-auto flex items-center gap-1.5 lg:ml-4">
           <button className="grid h-10 w-10 place-items-center lg:hidden" onClick={() => navigate("/search")} aria-label="Search catalogue"><Search className="h-5 w-5" /></button>
-          <button className="grid h-10 w-10 place-items-center border-l border-slate-200 lg:border-0" onClick={() => isAuthenticated ? navigate("/account") : startLogin()} aria-label="Open account"><UserRound className="h-5 w-5" /></button>
           <button className="relative grid h-10 w-10 place-items-center" onClick={() => navigate("/cart")} aria-label={`Open basket, ${count} products`}><ShoppingBag className="h-5 w-5" />{count > 0 && <span className="absolute right-0.5 top-0.5 grid min-h-4 min-w-4 place-items-center rounded-full bg-[#b88d3c] px-1 text-[9px] font-bold text-white">{count}</span>}</button>
         </div>
       </div>
@@ -240,7 +242,7 @@ export default function StorefrontLayout({ children }: { children: React.ReactNo
         <div className="flex items-center justify-between"><BrandMark /><button className="grid h-10 w-10 place-items-center border border-slate-300" onClick={() => setMobileOpen(false)} aria-label="Close navigation"><X className="h-5 w-5" /></button></div>
         <div className="mt-7"><SearchBar mobile /></div>
         <nav className="mt-7 grid border-y border-slate-200 py-3">{menuLinks.map(([label, path]) => <button key={path} onClick={() => navigate(path)} className="flex items-center justify-between px-1 py-3.5 text-left text-base font-semibold text-slate-900"><span>{label}</span><ChevronRight className="h-4 w-4 text-slate-400" /></button>)}<button onClick={() => navigate("/collections")} className="flex items-center justify-between px-1 py-3.5 text-left text-base font-semibold text-slate-900"><span>All categories</span><ChevronRight className="h-4 w-4 text-slate-400" /></button><button onClick={() => navigate("/contact")} className="flex items-center justify-between px-1 py-3.5 text-left text-base font-semibold text-slate-900"><span>Contact & support</span><ChevronRight className="h-4 w-4 text-slate-400" /></button></nav>
-        <div className="mt-auto space-y-3 pt-6"><Button className="h-12 w-full rounded-none bg-[#b88d3c] font-bold hover:bg-[#9d752e]" onClick={() => isAuthenticated ? navigate("/account") : startLogin()}>{user ? "Open your account" : "Sign in or create account"}</Button><a className="flex h-11 items-center justify-center gap-2 border border-slate-300 text-sm font-bold" href="https://wa.me/923255531155" target="_blank" rel="noreferrer"><MessageCircle className="h-4 w-4" />WhatsApp support</a></div>
+        <div className="mt-auto space-y-3 pt-6"><Button className="h-12 w-full rounded-none bg-[#b88d3c] font-bold hover:bg-[#9d752e]" onClick={() => navigate("/cart")}>Review guest basket</Button><a className="flex h-11 items-center justify-center gap-2 border border-slate-300 text-sm font-bold" href="https://wa.me/923255531155" target="_blank" rel="noreferrer"><MessageCircle className="h-4 w-4" />WhatsApp support</a></div>
       </aside>
     </div>}
     <main id="main-content"><div key={location} className="route-stage">{children}</div></main>
