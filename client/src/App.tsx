@@ -6,6 +6,7 @@ import AdminReviews from "@/pages/AdminReviews";
 import Cart from "@/pages/Cart";
 import Catalog from "@/pages/Catalog";
 import Checkout from "@/pages/Checkout";
+import DemoOrderTracking from "@/pages/DemoOrderTracking";
 import NotFound from "@/pages/NotFound";
 import OrderDetail from "@/pages/OrderDetail";
 import OrderConfirmation from "@/pages/OrderConfirmation";
@@ -31,6 +32,7 @@ function Router() {
       <Route path={"/products/:slug"} component={ProductDetail} />
       <Route path={"/cart"} component={Cart} />
       <Route path={"/checkout"} component={Checkout} />
+      <Route path={"/demo-order"} component={DemoOrderTracking} />
       <Route path={"/order-confirmation"} component={OrderConfirmation} />
       <Route path={"/account/orders/:orderNumber"} component={OrderDetail} />
       <Route path={"/account"} component={Account} />

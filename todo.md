@@ -207,3 +207,11 @@
 - [x] Add or update focused automated tests for simulated checkout, oil-fitment guide, and oil-filter logic.
 - [x] Verify the enhanced checkout and oil-discovery flows on desktop and mobile with type checking, full tests, and a production build.
 - [x] Save the completed simulated payment and motor-oil discovery checkpoint.
+- [x] Audit checkout confirmation, basket data, and existing order-status paths for the detailed test-order experience.
+- [x] Add an itemized simulated checkout confirmation with selected product, quantity, subtotal, and estimated delivery information.
+- [x] Add clearly fictional test-payment fields that accept only non-sensitive demonstration values and retain no payment data.
+- [x] Build a clearly labelled simulated customer order-status journey with placed, packed, dispatched, and delivered views.
+- [x] Audit and remove only project-controlled AI or Manus watermark text; retain platform branding outside project control.
+- [x] Add focused tests for the simulated order summary, fictional payment validation, and order-status logic.
+- [x] Verify the complete simulated order flow on desktop and mobile with TypeScript, full tests, and a production build.
+- [x] Save the completed detailed test-order checkpoint.
