@@ -33,6 +33,12 @@ export const demoOrderProgressStages: Array<{ label: string; statuses: DemoOrder
   { label: "Shipped", statuses: ["dispatched"], text: "The test journey has reached its simulated shipment stage." },
   { label: "Delivered", statuses: ["delivered"], text: "The test journey has reached its final simulated delivery stage." },
 ];
+export const demoDeliveryGuidance: Record<DemoOrderStatus, { title: string; text: string; timing: string }> = {
+  placed: { title: "Test fulfilment review", text: "The local test order is waiting for its next simulated stage. No stock reservation or carrier hand-off is made.", timing: "Test timing: confirmation review" },
+  packed: { title: "Test packing update", text: "The selected items are shown as prepared in this browser-only journey. No parcel has been packed.", timing: "Test timing: preparing dispatch" },
+  dispatched: { title: "Test shipment update", text: "The tracking display is illustrative only. No carrier booking, tracking number, or shipment has been created.", timing: "Test timing: 3–5 business days after availability review" },
+  delivered: { title: "Test delivery complete", text: "The visual journey is complete in this browser. No delivery confirmation or proof of delivery exists.", timing: "Test timing: delivery stage complete" },
+};
 const demoOrderStorageKey = "zalim-marketing-demo-order";
 
 export function validateTestPayment(details: TestPaymentDetails) {

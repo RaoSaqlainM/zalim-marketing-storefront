@@ -229,3 +229,7 @@
 - [x] Add an explicit browser-local sample test-order preview for reviewing the simulated tracking UI without a payment or real order.
 - [x] Add focused progress-stage mapping tests and verify the tracker on desktop and mobile with type checking, full tests, and a production build.
 - [x] Save the completed test-order progress-bar checkpoint.
+- [x] Audit the simulated order tracker for customer-useful delivery timing and shipment-detail enhancements.
+- [x] Add clearly simulated delivery timing and shipment-detail guidance without representing it as a real carrier update.
+- [x] Verify the enhanced simulated tracker on desktop and mobile with type checking, full tests, and a production build.
+- [x] Save the continued simulated order-tracker checkpoint.

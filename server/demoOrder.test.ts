@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { demoOrderProgressIndex, demoOrderTotal, nextDemoOrderStatus, validateTestPayment } from "../client/src/lib/demoOrder";
+import { demoDeliveryGuidance, demoOrderProgressIndex, demoOrderTotal, nextDemoOrderStatus, validateTestPayment } from "../client/src/lib/demoOrder";
 
 describe("demo order helpers", () => {
   it("only accepts a fictional test payment reference", () => {
@@ -21,5 +21,10 @@ describe("demo order helpers", () => {
     expect(demoOrderProgressIndex("packed")).toBe(0);
     expect(demoOrderProgressIndex("dispatched")).toBe(1);
     expect(demoOrderProgressIndex("delivered")).toBe(2);
+  });
+
+  it("keeps simulated delivery guidance explicit at every detailed stage", () => {
+    expect(demoDeliveryGuidance.dispatched.text).toContain("illustrative only");
+    expect(demoDeliveryGuidance.delivered.text).toContain("No delivery confirmation");
   });
 });
