@@ -233,3 +233,6 @@
 - [x] Add clearly simulated delivery timing and shipment-detail guidance without representing it as a real carrier update.
 - [x] Verify the enhanced simulated tracker on desktop and mobile with type checking, full tests, and a production build.
 - [x] Save the continued simulated order-tracker checkpoint.
+- [x] Safely inspect and provide a local preview of the supplied Hxni E-commerce project without modifying the Zalim-Marketing storefront.
+- [x] Diagnose and repair the isolated supplied-project browser preview so it visibly renders without changing the Zalim-Marketing storefront.
+- [x] Disable the login gate and provide a populated local guest storefront preview for the isolated supplied Hxni application.
