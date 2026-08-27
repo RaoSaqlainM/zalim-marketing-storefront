@@ -243,3 +243,8 @@
 - [x] Add a clearly illustrative animated delivery-status map that does not represent real shipment tracking.
 - [x] Verify product-to-cart, checkout, simulated confirmation, and delivery-status views in the isolated E-store2 preview.
 - [x] Save the completed isolated offline-demo preview checkpoint.
+- [x] Review the isolated E-store2 product actions and illustrative delivery display before extending the local shopping demo.
+- [x] Add a Buy Now control that opens browser-local simulated checkout for the selected product without adding it to the cart.
+- [x] Add a clearly test-only Processing, Shipped, and Out for Delivery timeline to the illustrative parcel map.
+- [x] Verify the updated Buy Now, simulated checkout, confirmation, and parcel-status timeline in the isolated preview.
+- [x] Save the updated isolated local-shopping-demo checkpoint.
