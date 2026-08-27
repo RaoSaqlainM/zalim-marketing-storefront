@@ -1,0 +1,7 @@
+.git
+.manus-logs
+attached_assets
+dist
+node_modules
+vite.config.ts.bak
+*.log

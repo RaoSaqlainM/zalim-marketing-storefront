@@ -71,6 +71,8 @@ button:not(:disabled):active { transform: scale(.98); }
 .header-link:hover::after { width: 100%; }
 .brand-mark { display: inline-flex; align-items: center; gap: .3rem; color: #101827; font-size: 1.05rem; font-weight: 900; letter-spacing: -.07em; white-space: nowrap; }
 .brand-mark--inverse { color: white; }
+.brand-mark__image { height: 2rem; width: 2rem; flex: 0 0 auto; overflow: hidden; border: 1px solid #94a8b6; background: #dce7ed; object-fit: contain; padding: .12rem; }
+.brand-mark--inverse .brand-mark__image { border-color: #e5c373; background: #e5c373; }
 .brand-mark__icon { display: inline-flex; flex-direction: column; gap: 2px; margin-right: .18rem; width: .74rem; }
 .brand-mark__icon i { display: block; height: 2px; width: 100%; background: #b88d3c; }
 .brand-mark__icon i:nth-child(2) { width: 70%; }

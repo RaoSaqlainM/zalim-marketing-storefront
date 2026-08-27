@@ -21,7 +21,7 @@ const menuLinks = [
 ] as const;
 
 function BrandMark({ inverse = false }: { inverse?: boolean }) {
-  return <span className={`brand-mark ${inverse ? "brand-mark--inverse" : ""}`} aria-label="Zalim-Marketing"><span className="brand-mark__icon" aria-hidden="true"><i /><i /><i /></span><span className="brand-mark__name">ZALIM</span><span className="brand-mark__divider">—</span><span className="brand-mark__sub">MARKETING</span></span>;
+  return <span className={`brand-mark ${inverse ? "brand-mark--inverse" : ""}`} aria-label="Zalim-Marketing"><img className="brand-mark__image" src="/manus-storage/zalim-mark-primary_32e6a19b.png" alt="" aria-hidden="true" width="40" height="40" decoding="async" /><span className="brand-mark__name">ZALIM</span><span className="brand-mark__divider">—</span><span className="brand-mark__sub">MARKETING</span></span>;
 }
 
 function SearchBar({ mobile = false }: { mobile?: boolean }) {

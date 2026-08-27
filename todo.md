@@ -266,3 +266,9 @@
 - [x] Replace the static test-order confirmation presentation with a polished, clearly simulated animated delivery route to a demo destination.
 - [x] Verify the darker visual system and animated local test-order route on desktop and mobile with checks, tests, build, and visual review.
 - [x] Save the dark visual-system and simulated-route refinement checkpoint.
+- [x] Audit current project-controlled source files and remove all code comments while retaining essential executable configuration.
+- [x] Create and integrate an original Zalim-Marketing logo asset into the storefront identity.
+- [x] Add Vercel-compatible deployment configuration and clear deployment documentation without attempting to publish externally.
+- [x] Run release validation and ensure the source has no errors after comment removal, logo integration, and Vercel preparation.
+- [ ] Create and push the completed source to a new private GitHub repository.
+- [ ] Save the Vercel-ready GitHub repository checkpoint.
