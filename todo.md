@@ -238,3 +238,8 @@
 - [x] Disable the login gate and provide a populated local guest storefront preview for the isolated supplied Hxni application.
 - [x] Safely inspect and provide a local preview of the supplied E-store2 e-commerce application without modifying existing storefront projects.
 - [x] Review the supplied E-store2 backend and explain what a working backend connection would change in the preview.
+- [x] Review the supplied E-store2 cart, navigation, and local storage flow for an offline checkout extension.
+- [x] Add a browser-local simulated checkout and fictional payment-success confirmation to the isolated E-store2 preview.
+- [x] Add a clearly illustrative animated delivery-status map that does not represent real shipment tracking.
+- [x] Verify product-to-cart, checkout, simulated confirmation, and delivery-status views in the isolated E-store2 preview.
+- [x] Save the completed isolated offline-demo preview checkpoint.
