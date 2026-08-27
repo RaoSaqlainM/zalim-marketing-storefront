@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { createDemoOrder, demoDeliveryEstimate, saveDemoOrder, type TestPaymentDetails, validateTestPayment } from "@/lib/demoOrder";
-import { guestBasketChangedEvent, guestBasketSubtotal, readGuestBasket, type GuestBasketItem } from "@/lib/guestBasket";
+import { clearDirectCheckout, guestBasketChangedEvent, guestBasketSubtotal, readDirectCheckout, readGuestBasket, type GuestBasketItem } from "@/lib/guestBasket";
 import { paymentPreferenceLabels, paymentPreviewConfirmation, paymentPreviewDelayMs, type PaymentPreference } from "@/lib/paymentPreview";
 import { formatCurrency } from "@/lib/store";
 import { ArrowRight, Building2, CheckCircle2, CreditCard, LoaderCircle, Mail, MapPin, MessageCircle, PackageCheck, Store } from "lucide-react";
@@ -19,7 +19,8 @@ const emptyEnquiry: Enquiry = { name: "", email: "", phone: "", location: "", ad
 const emptyTestPayment: TestPaymentDetails = { cardholder: "", reference: "" };
 
 export default function Checkout() {
-  const [items, setItems] = useState<GuestBasketItem[]>(() => readGuestBasket());
+  const [usesDirectCheckout] = useState(() => Boolean(readDirectCheckout()));
+  const [items, setItems] = useState<GuestBasketItem[]>(() => readDirectCheckout() || readGuestBasket());
   const [enquiry, setEnquiry] = useState<Enquiry>(emptyEnquiry);
   const [paymentPreference, setPaymentPreference] = useState<PaymentPreference>("card");
   const [testPayment, setTestPayment] = useState<TestPaymentDetails>(emptyTestPayment);
@@ -29,7 +30,7 @@ export default function Checkout() {
   const [paymentPreviewState, setPaymentPreviewState] = useState<"idle" | "processing" | "confirmed">("idle");
   const update = (field: keyof Enquiry, value: string) => setEnquiry(current => ({ ...current, [field]: value }));
   const updateTestPayment = (field: keyof TestPaymentDetails, value: string) => setTestPayment(current => ({ ...current, [field]: value }));
-  useEffect(() => { const sync = () => setItems(readGuestBasket()); window.addEventListener(guestBasketChangedEvent, sync); return () => window.removeEventListener(guestBasketChangedEvent, sync); }, []);
+  useEffect(() => { if (usesDirectCheckout) return; const sync = () => setItems(readGuestBasket()); window.addEventListener(guestBasketChangedEvent, sync); return () => window.removeEventListener(guestBasketChangedEvent, sync); }, [usesDirectCheckout]);
 
   const subtotal = guestBasketSubtotal(items);
   const messageLines = items.map(item => `• ${item.name} (${item.sku}) × ${item.quantity} — ${formatCurrency(Number(item.price) * item.quantity)}`).join("\n");
@@ -46,6 +47,7 @@ export default function Checkout() {
     setTestPaymentError(null);
     const order = createDemoOrder(items.map(item => ({ name: item.name, quantity: item.quantity, price: Number(item.price), sku: item.sku })));
     saveDemoOrder(order);
+    clearDirectCheckout();
     setDemoOrderReference(order.reference);
     setPaymentPreviewState("processing");
     window.setTimeout(() => setPaymentPreviewState("confirmed"), paymentPreviewDelayMs);

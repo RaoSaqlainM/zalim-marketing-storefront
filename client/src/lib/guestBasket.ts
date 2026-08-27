@@ -9,6 +9,7 @@ export type GuestBasketItem = {
 };
 
 const guestBasketKey = "zalim-marketing-guest-basket";
+const directCheckoutKey = "zalim-marketing-direct-checkout";
 export const guestBasketChangedEvent = "zalim-marketing-guest-basket-changed";
 
 export function mergeGuestBasketItems(items: GuestBasketItem[], incoming: GuestBasketItem) {
@@ -62,4 +63,24 @@ export function removeGuestBasketItem(productId: number) {
 
 export function clearGuestBasket() {
   saveGuestBasket([]);
+}
+
+export function saveDirectCheckout(item: GuestBasketItem) {
+  window.sessionStorage.setItem(directCheckoutKey, JSON.stringify(item));
+}
+
+export function readDirectCheckout(): GuestBasketItem[] | null {
+  try {
+    const stored = window.sessionStorage.getItem(directCheckoutKey);
+    if (!stored) return null;
+    const item = JSON.parse(stored) as GuestBasketItem;
+    return item && item.productId && item.quantity > 0 ? [item] : null;
+  }
+  catch {
+    return null;
+  }
+}
+
+export function clearDirectCheckout() {
+  window.sessionStorage.removeItem(directCheckoutKey);
 }

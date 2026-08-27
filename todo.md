@@ -248,3 +248,10 @@
 - [x] Add a clearly test-only Processing, Shipped, and Out for Delivery timeline to the illustrative parcel map.
 - [x] Verify the updated Buy Now, simulated checkout, confirmation, and parcel-status timeline in the isolated preview.
 - [x] Save the updated isolated local-shopping-demo checkpoint.
+- [x] Inspect and remove the reported blank space between the Useful Edit and Garage Check sections on the Zalim-Marketing homepage.
+- [x] Repair the unloaded homepage workshop image and verify all changed image sources load correctly.
+- [x] Audit and correct unreadable text/background combinations across affected Zalim-Marketing storefront pages.
+- [x] Improve visible motor-oil product discovery and original product-detail Buy Now and Add to Cart controls.
+- [x] Refine only the clearly labelled simulated payment, confirmation, and delivery presentation without collecting financial details or representing a real order.
+- [x] Verify the revised Zalim-Marketing storefront on desktop and mobile with checks, tests, build, and visual review.
+- [x] Save the visual and simulated-purchase refinement checkpoint.

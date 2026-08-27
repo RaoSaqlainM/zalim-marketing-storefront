@@ -37,7 +37,7 @@ export type StoreProduct = {
 };
 
 export const heroImage = "/manus-storage/autogear-hero_c8cf25af.jpg";
-export const promoImage = "/manus-storage/promo-workshop_27e6c57b.jpg";
+export const promoImage = "/manus-storage/zalim-workshop-panel_7d6f808a.jpg";
 export const motorOilImage = "/manus-storage/zalim-meridian-motor-oil_d2ae9ba4.png";
 
 export function formatCurrency(value: string | number, currency = "EUR") {
