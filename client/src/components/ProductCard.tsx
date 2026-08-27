@@ -20,7 +20,7 @@ export default function ProductCard({ product, compact = false, list = false }: 
     toast.success("Added to your guest basket.");
     window.setTimeout(() => setAdded(false), 1800);
   };
-  return <article className={`group relative border border-slate-200 bg-white ${compact ? "p-1.5" : "p-2"} transition duration-200 hover:-translate-y-0.5 hover:border-[#c8ad70] hover:shadow-[0_20px_38px_-28px_rgba(15,23,42,.65)] ${list ? "flex items-stretch gap-4" : ""}`}>
+  return <article className={`group relative border border-slate-300 bg-[#edf1f4] ${compact ? "p-1.5" : "p-2"} transition duration-200 hover:-translate-y-0.5 hover:border-[#c8ad70] hover:shadow-[0_20px_38px_-28px_rgba(15,23,42,.65)] ${list ? "flex items-stretch gap-4" : ""}`}>
     <Link href={`/products/${product.slug}`} className={`relative block overflow-hidden bg-[#f3f0e8] ${list ? "w-32 shrink-0 sm:w-44" : ""}`}>
       <ProductVisualFallback sku={product.sku} name={product.name} category={product.category?.name} />
       <img src={productImage(product)} alt={product.name} loading="lazy" decoding="async" onError={event => { event.currentTarget.style.display = "none"; }} className={`lazy-media relative ${list ? "aspect-square" : compact ? "aspect-[1.52]" : "aspect-[1.1]"} w-full object-cover transition duration-500 group-hover:scale-[1.035]`} />

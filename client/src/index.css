@@ -31,23 +31,23 @@
 }
 
 :root {
-  --background: oklch(0.982 0.007 86);
+  --background: oklch(0.84 0.018 235);
   --foreground: oklch(0.17 0.024 255);
-  --card: oklch(1 0 0);
+  --card: oklch(0.895 0.017 235);
   --card-foreground: oklch(0.18 0.018 255);
-  --popover: oklch(1 0 0);
+  --popover: oklch(0.895 0.017 235);
   --popover-foreground: oklch(0.18 0.018 255);
   --primary: oklch(0.6 0.095 75);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.955 0.006 88);
+  --secondary: oklch(0.855 0.018 235);
   --secondary-foreground: oklch(0.22 0.018 255);
-  --muted: oklch(0.955 0.006 88);
+  --muted: oklch(0.855 0.018 235);
   --muted-foreground: oklch(0.49 0.018 255);
-  --accent: oklch(0.955 0.006 88);
+  --accent: oklch(0.855 0.018 235);
   --accent-foreground: oklch(0.22 0.018 255);
   --destructive: oklch(0.57 0.19 28);
-  --border: oklch(0.88 0.008 90);
-  --input: oklch(0.86 0.008 90);
+  --border: oklch(0.72 0.018 235);
+  --input: oklch(0.76 0.018 235);
   --ring: oklch(0.6 0.095 75);
   --radius: 0.45rem;
 }
@@ -85,7 +85,7 @@ button:not(:disabled):active { transform: scale(.98); }
 .roadmark-light i { background: #d8b76c; }
 .roadline { display: inline-block; height: 2px; width: 1.7rem; background: repeating-linear-gradient(90deg, #b88d3c 0 6px, transparent 6px 10px); }
 .hero-shell { position: relative; overflow: hidden; background: #091323; }
-.badge { display: inline-flex; align-items: center; border-radius: 2px; background: white; padding: .3rem .48rem; color: #0d1728; font-size: .59rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.badge { display: inline-flex; align-items: center; border-radius: 2px; background: #cfdae2; padding: .3rem .48rem; color: #071323; font-size: .59rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
 .badge-gold { background: #d5b260; color: #0d1728; }
 .spec-chip { color: #64748b; font-size: .6rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .category-card { position: relative; display: flex; min-height: 18rem; overflow: hidden; background: #0d1728; }
@@ -101,7 +101,7 @@ button:not(:disabled):active { transform: scale(.98); }
 .footer-contact { display: flex; align-items: center; gap: .55rem; color: #d9e1ec; font-size: .88rem; line-height: 1.4; overflow-wrap: anywhere; }
 .rule-label { display: flex; align-items: center; gap: .75rem; color: #9c742c; font-size: .64rem; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
 .rule-label::before { height: 1px; width: 2.5rem; background: currentColor; content: ""; opacity: .65; }
-.surface-grid { background-color: #f1ede4; background-image: linear-gradient(rgb(15 23 42 / .045) 1px, transparent 1px), linear-gradient(90deg, rgb(15 23 42 / .045) 1px, transparent 1px); background-size: 2rem 2rem; }
+.surface-grid { background-color: #c9d6df; background-image: linear-gradient(rgb(7 19 35 / .1) 1px, transparent 1px), linear-gradient(90deg, rgb(7 19 35 / .1) 1px, transparent 1px); background-size: 2rem 2rem; }
 .premium-divider { height: 1px; background: linear-gradient(90deg, transparent, rgb(184 141 60 / .65), transparent); }
 .scroll-progress { pointer-events: none; position: fixed; inset: 0 0 auto; z-index: 90; height: 3px; background: rgb(255 255 255 / .12); }
 .scroll-progress span { display: block; height: 100%; width: 100%; transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, #d6af59 0%, #f6dda1 54%, #79a8d1 100%); }
@@ -138,5 +138,11 @@ section.surface-grid::before { position: absolute; inset: 0; z-index: -1; pointe
 .shelf-marquee { overflow: hidden; border-block: 1px solid rgb(184 141 60 / .38); background: #0b1729; color: #f7ebc5; }
 .shelf-marquee__track { display: flex; width: max-content; gap: 2.4rem; padding: .82rem 1.2rem; font-size: .68rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
 .shelf-marquee__track span::before { display: inline-block; margin-right: .65rem; color: #d6af59; content: "✦"; }
+main .bg-white { background-color: #d7e3ea; }
+.checkout-route-map__path { stroke-dasharray: 8 9; animation: route-dash 1.7s linear infinite; }
+.checkout-route-map__vehicle { animation: route-vehicle 11s cubic-bezier(.37, 0, .18, 1) infinite; }
+.checkout-route-map__vehicle::after { position: absolute; right: -1.05rem; top: .9rem; height: .45rem; width: 1rem; border-radius: 999px; background: linear-gradient(90deg, rgb(247 223 157 / .7), transparent); box-shadow: 0 0 .8rem rgb(247 223 157 / .52); content: ""; transform: rotate(8deg); }
+@keyframes route-dash { to { stroke-dashoffset: -68; } }
+@keyframes route-vehicle { 0%, 7% { opacity: 0; transform: translate3d(0, 0, 0) rotate(-7deg) scale(.88); } 12% { opacity: 1; transform: translate3d(.7rem, -.1rem, 0) rotate(-7deg) scale(1); } 29% { transform: translate3d(3.2rem, -.85rem, 0) rotate(-19deg); } 46% { transform: translate3d(5.8rem, -2.45rem, 0) rotate(-30deg); } 63% { transform: translate3d(9rem, -1.15rem, 0) rotate(19deg); } 79% { transform: translate3d(11.7rem, -2.1rem, 0) rotate(-21deg); } 93% { opacity: 1; transform: translate3d(14.65rem, -5.6rem, 0) rotate(-38deg); } 100% { opacity: 0; transform: translate3d(15rem, -5.9rem, 0) rotate(-38deg) scale(.92); } }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } .particle-field::after { animation: particle-drift 12s ease-in-out infinite; } .particle-interaction { animation: particle-glow-drift 9s ease-in-out infinite alternate; } .shelf-marquee__track { animation: shelf-marquee 24s linear infinite; } }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } .scroll-progress { display: none; } .scroll-reveal { opacity: 1; transform: none; filter: none; } .particle-interaction, .particle-field::after, .hero-cutout-car { transform: none; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } .scroll-progress { display: none; } .scroll-reveal { opacity: 1; transform: none; filter: none; } .particle-interaction, .particle-field::after, .hero-cutout-car { transform: none; } .checkout-route-map__vehicle { opacity: 1; transform: translate3d(14.65rem, -5.6rem, 0) rotate(-38deg); } }

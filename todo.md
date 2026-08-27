@@ -261,3 +261,8 @@
 - [x] Restyle the Test Order Summary, basket-return control, and shared font/color tokens for higher contrast and readability.
 - [x] Verify the revised local test checkout and confirmation on desktop and mobile with checks, tests, build, and visual review.
 - [x] Save the refined test-checkout and visual-system checkpoint.
+- [x] Audit the storefront for excessive white surfaces and unreadable text or button contrast, including the test-order presentation.
+- [x] Refine global backgrounds, surface colors, button treatments, and text contrast for a darker, more readable Zalim-Marketing storefront.
+- [x] Replace the static test-order confirmation presentation with a polished, clearly simulated animated delivery route to a demo destination.
+- [x] Verify the darker visual system and animated local test-order route on desktop and mobile with checks, tests, build, and visual review.
+- [x] Save the dark visual-system and simulated-route refinement checkpoint.

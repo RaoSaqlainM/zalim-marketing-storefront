@@ -69,11 +69,11 @@ function SearchBar({ mobile = false }: { mobile?: boolean }) {
   };
   return <form className={`relative ${mobile ? "w-full" : "hidden lg:block lg:w-[min(25vw,23rem)]"}`} onSubmit={submit}>
     <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
-    <Input ref={inputRef} value={term} onFocus={() => setOpen(term.trim().length >= 2)} onChange={event => { setTerm(event.target.value); setOpen(true); setActiveIndex(-1); }} onKeyDown={keyDown} placeholder="Search products, brands or categories" className="h-11 rounded-none border-slate-300 bg-[#faf9f6] pl-10 text-sm shadow-none focus-visible:ring-[#b88d3c]/30" role="combobox" aria-autocomplete="list" aria-label="Search the Zalim-Marketing catalogue" aria-controls="zalim-search-results" aria-activedescendant={optionId} aria-expanded={open && term.trim().length >= 2} />
-    {open && term.trim().length >= 2 && <div id="zalim-search-results" role="listbox" className="absolute z-50 mt-2 w-full overflow-hidden rounded-none border border-slate-200 bg-white p-1 shadow-xl">
+    <Input ref={inputRef} value={term} onFocus={() => setOpen(term.trim().length >= 2)} onChange={event => { setTerm(event.target.value); setOpen(true); setActiveIndex(-1); }} onKeyDown={keyDown} placeholder="Search products, brands or categories" className="h-11 rounded-none border-[#8297a7] bg-[#dce6ec] pl-10 text-sm text-[#071323] shadow-none focus-visible:ring-[#b88d3c]/40" role="combobox" aria-autocomplete="list" aria-label="Search the Zalim-Marketing catalogue" aria-controls="zalim-search-results" aria-activedescendant={optionId} aria-expanded={open && term.trim().length >= 2} />
+    {open && term.trim().length >= 2 && <div id="zalim-search-results" role="listbox" className="absolute z-50 mt-2 w-full overflow-hidden rounded-none border border-[#8297a7] bg-[#e6eef3] p-1 shadow-xl">
       {suggestions.isLoading && <p className="px-3 py-3 text-sm text-slate-500">Searching catalogue…</p>}
       {!suggestions.isLoading && !items.length && <p className="px-3 py-3 text-sm text-slate-500">No products found. Try a broader search.</p>}
-      {items.map((item, index) => <button id={`zalim-search-option-${item.id}`} key={item.id} role="option" aria-selected={activeIndex === index} type="button" onMouseDown={event => event.preventDefault()} onClick={() => choose(index)} className={`flex w-full items-center gap-3 rounded-none px-2 py-2.5 text-left ${activeIndex === index ? "bg-amber-50" : "hover:bg-slate-50"}`}>
+      {items.map((item, index) => <button id={`zalim-search-option-${item.id}`} key={item.id} role="option" aria-selected={activeIndex === index} type="button" onMouseDown={event => event.preventDefault()} onClick={() => choose(index)} className={`flex w-full items-center gap-3 rounded-none px-2 py-2.5 text-left ${activeIndex === index ? "bg-[#f0d582]" : "hover:bg-[#d1dfe8]"}`}>
         <img src={item.imageUrl || "/manus-storage/category-utility_fa340543.jpg"} alt="" loading="lazy" decoding="async" className="h-10 w-10 object-cover" />
         <span className="min-w-0 flex-1 truncate text-sm font-semibold text-slate-900">{item.name}</span>
         <span className="text-xs font-semibold text-slate-500">{formatCurrency(item.price)}</span>
@@ -220,14 +220,14 @@ export default function StorefrontLayout({ children }: { children: React.ReactNo
     setLocation(path);
     setMobileOpen(false);
   };
-  return <div className="min-h-screen overflow-x-clip bg-[#fafafa] text-slate-950">
+  return <div className="min-h-screen overflow-x-clip bg-[#cad7df] text-slate-950">
     <RouteFeedback />
     <ScrollProgress />
     <a href="#main-content" className="skip-link">Skip to main content</a>
     <div className="bg-[#0d1728] text-white"><div className="container flex min-h-8 items-center justify-center gap-x-8 gap-y-1 py-2 text-center text-[9px] font-bold uppercase tracking-[.16em] sm:justify-between sm:text-[10px]"><span>Car parts, tools and everyday upgrades · EUR prices</span><span className="hidden sm:block">UK · US · Australia vehicle guidance · Help from Saqlain</span></div></div>
-    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white shadow-[0_5px_24px_rgba(15,23,42,.05)]">
+    <header className="sticky top-0 z-40 border-b border-[#94a8b6] bg-[#e2ebf0] shadow-[0_5px_24px_rgba(7,19,35,.12)]">
       <div className="container flex h-[4.9rem] items-center gap-3 lg:h-[5.55rem]">
-        <button className="grid h-10 w-10 shrink-0 place-items-center border border-slate-300 bg-white lg:hidden" onClick={() => setMobileOpen(true)} aria-label="Open navigation"><Menu className="h-5 w-5" /></button>
+        <button className="grid h-10 w-10 shrink-0 place-items-center border border-[#8ea2b0] bg-[#d5e1e8] text-[#071323] lg:hidden" onClick={() => setMobileOpen(true)} aria-label="Open navigation"><Menu className="h-5 w-5" /></button>
         <Link href="/" className="shrink-0"><BrandMark /></Link>
         <div className="ml-auto hidden min-w-0 lg:block"><SearchBar /></div>
         <div className="ml-auto flex items-center gap-1.5 lg:ml-4">
@@ -235,11 +235,11 @@ export default function StorefrontLayout({ children }: { children: React.ReactNo
           <button className="relative grid h-10 w-10 place-items-center" onClick={() => navigate("/cart")} aria-label={`Open basket, ${count} products`}><ShoppingBag className="h-5 w-5" />{count > 0 && <span className="absolute right-0.5 top-0.5 grid min-h-4 min-w-4 place-items-center rounded-full bg-[#b88d3c] px-1 text-[9px] font-bold text-white">{count}</span>}</button>
         </div>
       </div>
-      <div className="hidden border-t border-slate-100 bg-[#faf9f6] lg:block"><div className="container flex h-12 items-center justify-between gap-6"><nav className="flex items-center gap-6 xl:gap-8">{menuLinks.map(([label, path]) => <Link href={path} key={path} className="header-link">{label}</Link>)}</nav><Link href="/contact" className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[.1em] text-[#8b651e] hover:text-slate-950">Need help choosing? <ArrowUpRight className="h-3.5 w-3.5" /></Link></div></div>
+      <div className="hidden border-t border-[#afbfca] bg-[#d3e0e7] lg:block"><div className="container flex h-12 items-center justify-between gap-6"><nav className="flex items-center gap-6 xl:gap-8">{menuLinks.map(([label, path]) => <Link href={path} key={path} className="header-link">{label}</Link>)}</nav><Link href="/contact" className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[.1em] text-[#70511c] hover:text-[#071323]">Need help choosing? <ArrowUpRight className="h-3.5 w-3.5" /></Link></div></div>
     </header>
     {mobileOpen && <div className="fixed inset-0 z-[60] bg-slate-950/45" onClick={() => setMobileOpen(false)}>
-      <aside className="flex h-full w-[min(27rem,92vw)] flex-col bg-white p-5 shadow-2xl" onClick={event => event.stopPropagation()}>
-        <div className="flex items-center justify-between"><BrandMark /><button className="grid h-10 w-10 place-items-center border border-slate-300" onClick={() => setMobileOpen(false)} aria-label="Close navigation"><X className="h-5 w-5" /></button></div>
+      <aside className="flex h-full w-[min(27rem,92vw)] flex-col bg-[#dce7ed] p-5 shadow-2xl" onClick={event => event.stopPropagation()}>
+        <div className="flex items-center justify-between"><BrandMark /><button className="grid h-10 w-10 place-items-center border border-[#8ea2b0] bg-[#e9f0f4] text-[#071323]" onClick={() => setMobileOpen(false)} aria-label="Close navigation"><X className="h-5 w-5" /></button></div>
         <div className="mt-7"><SearchBar mobile /></div>
         <nav className="mt-7 grid border-y border-slate-200 py-3">{menuLinks.map(([label, path]) => <button key={path} onClick={() => navigate(path)} className="flex items-center justify-between px-1 py-3.5 text-left text-base font-semibold text-slate-900"><span>{label}</span><ChevronRight className="h-4 w-4 text-slate-400" /></button>)}<button onClick={() => navigate("/collections")} className="flex items-center justify-between px-1 py-3.5 text-left text-base font-semibold text-slate-900"><span>All categories</span><ChevronRight className="h-4 w-4 text-slate-400" /></button><button onClick={() => navigate("/contact")} className="flex items-center justify-between px-1 py-3.5 text-left text-base font-semibold text-slate-900"><span>Contact & support</span><ChevronRight className="h-4 w-4 text-slate-400" /></button></nav>
         <div className="mt-auto space-y-3 pt-6"><Button className="h-12 w-full rounded-none bg-[#b88d3c] font-bold hover:bg-[#9d752e]" onClick={() => navigate("/cart")}>Review guest basket</Button><a className="flex h-11 items-center justify-center gap-2 border border-slate-300 text-sm font-bold" href="https://wa.me/923255531155" target="_blank" rel="noreferrer"><MessageCircle className="h-4 w-4" />WhatsApp support</a></div>
