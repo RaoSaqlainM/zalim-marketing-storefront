@@ -10,6 +10,22 @@ export type TestPaymentDetails = {
   reference: string;
 };
 
+export const demoCheckoutSample = {
+  enquiry: {
+    name: "Sample Customer",
+    email: "sample@example.com",
+    phone: "+00 000 000 000",
+    location: "Example City",
+    address: "Test location only — not a real address",
+    vehicle: "Sample vehicle — confirm fitment before purchase",
+    message: "Browser-local checkout demonstration only.",
+  },
+  payment: {
+    cardholder: "Sample Customer",
+    reference: "DEMO-4242",
+  },
+} as const;
+
 export type DemoOrderStatus = "placed" | "packed" | "dispatched" | "delivered";
 
 export type DemoOrder = {

@@ -1,10 +1,15 @@
 import { describe, expect, it } from "vitest";
-import { demoDeliveryGuidance, demoOrderProgressIndex, demoOrderTotal, nextDemoOrderStatus, validateTestPayment } from "../client/src/lib/demoOrder";
+import { demoCheckoutSample, demoDeliveryGuidance, demoOrderProgressIndex, demoOrderTotal, nextDemoOrderStatus, validateTestPayment } from "../client/src/lib/demoOrder";
 
 describe("demo order helpers", () => {
   it("only accepts a fictional test payment reference", () => {
     expect(validateTestPayment({ cardholder: "Test Customer", reference: "DEMO-4242" })).toBeNull();
     expect(validateTestPayment({ cardholder: "Test Customer", reference: "4242 4242 4242 4242" })).toBe("Use a fictional reference in the format DEMO-4242.");
+  });
+
+  it("provides clearly fictional sample checkout values that pass the test-only validation", () => {
+    expect(demoCheckoutSample.enquiry.address).toContain("not a real address");
+    expect(validateTestPayment(demoCheckoutSample.payment)).toBeNull();
   });
 
   it("calculates an itemized simulated order total", () => {

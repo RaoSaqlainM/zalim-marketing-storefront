@@ -255,3 +255,9 @@
 - [x] Refine only the clearly labelled simulated payment, confirmation, and delivery presentation without collecting financial details or representing a real order.
 - [x] Verify the revised Zalim-Marketing storefront on desktop and mobile with checks, tests, build, and visual review.
 - [x] Save the visual and simulated-purchase refinement checkpoint.
+- [x] Inspect the test checkout’s confirmation action and the current Test Order Summary colors and typography.
+- [x] Add clearly labelled sample-only customer and DEMO payment-reference values for an easy local test confirmation path.
+- [x] Ensure the test checkout confirmation action creates the browser-local sample order and opens its confirmation reliably.
+- [x] Restyle the Test Order Summary, basket-return control, and shared font/color tokens for higher contrast and readability.
+- [x] Verify the revised local test checkout and confirmation on desktop and mobile with checks, tests, build, and visual review.
+- [x] Save the refined test-checkout and visual-system checkpoint.

@@ -3,8 +3,8 @@ import { paymentPreviewConfirmation, paymentPreviewDelayMs } from "../client/src
 
 describe("payment preview", () => {
   it("keeps the simulated confirmation explicitly non-processing", () => {
-    expect(paymentPreviewConfirmation("transfer").detail).toContain("No payment has been processed");
-    expect(paymentPreviewConfirmation("transfer").detail).toContain("Bank transfer after confirmation");
+    expect(paymentPreviewConfirmation("transfer").detail).toContain("fictional transfer-route preview");
+    expect(paymentPreviewConfirmation("transfer").detail).toContain("Nothing has been charged or sent to a provider");
   });
 
   it("uses a short visual feedback interval", () => {
